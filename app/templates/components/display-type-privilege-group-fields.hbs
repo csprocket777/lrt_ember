@@ -1,0 +1,38 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <button {{action "addNew" subGroupModel}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    <thead>
+        <tr>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-8">Description</th>
+            <th class="col-md-2">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.modelToDisplay itemController="option-item"}}
+            <tr {{bind-attr class="isDirty:warning"}}>
+                <td class="col-md-2 form-group">{{input type='text' value=title class='form-control' disabled=controller.disabled}}</td>
+                <td class="col-md-2 form-group">{{view Ember.TextArea class='form-control' value=description disabled=controller.disabled}}</td>
+                <td class="col-md-2 input-group">
+                        {{control-toggle-switch
+                        onLabel="True"
+                        offLabel="False"
+                        value=active
+                        isDisabled=controller.disabled
+                        }}
+
+                        {{#if isNew}}
+                            <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                        {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

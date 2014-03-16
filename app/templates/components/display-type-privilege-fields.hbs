@@ -1,0 +1,61 @@
+<ul class="nav nav-tabs">
+    {{#each privGroup in parentModelData itemController="parent-model-item-tab"}}
+        <li {{bind-attr class="active"}}><a {{bind-attr href="privGroup.anchorIDHash"}} data-toggle="tab" {{action "tabClick"}}>{{privGroup.title}}</a></li>
+    {{/each}}
+</ul>
+
+
+<div class="tab-content options">
+    {{#with model as tabs}}
+        {{#each privGroup in parentModelData itemController="parent-model-item-tab-content"}}
+
+            <div {{bind-attr class=":tab-pane active :tabbedTextFieldWithRelationContainer" id="privGroup.anchorID"}}>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3">Title</th>
+                            <th class="col-md-8">Description</th>
+                            <th class="col-md-1">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each relatedValue in privGroup.privileges}}
+                        <tr {{bind-attr class="relatedValue.isDirty:warning"}}>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon">{{relatedValue.id}}</span>
+                                    {{input type='text' value=relatedValue.title class='form-control' disabled=parentController.disabled}}
+                                </div>
+                            </td>
+                            <td>{{view Ember.TextArea class='form-control' value=relatedValue.description disabled=parentController.disabled}}</td>
+                            <td>
+                                {{#if relatedValue.isNew}}
+                                    <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" relatedValue privGroup}}>Cancel</button>
+                                {{/if}}
+                                {{control-toggle-switch
+                                onLabel="True"
+                                offLabel="False"
+                                value=relatedValue.active
+                                isDisabled=parentController.disabled
+                                }}
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                    {{#if parentController.canEdit}}
+                        <tfoot>
+                            <tr>
+                                <th class="col-md-3" colspan="3">
+                                    <!--<div class="addNewButtonFloater" data-spy="affix" data-offset-bottom="100">-->
+                                        <button {{action "addNew" parentController.subGroupModel privGroup}} type="button" class="btn btn-success btn-sm add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                                    <!--</div>-->
+                                </th>
+                            </tr>
+                        </tfoot>
+                    {{/if}}
+                </table>
+
+            </div>
+        {{/each}}
+    {{/with}}
+</div>

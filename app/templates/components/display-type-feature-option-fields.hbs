@@ -1,0 +1,47 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <button {{action "addNew" subGroupModel}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    <thead>
+        <tr>
+            <th class="col-md-3">Feature Name</th>
+            <th class="col-md-2">Feature Slug</th>
+            <th class="col-md-2">Type</th>
+            <th class="col-md-2">Status</th>
+            <th class="col-md-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.modelToDisplay itemController='option-item'}}
+            <tr {{bind-attr class="isDirty:warning"}}>
+                <td class="form-group">{{input type='text' value=formalName class='form-control' disabled=parentController.disabled}}</td>
+                <td class="form-group">{{input type='text' value=feature class='form-control' disabled=parentController.disabled}}</td>
+                <td class="form-group">{{input type='text' value=option class='form-control' disabled=parentController.disabled}}</td>
+                <td class="form-group">
+                    {{view "relationship-select"
+                    classNames="form-control"
+                    content=parentController.statusOptions
+                    optionLabelPath="content.optionValue"
+                    optionValuePath="content.id"
+                    selection=value
+                    compareValue=orig_value
+                    dirtyValuePath="featureOptionIsDirty"
+                    modelToManage=this
+                    disabled=parentController.disabled
+                    }}
+                </td>
+                <td class="form-group">
+                    {{#if isNew}}
+                        <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

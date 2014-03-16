@@ -1,0 +1,83 @@
+/**
+ * Created by chshipma on 3/12/14.
+ */
+
+.layoutArea{
+
+  &.editMode{
+    .row, .col{
+      border: dashed 1px #ffffff;
+      position: relative;
+      min-height: 50px;
+      margin-bottom: 10px;
+      border: dashed 1px #d5d5d5;
+      padding-bottom: 20px;
+
+      &:hover{
+        background: #fafafa;
+
+        .editPalette{
+          display: block;
+        }
+      }
+
+      .editPalette{
+        display: none;
+        z-index: 100;
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+
+        .layoutCreation{
+          &.rowButtons{
+            display: inline-block;
+            float: right;
+
+            input[type=checkbox]{
+              margin-top: 0px;
+            }
+          }
+        }
+      }
+
+
+      .record-layout-field-display-type-container{
+        position: relative;
+
+        &:hover{
+          .record-field-display-layout-edit-controls-container{
+            display: block;
+          }
+        }
+
+        .record-field-display-layout-edit-controls-container{
+          display: none;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          top: 0px;
+          background: fade(black, 25%);
+          padding: 5px;
+
+          .btn-group{
+          }
+        }
+      }
+
+    }
+  }
+
+  .fieldsetLayout{
+
+    &.newRowPlaceholder{
+      background: #fafafa;
+      border: dashed 1px #d5d5d5;
+      display: block;
+      padding: 20px;
+      width: auto;
+      margin-top: 15px;
+    }
+
+  }
+
+}

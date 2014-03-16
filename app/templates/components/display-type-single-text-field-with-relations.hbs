@@ -1,0 +1,63 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <button {{action "addNew"}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    <thead>
+    <tr>
+        <th class="col-md-4">
+            Value
+        </th>
+        <th class="col-md-2">
+            Active
+        </th>
+        <th class="col-md-3">
+            Relates to
+        </th>
+    </tr>
+    </thead>
+    {{#with providedModel as parentOptionGroup}}
+        {{#each option in providedModel.childOptions itemController="single-text-field-with-relation-item"}}
+            <tr {{bind-attr class="option.isDirty:warning :singleTextFieldContainer"}}>
+                <td>
+                    <div class="form-group">
+                        {{input type="text" value=option.optionValue class="form-control" disabled=parentController.disabled}}
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{!--{{view Ember.Checkbox checkedBinding="option.active" disabled=parentController.disabled}} Active--}}
+                            {{control-toggle-switch
+                            onLabel="Active"
+                            offLabel="Inactive"
+                            value=option.active
+                            isDisabled=parentController.disabled
+                            }}
+                        </label>
+                    </div>
+                </td>
+                <td class="col-md-3">
+                    {{view "relationship-multi-select"
+                    classNames="form-control multiselect"
+                    content=parentOptionGroup.parentOptionType.childOptions
+                    optionLabelPath="content.optionValue"
+                    optionValuePath="content.id"
+                    multiple="multiple"
+                    selectionValue=option.option_relation_value
+                    compareValue=option.optionRelationValue
+                    dirtyValuePath="optionRelationIsDirty"
+                    modelToManage=option
+                    disabled=parentController.disabled
+                    }}
+
+                </td>
+            </tr>
+        {{/each}}
+    {{/with}}
+</table>

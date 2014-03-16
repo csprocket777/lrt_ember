@@ -1,0 +1,11 @@
+<button type="button" {{bind-attr class="extraButtonClasses :btn :dropdown-toggle"}} data-toggle="dropdown">
+{{buttonLabelText}}
+    {{#if caret}}
+        <span class="caret"></span>
+    {{/if}}
+</button>
+<ul {{bind-attr class="extraMenuClasses :dropdown-menu"}} role="menu">
+    {{#each menuItem in content itemController="dropdownMenuItem"}}
+        <li {{bind-attr class="menuItem.selected:active"}}><a href="#" {{action "menuItemSelect" menuItem}}>{{menuItem.label}}</a></li>
+    {{/each}}
+</ul>

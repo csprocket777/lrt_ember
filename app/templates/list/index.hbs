@@ -1,0 +1,61 @@
+{{bs-page-header title="Jobs"}}
+
+<div class="container">
+    <div class="row">
+
+        <table id="usersTable" class="table table-condensed table-hover col-md-12">
+            <thead>
+            <tr>
+                <th style="text-align: right" colspan="5">
+                    {{control-pagination
+                    paginationSize="pagination-sm"
+                    route="list.page"
+                    prevPage=prevPage
+                    nextPage=nextPage
+                    pages=pages
+                    availablePages=availablePages
+                    unit="Records"
+                    totalRecords=recordMeta.totalItems
+                    itemsPerPage=itemsPerPage
+                    itemsPerPageChangeAction="changePerPageCount"
+                    }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each record in model itemController="usersDisplayListItem" canEditOwnGroupUsers=canEditOwnGroupUsers}}
+                <tr>
+                    <td class="col-md-4 listColumn">
+                        {{record.id}}
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th style="text-align: right" colspan="5">
+
+                    {{control-pagination
+                    paginationSize="pagination-sm"
+                    route="list.page"
+                    prevPage=prevPage
+                    nextPage=nextPage
+                    pages=pages
+                    availablePages=availablePages
+                    unit="Records"
+                    totalRecords=content.length
+                    itemsPerPage=itemsPerPage
+                    itemsPerPageChangeAction="changePerPageCount"
+                    }}
+
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+
+{{#if saveNeeded}}
+    {{save-menu saveAction="saveChanges" revertAction="revertChanges"}}
+{{/if}}

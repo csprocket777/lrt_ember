@@ -1,0 +1,411 @@
+{{#if isNew}}
+    {{bs-page-header title="Users" sub="Creating a user"}}
+{{else}}
+    {{#if canEditUser}}
+        {{bs-page-header title=name sub="( Editing )"}}
+    {{else}}
+        {{bs-page-header title=name sub=emailAddress}}
+    {{/if}}
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            {{#link-to "users" class="btn btn-sm btn-default"}}<i class="glyphicon glyphicon-arrow-left"></i> Back{{/link-to}}
+        </div>
+    </div>
+{{/if}}
+
+
+{{#if canEditUser}}
+
+    {{#if isNew}}
+    <form>
+        <fieldset>
+    {{/if}}
+            <div class="row">
+                <div class='col-md-4'>
+                    {{#bs-panel heading="Account Details"}}
+
+                            <div class="form-group">
+                                <label class="control-label" for="name">CEC ID:</label>
+                                    {{#if isNew}}
+                                        <form {{action "lookupCECID" on="submit"}}>
+                                            <div class="input-group">
+                                                {{input id="cecid" class="form-control input-lg" type="text" value=cecID action="lookupCECID" on="submit"}}
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg" type="submit" {{action "lookupCECID"}}><i class="glyphicon glyphicon-search"></i></button>
+                                                </span>
+                                                {{!--<div class="fieldValidationLabelPosition">--}}
+                                                    {{!--<div class="label label-danger fieldValidationLabel">TESTING this one will hopefully wrap to another line so I can test it's flexibility.</div>--}}
+                                                {{!--</div>--}}
+                                            </div>
+                                        </form>
+                                    {{else}}
+                                        {{input type="text" class="form-control" value=cecID placeholder="CEC ID (without '@cisco.com')"}}
+                                    {{/if}}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                {{input type="text" class="form-control" value=name placeholder="Full Name"}}
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="name">Employee Type:</label>
+                                {{view Ember.Select
+                                    class="form-control"
+                                    content=userTypeOptions
+                                    selection=type
+                                    optionLabelPath="content.optionValue"
+                                    optionValuePath="content.id"
+                                    prompt="(Select a type of employment)"
+                                    disabled=canModifyEmployeeTypeProperty
+                                }}
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="control-label" for="name">Password:</label>
+                                <span class="label label-warning pull-right">
+                                    NOT MANAGED BY LRT
+                                </span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="control-label" for="name">Job Roles:</label>
+                                    {{view "relationship-multi-select"
+                                        classNames="form-control multiselect pull-right"
+                                        addedClasses=" pull-right"
+                                        content=jobRoleOptions.content
+                                        optionLabelPath="content.optionValue"
+                                        optionValuePath="content.id"
+                                        multiple="multiple"
+                                        selectionValue=jobRole_ids
+                                        compareValue=jobRolesOriginal
+                                        dirtyValuePath="jobRoleIsDirty"
+                                        modelToManage=model
+                                        disabled=canModifyJobRoleProperty
+                                    }}
+                                        {{!--selection=jobRole_ids--}}
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="name">Active:</label>
+                                {{control-toggleSwitch
+                                onLabel="True"
+                                offLabel="False"
+                                value=active
+                                enabled=canModifyActiveProperty
+                                }}
+                            </div>
+
+                    {{/bs-panel}}
+                </div>
+
+                <div class='col-md-8'>
+                    {{#bs-panel heading="Associations"}}
+
+                        <div class="form-group">
+                            <label class="control-label" for="name">Group Association:</label>
+                            {{!--{{view Ember.Select--}}
+                            {{!--class="form-control"--}}
+                            {{!--content=groupAssociations--}}
+                            {{!--selection=groupAssociation--}}
+                            {{!--optionLabelPath="content.optionValue"--}}
+                            {{!--optionValuePath="content.id"--}}
+                            {{!--prompt="(Select a group association)"--}}
+                            {{!--disabled=canModifyGroupAssociation--}}
+                            {{!--}}--}}
+                            {{view "relationship-multi-select"
+                                classNames="form-control multiselect pull-right"
+                                addedClasses="pull-right"
+                                content=groupAssociations.content
+                                optionLabelPath="content.optionValue"
+                                optionValuePath="content.id"
+                                multiple="multiple"
+                                selectionValue=groupAssociation
+                                compareValue=orig_groupAssociation
+                                dirtyValuePath="groupAssociationDirty"
+                                modelToManage=model
+                                disabled=canModifyGroupAssociation
+                            }}
+                        </div>
+
+                        {{!--<div class="form-group">--}}
+                            {{!--<label class="control-label" for="name">Development Team:</label>--}}
+                            {{!--{{view Ember.Select--}}
+                            {{!--class="form-control"--}}
+                            {{!--content=devTeams--}}
+                            {{!--selection=developmentTeam--}}
+                            {{!--optionLabelPath="content.optionValue"--}}
+                            {{!--optionValuePath="content.id"--}}
+                            {{!--prompt="(Select a development Team)"--}}
+                            {{!--disabled=canModifyDevelopmentGroupAssociation--}}
+                            {{!--}}--}}
+                        {{!--</div>--}}
+
+                        <div class="form-group">
+                            <label class="control-label" for="name">Manager:</label>
+                            {{view Ember.Select
+                            class="form-control"
+                            content=managers
+                            selection=managerID
+                            optionLabelPath="content.name"
+                            optionValuePath="content.id"
+                            prompt="(Select a manager)"
+                            disabled=canModifyManagerAssignment
+                            }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="name">Approver:</label>
+                            {{view Ember.Select
+                            class="form-control"
+                            content=approvers
+                            selection=approverID
+                            optionLabelPath="content.name"
+                            optionValuePath="content.id"
+                            prompt="(Select a request approver)"
+                            disabled=canModifyApproverAssignment
+                            }}
+                        </div>
+                    {{/bs-panel}}
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class='col-md-4'>
+                    {{#bs-panel heading="Access Levels"}}
+
+                        <table class="table table-condensed-table-hover col-md-12">
+                            <tbody>
+                            {{#with model as user}}
+                                {{#each accessLevel in availableAccessLevels itemController="user-access-level-privileges"}}
+                                    <tr>
+                                        <td>{{accessLevel.title}}</td>
+                                        <td>
+                                            {{#if canAssignAccessLevel}}
+                                                {{control-list-toggle-switch
+                                                onLabel="Active"
+                                                offLabel="Disabled"
+                                                on="success"
+                                                off="danger"
+                                                content=accessLevel.content
+                                                value=user.accessLevels
+                                                changeAction="accessLevelChanged"
+                                                enabled=parentController.canModifyAccessLevels
+                                                }}
+                                            {{else}}
+                                                <small class="pull-right">(No access)</small>
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                {{else}}
+                                    <tr>
+                                        <td><small>No privileges available to be applied</small></td>
+                                    </tr>
+                                {{/each}}
+                            {{/with}}
+                            </tbody>
+                        </table>
+
+                    {{/bs-panel}}
+                </div>
+
+
+                <div class='col-md-8'>
+
+                    {{#bs-panel heading="Extra Privileges"}}
+
+                        {{#unless canAssignExtraPrivileges}}
+                            <button class="btn btn-danger btn-xs" {{action "resetAllExtraPrivileges"}} style="margin-bottom: 15px"><span class="glyphicon glyphicon-repeat"></span> Reset Extra Privileges</button>
+                        {{/unless}}
+
+                        <div class="panel-group" id="accordion">
+                            {{#with model as user}}
+                                {{#each privGroup in privilegeGroups}}
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" {{bind-attr href=privGroup.anchorIDHash}} data-parent="#accordion">
+                                                    {{privGroup.title}}
+                                                    <span class="badge pull-right">{{privGroup.privilegeCount}}</span>
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div class="panel-collapse collapse" {{bind-attr id=privGroup.anchorID}}>
+                                            <table class="panel-body table table-hover">
+                                                <tbody>
+                                                {{#each privilege in privGroup.privileges itemController="extraPrivilegesItem" userModel=user privilegeModel=privilege}}
+                                                    <tr>
+                                                        <td class="col-md-3">
+                                                            {{privilege.title}}
+                                                        </td>
+                                                        <td class="col-md-6">
+                                                            {{privilege.description}}
+                                                        </td>
+                                                        <td class="col-md-3" style="text-align: right">
+                                                            {{#unless parentController.canAssignExtraPrivileges}}
+                                                                {{#if privilegeIsInAccessLevel}}
+                                                                    <small>(Controlled by access level)</small>
+                                                                {{else}}
+                                                                    {{control-list-toggle-switch
+                                                                    onLabel="Allowed"
+                                                                    offLabel="Restricted"
+                                                                    on="success"
+                                                                    off="danger"
+                                                                    value=user.extraPrivileges
+                                                                    content=model
+                                                                    changeAction="extraPrivilegeChanged"
+                                                                    enabled=parentController.canModifyAccessLevels
+                                                                    }}
+                                                                {{/if}}
+                                                            {{else}}
+                                                                {{#if privilegeIsInAccessLevel}}
+                                                                    <button class="btn btn-success btn-xs disabled"><span class="glyphicon glyphicon-ok"></span></button>
+                                                                {{else}}
+                                                                    <button class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-remove"></span></button>
+                                                                {{/if}}
+                                                            {{/unless}}
+                                                        </td>
+                                                    </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                {{/each}}
+                            {{/with}}
+                        </div>
+                    {{/bs-panel}}
+                </div>
+            </div>
+
+
+
+
+    {{#if isNew}}
+        </fieldset>
+    </form>
+    {{/if}}
+
+    {{#if isNew}}
+        {{#if recordValid}}
+            {{save-menu revertLabel="Cancel" saveAction="saveChanges" revertAction="revertChanges"}}
+        {{/if}}
+    {{else}}
+        {{#if saveNeeded}}
+            {{save-menu saveAction="saveChanges" revertAction="revertChanges"}}
+        {{/if}}
+    {{/if}}
+{{/if}}
+
+{{#unless canEditUser}}
+    {{#if canViewUser}}
+
+        <div class="row">
+            <div class='col-md-4'>
+                {{#bs-panel heading="Account Details"}}
+
+                    <h3 style="margin-top: 0px">{{type.optionValue}}</h3>
+
+                    <div class="form-group full-width" style="display: inline">
+                        <label class="control-label" for="name">Job Roles:</label><br/>
+                        {{#each jobRole_ids}}
+                            <span class="label label-default">{{optionValue}}</span>
+                        {{/each}}
+                    </div>
+
+                    <h4>
+                        {{#if active}}
+                            <span class="label label-success">Account is ACTIVE <i class="glyphicon glyphicon-ok"></i></span>
+                        {{else}}
+                            <span class="label label-danger">Account is INACTIVE <i class="glyphicon glyphicon-remove"></i></span>
+                        {{/if}}
+                    </h4>
+
+                    {{#if accessLevels.length}}
+                        <div class="form-group full-width" style="display: inline">
+                            <label class="control-label" for="name">Access Levels:</label><br/>
+                            {{#each accessLevels}}
+                                <span class="label label-default">{{title}}</span>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+
+                {{/bs-panel}}
+            </div>
+
+            <div class='col-md-8'>
+                {{#bs-panel heading="Associations & Privileges"}}
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="name">Group Association:</label><br/>
+                            {{#each groupAssociation}}
+                                <span class="label label-default">{{optionValue}}</span>
+                            {{/each}}
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="name">Manager:</label><br/>
+                            {{#if managerID}}
+                                <h4>{{managerID.name}}</h4>
+                            {{else}}
+                                <small>( none assigned )</small>
+                            {{/if}}
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="name">Approver:</label><br/>
+                            {{#if approverID}}
+                                <h4>{{approverID.name}}</h4>
+                            {{else}}
+                                <small>( none assigned )</small>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label" for="name">Privileges:</label><br/>
+                            {{#if privileges.length}}
+                                {{#each privileges}}
+                                    <span class="label label-default">{{title}}</span>
+                                {{/each}}
+                            {{else}}
+                                <small>( none assigned )</small>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/bs-panel}}
+            </div>
+        </div>
+
+
+
+
+    {{else}}
+        <div class="alert alert-warning alert-block">
+            <h4>RESTRICTED:</h4>
+            <p>You do not have permission to view this user's profile.</p>
+        </div>
+    {{/if}}
+{{/unless}}
+
+
+{{#bs-modal name="newUserConfirmExitModal" fade=true footerButtonsBinding="confirmExitModalButtons" title="Unsaved Changes!"}}
+    <p>There are unsaved changes. Are you sure you want to exit?</p>
+{{/bs-modal}}
+
+
+{{#bs-modal name="newUserExistingAccountModal" fade=true footerButtonsBinding="existingAccountModalButtons" title="Existing Account"}}
+    <p>There are unsaved changes. Are you sure you want to exit?</p>
+{{/bs-modal}}

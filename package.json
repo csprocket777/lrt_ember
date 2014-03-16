@@ -1,0 +1,35 @@
+{
+  "name": "app-kit",
+  "namespace": "appkit",
+  "APIMethod": "proxy",
+  "proxyURL": "http://lsrtember",
+  "proxyPath": "",
+  "version": "0.0.0",
+  "private": true,
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "grunt server",
+    "build": "grunt build:debug",
+    "test": "grunt test:ci",
+    "postinstall": "bower install"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "~1.2.7",
+    "broccoli": "~0.2.0",
+    "broccoli-env": "0.0.1",
+    "broccoli-static-compiler": "^0.1.0",
+    "broccoli-uglify-js": "^0.1.0",
+    "broccoli-es6-concatenator": "^0.1.0",
+    "broccoli-template": "^0.1.0",
+    "broccoli-coffee": "^0.1.0",
+    "broccoli-sass": "^0.1.0"
+  },
+  "dependencies": {
+    "broccoli-less": "~0.1.0"
+  }
+}

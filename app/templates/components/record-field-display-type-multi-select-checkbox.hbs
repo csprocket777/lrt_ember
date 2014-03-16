@@ -1,0 +1,33 @@
+{{#if model.label}}
+    <label>
+        {{model.label}}:
+        {{#if model.required}}*{{/if}}
+    </label>
+{{/if}}
+
+{{#if model.tooltipContent}}
+    {{help-tool-tip
+        dataHtml="true"
+        dataContent=model.tooltipContent
+        dataTrigger="hover"
+    }}
+{{/if}}
+
+{{#if model.content_source}}
+    <ul class="list-group">
+        {{#each contentSourceValues}}
+            <li class="list-group-item">{{optionValue}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+
+{{#if model.helpLine}}
+    <p class="help-block">
+        {{{model.helpLine}}}
+    </p>
+{{/if}}
+
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField"}}
+{{/if}}

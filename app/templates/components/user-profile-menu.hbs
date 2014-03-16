@@ -1,0 +1,7 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{model.firstName}} <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<li>{{#link-to "user" model.id}}My Account{{/link-to}}</li>
+    <li><a href="#" {{action "reloadAccount"}}><i class="glyphicon glyphicon-repeat"></i> Refresh Account</a></li>
+	<li class="divider"></li>
+	<li><a href="#" {{action "logout"}} id="loginMenuItem">Logout</a></li>
+</ul>

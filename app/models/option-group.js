@@ -1,0 +1,4 @@
+export default DS.Model.extend({
+    title:				DS.attr('string'),
+    subGroups:			DS.hasMany('optionSubGroup')
+});

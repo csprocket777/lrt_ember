@@ -1,0 +1,240 @@
+<div class="col-md-4 row" style="margin-bottom: 10px">
+    {{view Ember.Select
+        classNames="form-control"
+        contentBinding='model.modelToDisplay'
+        optionLabelPath="content.name"
+        optionValuePath="content.id"
+        selection=currentTemplate
+        prompt="Select a template to edit"
+    }}
+</div>
+<button {{action "addNewTemplate"}} type="button" class="btn btn-success add" style="margin-left: 10px"><i class="glyphicon glyphicon-plus"></i></button>
+<div class="col-md-12" style="padding-left:0px; padding-right:0px">
+
+    <div class="alert alert-block alert-warning">
+        <h4>TODO:</h4>
+        <p>
+            Work out how related fields are handled
+        </p>
+        <p>
+            <b>WARNING:</b> Revert is wonky here.
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>Fieldset Template Title:</label>
+        {{input id="templateNameField" type="text" value=currentTemplate.name class="form-control input-lg" placeholder="Template Name"}}
+    </div>
+
+        <ul class="nav nav-tabs">
+            <li><a href="#fields" data-toggle="tab">Fields</a></li>
+            <li class="active"><a href="#layout" data-toggle="tab">Layout</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" id="fields">
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="btn btn-default btn-xs pull-right" {{action "addAllFieldsToTemplate"}}>Add All</button>
+                            Available Fields
+                        </div>
+
+                        <ul class="list-group">
+                            {{#if availableFields.length}}
+                                {{#each availableFields}}
+                                    <li class="list-group-item"><button class="btn btn-default btn-xs pull-right" {{action "addFieldToTemplate" this}}>Add <i class="glyphicon glyphicon-chevron-right"></i></button>{{name}}</li>
+                                {{/each}}
+                            {{else}}
+                                <li class="list-group-item"><small>0 fields available</small></li>
+                            {{/if}}
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-default btn-xs" {{action "removeAllFieldsFromTemplate"}}>Remove All</button>
+                                {{#if fieldDetailsDirty}}
+                                    <button class="btn btn-success btn-xs" {{action "saveAllRecordFieldChanges"}}> Save All Changes</button>
+                                {{/if}}
+                            </div>
+                            Fields in template
+                        </div>
+
+                        <ul class="list-group">
+                            {{#if fieldsInTemplate.length}}
+                                {{#each fieldsInTemplate itemController="template-field-list-item"}}
+                                    <li class="list-group-item">
+                                        {{#if added}}
+                                            <span class="label label-info">ADDED</span>
+                                        {{/if}}
+
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-default btn-xs" {{action "removeFieldFromTemplate" this}}><i class="glyphicon glyphicon-chevron-left"></i> Remove</button>
+                                            {{#if isDirty}}
+                                                <button class="btn btn-success btn-xs" {{action "saveRecordFieldChanges" this}}> Save Changes</button>
+                                            {{/if}}
+                                        </div>
+
+                                        <h4 class="list-group-heading">{{record_field_id.name}}</h4>
+                                        <p class="list-group-item-text">
+                                            <div class="panel-group list-detail-group" {{bind-attr id=record_field_id.anchorAccordionIDHash}}>
+                                            <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h5 class="panel-title">
+                                                            {{#view "accordion-header-link" href=record_field_id.anchorAccordionDetailsIDHash dataParent=record_field_id.anchorAccordionIDHash dataToggle="collapse"}}
+                                                            Details
+                                                            {{/view}}
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="panel-collapse collapse" {{bind-attr id=record_field_id.anchorAccordionDetailsID}}>
+                                                        <div class="panel-body">
+
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="name">Field Label:</label>
+                                                                {{input type="text" value=label class="form-control input-sm" placeholder="The label that will appear next to the field in the layout"}}
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="name">Required:</label>
+                                                                {{control-toggleSwitch
+                                                                onLabel="True"
+                                                                offLabel="False"
+                                                                dataSize="small"
+                                                                value=required
+                                                                }}
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="name">Field display type:</label>
+                                                                {{view Ember.Select
+                                                                classNames="form-control"
+                                                                content=controller.displayTypeValues
+                                                                optionLabelPath="content.label"
+                                                                optionValuePath="content.value"
+                                                                value=displayType
+                                                                prompt="Select a field display type"
+                                                                }}
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="name">Help Line:</label>
+                                                                {{input type="text" value=helpLine class="form-control input-sm" placeholder="A line of text near the input to give instruction or context"}}
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="name">Tooltip Content:</label>
+                                                                {{view "prioritization-editable-text-area" value=tooltipContent class="form-control input-sm col-md-12" rows=10 placeholder="foo"}}
+                                                            </div>
+
+                                                            {{#if needsSourceChoice}}
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="name">Content Source Type:</label>
+                                                                    {{view Ember.Select
+                                                                    classNames="form-control"
+                                                                    content=controller.contentSourceOptions
+                                                                    optionLabelPath="content.label"
+                                                                    optionValuePath="content.value"
+                                                                    value=content_source
+                                                                    prompt="Select a content source"
+                                                                    }}
+                                                                </div>
+
+                                                                {{#if controller.contentSourceValues}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="name">Content Source Value:</label>
+                                                                        {{view Ember.Select
+                                                                        classNames="form-control"
+                                                                        content=controller.contentSourceValues
+                                                                        optionLabelPath=controller.labelKey
+                                                                        optionValuePath=controller.valueKey
+                                                                        value=content_source_relation_id
+                                                                        prompt="Select a content source value"
+                                                                        }}
+                                                                    </div>
+                                                                {{/if}}
+                                                            {{/if}}
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </p>
+
+                                    </li>
+                                {{/each}}
+                            {{else}}
+                                <li class="list-group-item"><small>0 fields assigned to template</small></li>
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane active" id="layout">
+                <p class="lead">This is the design of the layout of this fieldset. This is exactly how it will appear to the user.</p>
+
+                <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
+                <div class="layoutArea container editMode">
+
+                    {{#each currentTemplate.topLevelComponents}}
+                        {{record-layout-component
+                            model=this
+                            layoutEditMode=true
+                            addRowAction="addRow"
+                            addColumnAction="addColumn"
+                            addFieldAction="addField"
+                            deleteAction="deleteItem"
+                            removeFieldAction="removeField"
+                        }}
+                    {{/each}}
+
+
+                    <div class="fieldsetLayout newRowPlaceholder text-center row">
+                        <button class="btn btn-primary" {{action "addNewLayoutRow"}}>Add a new row <i class="glyphicon glyphicon-plus"></i></button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+</div>
+
+
+{{#bs-modal name="singleFieldAssociationDeleteConfirmation" fade=true footerButtonsBinding="confirmSingleFieldAssociationDeletionModalButtons" title="Confirm Removal"}}
+    <p>Are you sure you wish to remove this field from the template?</p>
+    <p>This cannot be undone.</p>
+{{/bs-modal}}
+
+
+{{#bs-modal name="fieldAssociationDeleteConfirmation" fade=true footerButtonsBinding="confirmFieldAssociationDeletionModalButtons" title="Confirm Removal"}}
+    <p>Are you sure you wish to remove these fields from the template?</p>
+    <p>This cannot be undone.</p>
+{{/bs-modal}}
+
+
+{{#bs-modal name="layoutItemDeletionConfirmation" fade=true footerButtonsBinding="layoutItemDeletionModalButtons" title="Confirm Removal"}}
+    <p>Are you sure you wish to remove this layout component? This will also remove all child layout components.</p>
+    <p>This cannot be undone.</p>
+{{/bs-modal}}
+
+
+{{#bs-modal name="addFieldToLayoutComponentModal" fade=true footerButtonsBinding="addFieldToLayoutComponentButtons" title="Add fields to layout component"}}
+    <p>Select the fields you wish to add:</p>
+    <ul class="list-group">
+        {{#each fieldsAvailableForLayout}}
+            <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
+        {{/each}}
+    </ul>
+{{/bs-modal}}
+
+
+{{#bs-modal name="fieldDeletionConfirmation" fade=true footerButtonsBinding="fieldDeletionConfirmation" title="Confirm Removal"}}
+    <p>Are you sure you wish to remove this field from the layout?</p>
+    <p>This cannot be undone.</p>
+{{/bs-modal}}

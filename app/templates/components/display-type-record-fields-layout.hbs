@@ -1,0 +1,56 @@
+<table class="table table-striped">
+    {{!--{{#each modelToDisplay.options}}--}}
+    {{#each model.modelToDisplay itemController="option-item"}}
+        <tr {{bind-attr class="isDirty:warning :singleTextFieldContainer"}}>
+            <td class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{id}}</span>
+                        {{input type="text" value=name class="form-control" disabled=controller.disabled}}
+                    </div>
+                </div>
+            </td>
+            <td class="form-group col-md-3">
+                {{view "relationship-select"
+                classNames="form-control"
+                content=parentController.fieldTypeOptions
+                optionLabelPath="content.data_label"
+                optionValuePath="content.id"
+                selection=field_type
+                compareValue=orig_field_type
+                dirtyValuePath="field_type_is_dirty"
+                modelToManage=this
+                disabled=parentController.disabled
+                prompt="Select a data type"
+                }}
+            </td>
+            <td class="col-md-3">
+                {{#if isNew}}
+                    <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                {{/if}}
+
+                <div class="checkbox single">
+                    <label>
+                        {{!--{{view Ember.Checkbox checkedBinding="active" disabled=controller.disabled}} Active--}}
+                        {{control-toggle-switch
+                        onLabel="Active"
+                        offLabel="Inactive"
+                        value=active
+                        isDisabled=controller.disabled
+                        }}
+                    </label>
+                </div>
+
+            </td>
+        </tr>
+    {{/each}}
+    {{#if canEdit}}
+        <tfoot>
+        <tr>
+            <th colspan="2">
+                <button {{action "addNew" subGroupModel}} type="button" class="newBtn btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+            </th>
+        </tr>
+        </tfoot>
+    {{/if}}
+</table>

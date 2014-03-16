@@ -1,0 +1,19 @@
+{{bs-page-header title="System Options"}}
+<div class="row col-md-4">
+		{{view Ember.Select
+						classNames="form-control"
+						contentBinding='model.content'
+						optionLabelPath="content.title"
+						optionValuePath="content.id"
+						optionGroupPath="option_group_id.title"
+						selection=selectedOptionGroup
+						prompt="Select an option type to edit"
+						id="subGroupSelector"
+		}}
+</div>
+
+{{outlet}}
+
+{{#if saveNeeded}}
+	{{save-menu saveAction="saveChanges" revertAction="revertChanges" unsavedRecords=unsavedRecords}}
+{{/if}}

@@ -1,0 +1,23 @@
+<li class="disabled">
+        {{control-button-dropdown
+            btnGroupClasses="recordsPerPageControl"
+            buttonLabelText=paginationDropdownText
+            extraButtonClasses="btn-default btn-sm"
+            caret=true
+            extraMenuClasses=""
+            content=itemsPerPageOptions
+            menuItemSelectAction="setItemsPerPage"
+            selectedMenuItem=selectedPerPageAmount
+        }}
+</li>
+<li class="disabled"><a href="javascript:void(0);">{{totalRecords}} {{unit}}</a></li>
+<li class="disabled"><a href="javascript:void(0);">{{availablePages}} pages</a></li>
+<li>{{#link-to route "1"}}<span class="glyphicon glyphicon-step-backward"></span>{{/link-to}}</li>
+<li>{{#link-to route prevPage}}&laquo;{{/link-to}}</li>
+{{#each pages}}
+    <li {{bind-attr class="is_current:active"}}>
+        {{#link-to controller.route page_id}}{{page_id}}{{/link-to}}
+    </li>
+{{/each}}
+<li>{{#link-to route nextPage}}&raquo;{{/link-to}}</li>
+<li>{{#link-to route availablePages}}<span class="glyphicon glyphicon-step-forward"></span>{{/link-to}}</li>

@@ -1,0 +1,102 @@
+<div class='pageHeaderContainer'>
+	{{bs-page-header title="My Account"}}
+</div>
+
+<div class="row">
+	<div class='col-md-4'>
+		{{#bs-panel heading="Account Details"}}
+		<dl class="dl-horizontal accountDetailsDL">
+			<dt>Name:</dt>
+			<dd>{{name}}</dd>
+			
+			<dt>Login:</dt>
+			<dd>{{cecID}}</dd>
+			
+			<dt>Type:</dt>
+			<dd>{{type.optionValue}}</dd>
+			
+			<dt>Password:</dt>
+			<dd><small>Not managed by LRT.</small></dd>
+			
+			<dt>Job Roles:</dt>
+			<dd>
+				<ul class='list-unstyled'>
+				{{#each role in jobRole_ids.content}}
+					<li>{{role.optionValue}}</li>
+				{{/each}}
+				</ul>
+			</dd>
+		</dl>
+		{{/bs-panel}}
+	</div>
+	
+	<div class='col-md-8'>
+		{{#bs-panel heading="Associations"}}
+			<dl class="dl-horizontal accountDetailsDL">
+				<dt>Personnel Group:</dt>
+				<dd>{{groupAssociation.optionValue}}</dd>
+				
+				<dt>Development Team:</dt>
+				<dd>{{developmentTeam.optionValue}}</dd>
+			
+				<dt>Manager:</dt>
+				<dd>{{managerID.name}}</dd>
+			
+				<dt>Request Approver:</dt>
+				<dd>{{approverID.name}}</dd>
+			</dl>
+		{{/bs-panel}}
+	</div>
+</div>
+
+<div class="row">
+	<div class='col-md-4'>
+		{{#bs-panel heading="Privilages"}}
+			<dl class="dl-horizontal accountDetailsDL">
+				<dt>Alpha User:</dt>
+				<dd>{{alphaUser}}</dd>
+				
+				<dt>Beta User:</dt>
+				<dd>{{betaUser}}</dd>
+				
+				<dt>Maint. User:</dt>
+				<dd>{{maintenanceUser}}</dd>
+				
+				<dt>Admin:</dt>
+				<dd>{{isAdmin}}</dd>
+				
+				<dt>Mgmt:</dt>
+				<dd>{{isMgmt}}</dd>
+			</dl>
+		{{/bs-panel}}
+	</div>
+	
+	
+	<div class='col-md-8'>
+		{{#bs-panel heading="My Contributions to LRT"}}
+			<dl>
+				<dt>Total:</dt>
+				<dd>{{bs-badge content=contributions.content.length}}</dd>
+				
+				<dt>Latest:</dt>
+				<dd>
+					<ul class='list-unstyled'>
+									
+						{{#each newsItem in latestContributions}}
+							<dl class="dl-horizontal accountContributionsItem">
+								<dt>Date: </dt>
+								<dd>{{friendlyTime newsItem.dateAdded}}</dd>
+								
+								<dt>Type: </dt>
+								<dd>{{newsTypeDisplay newsItem.updateType.optionValue newsItem.updateType.id}}</dd>
+								
+								<dt>Description: </dt>
+								<dd>{{newsItem.description}}</dd>
+							</dl>
+						{{/each}}
+					</ul>
+				</dd>
+			</dl>
+		{{/bs-panel}}
+	</div>
+</div>

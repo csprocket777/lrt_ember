@@ -1,0 +1,37 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <button {{action "addNew" subGroupModel}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    {{#each subGroupModel.childOptions itemController="option-item"}}
+        <tr {{bind-attr class="isDirty:warning :singleTextFieldContainer"}}>
+            <td class="col-md-3">
+                <div class="form-group single-field">
+                    {{input type="text" value=optionValue class="form-control" disabled=controller.disabled}}
+                </div>
+            </td>
+            <td class="col-md-3">
+                {{#if isNew}}
+                    <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                {{/if}}
+
+                <div class="checkbox single pull-right">
+                    <label>
+                        {{!--{{view Ember.Checkbox checkedBinding="active" disabled=controller.disabled}} Active--}}
+                        {{control-toggle-switch
+                        onLabel="Active"
+                        offLabel="Inactive"
+                        value=active
+                        isDisabled=controller.disabled
+                        }}
+                    </label>
+                </div>
+            </td>
+        </tr>
+    {{/each}}
+</table>

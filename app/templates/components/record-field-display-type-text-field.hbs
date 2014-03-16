@@ -1,0 +1,25 @@
+{{#if model.label}}
+    <label>
+        {{model.label}}:
+        {{#if model.required}}*{{/if}}
+    </label>
+{{/if}}
+
+{{#if model.tooltipContent}}
+    {{help-tool-tip
+        dataHtml="true"
+        dataContent=model.tooltipContent
+        dataTrigger="hover"
+    }}
+{{/if}}
+
+{{input type="text" class="form-control"}}
+{{#if model.helpLine}}
+    <p class="help-block">
+        {{{model.helpLine}}}
+    </p>
+{{/if}}
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField"}}
+{{/if}}

@@ -1,0 +1,58 @@
+<table class="table table-striped">
+    {{!--<thead>--}}
+    {{!--<tr>--}}
+        {{!--<th colspan="4">--}}
+            {{!--<button {{action "addNew"}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>--}}
+        {{!--</th>--}}
+    {{!--</tr>--}}
+    {{!--</thead>--}}
+    <thead>
+        <tr>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-6">Description</th>
+            <th class="col-md-2">View Privilege</th>
+            <th class="col-md-2">Edit Privilege</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {{#with parentModelData as pmd}}
+        {{#each model.modelToDisplay itemController="option-item"}}
+            <tr {{bind-attr class="isDirty:warning"}}>
+                <td>{{input type='text' value=title class='form-control' disabled=controller.disabled}}</td>
+                <td>{{view Ember.TextArea class='form-control' value=description disabled=controller.disabled}}</td>
+                <td>
+                    {{view "relationship-select"
+                        classNames="form-control"
+                        content=pmd.content
+                        optionLabelPath="content.title"
+                        optionValuePath="content.id"
+                        selection=view_privilege_id
+                        prompt="View privilege"
+                        compareValue=orig_viewPrivilege
+                        dirtyValuePath="viewPrivDirty"
+                        modelToManage=this
+                        disabled=controller.disabled
+                        optionGroupPath="mainPrivilegeGroup.title"
+                        }}
+                </td>
+                <td>
+                    {{view "relationship-select"
+                        classNames="form-control"
+                        content=pmd.content
+                        optionLabelPath="content.title"
+                        optionValuePath="content.id"
+                        selection=edit_privilege_id
+                        prompt="Edit privilege"
+                        compareValue=orig_editPrivilege
+                        dirtyValuePath="editPrivDirty"
+                        modelToManage=this
+                        disabled=controller.disabled
+                    optionGroupPath="mainPrivilegeGroup.title"
+                    }}
+                </td>
+            </tr>
+        {{/each}}
+    {{/with}}
+    </tbody>
+</table>

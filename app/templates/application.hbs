@@ -1,0 +1,7 @@
+{{#if userModel}}
+	{{application-menu model=menuModel user=userModel logoutAction="logout" current=currentRouteName}}
+{{/if}}
+<div class="container">
+	{{outlet}}
+</div>
+{{bs-notifications style="z-index: 1000; position: fixed; width: 50%; right: 10px; bottom:40px;"}}

@@ -1,0 +1,55 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <button {{action "addNew" subGroupModel}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    <thead>
+        <tr>
+            <th class="col-md-2">Quarter Name</th>
+            <th class="col-md-2">Start Date</th>
+            <th class="col-md-2">End Date</th>
+            <th class="col-md-2">Fiscal Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.modelToDisplay itemController="option-item"}}
+        <tr {{bind-attr class="isDirty:warning :fiscalOptionRow"}}>
+            <td>
+                <div class="form-group">
+                    {{input type="text" value=qtrID class="form-control" disabled=controller.disabled}}
+                </div>
+            </td>
+            <td>
+                <div class="input-group datepickerfld date">
+                    {{input type="text" value=startDate class="form-control" disabled=controller.disabled}}
+                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </td>
+            <td>
+                <div class="input-group datepickerfld date">
+                    {{input type="text" value=endDate class="form-control endDate" disabled=controller.disabled}}
+                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </td>
+            <td>
+                {{#if isNew}}
+                    <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+
+                    <div class="form-group pull-left">
+                        {{input type="text" value=fiscalYear class="form-control" disabled=controller.disabled}}
+                    </div>
+                {{else}}
+                    <div class="form-group">
+                        {{input type="text" value=fiscalYear class="form-control" disabled=controller.disabled}}
+                    </div>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

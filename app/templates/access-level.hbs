@@ -1,0 +1,75 @@
+{{bs-page-header title="Access Level" sub=title}}
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-sm btn-default pull-right" {{action "back"}}><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+    </div>
+</div>
+
+<p class="lead">
+    Below are the privileges that define the <b>{{model.title}}</b> access level.
+</p>
+
+{{#if canViewAccessLevels}}
+    {{#unless canModifyAccessLevels}}
+        <div class="alert alert-warning alert-block">
+            <h4>RESTRICTED:</h4>
+            <p>You do not have permission to edit the Access Level associations.</p>
+        </div>
+    {{/unless}}
+    <div class="panel-group" id="accordion">
+        {{#with model as accessLevel}}
+            {{#each privGroup in privilegeGroups}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" {{bind-attr href=privGroup.anchorIDHash}} data-parent="#accordion">
+                                {{privGroup.title}}
+                                <span class="badge pull-right">{{privGroup.privilegeCount}}</span>
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div class="panel-collapse collapse" {{bind-attr id=privGroup.anchorID}}>
+                        <table class="panel-body table table-hover">
+                            <tbody>
+                            {{#each privilege in privGroup.privileges}}
+                                <tr>
+                                    <td class="col-md-3">
+                                        {{privilege.title}}
+                                    </td>
+                                    <td class="col-md-7">
+                                        {{privilege.description}}
+                                    </td>
+                                    <td class="col-md-2">
+                                        {{control-list-toggle-switch
+                                        onLabel="Allowed"
+                                        offLabel="Restricted"
+                                        on="success"
+                                        off="danger"
+                                        value=accessLevel.privileges
+                                        content=privilege
+                                        changeAction="privilegeChanged"
+                                        enabled=canModifyAccessLevels
+                                        }}
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            {{/each}}
+        {{/with}}
+    </div>
+{{else}}
+    <div class="alert alert-warning alert-block">
+        <h4>RESTRICTED:</h4>
+        <p>You do not have permission to view the Access Level definitions.</p>
+    </div>
+{{/if}}
+
+{{#if saveNeeded}}
+    {{save-menu saveAction="saveChanges" revertAction="revertChanges"}}
+{{/if}}

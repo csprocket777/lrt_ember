@@ -1,0 +1,211 @@
+<header {{bind-attr class=":row :col-md-12 :form-group"}}>
+        <label>
+            Criteria Revision:
+
+            {{view Ember.Select
+            classNames="form-control"
+            content=criteriaRevisions
+            optionLabelPath="content.criteriaRevision"
+            optionValuePath="content.criteriaRevision"
+            id="prioritizationCriteriaRevision"
+            selection=selectedCriteriaRevision
+            }}
+            {{!--value=selectedCriteriaRevision--}}
+            {{!--selection=trackingObject.prioritization.currents.currentCriteriaRevision--}}
+        </label>
+
+    {{#if canEdit}}
+        <button {{action "addNewRevision"}} type="button" class="btn btn-success add"><i class="glyphicon glyphicon-plus"></i></button>
+        <button {{action "deleteRevision"}} type="button" class="btn btn-danger"><i class="glyphicon glyphicon-minus-sign"></i></button>
+        {{#if isActiveRevision}}
+            <button type="button" disabled class="btn btn-success">Current Revision <i class="glyphicon glyphicon-ok-circle"></i></button>
+        {{else}}
+            <button {{action "makeRevisionCurrent"}} type="button" class="btn makeCurrent">Make Current</button>
+        {{/if}}
+    {{/if}}
+    <button {{action "previewRevision"}} type="button" class="btn btn-info previewRevision">Preview Revision <i class="glyphicon glyphicon-eye-open"></i></button>
+</header>
+
+{{!--{{#if selectedCriteriaRevisionModel.length }}--}}
+    <div class="well" style="clear:both">
+        {{view "option-usage" modelToInspect="job" fieldToReference="criteriaRevision" store=controller.providedStore}}
+
+        <div class="container">
+            <div class="row">
+                <h3>Categories:
+                    {{#if canEdit}}
+                        {{#if unsavedRevision}}
+                            <button type="button" class="btn btn-success btn-sm add" data-toggle="tooltip" data-position="right" data-container="body" data-title="There are unsaved changes. Save before creating new categories."><i class="glyphicon glyphicon-plus"></i></button>
+                        {{else}}
+                            <button {{action "addNewCategory"}} type="button" class="btn btn-success btn-xs add"><i class="glyphicon glyphicon-plus"></i></button>
+                        {{/if}}
+                    {{/if}}
+                </h3>
+                <ul class="nav nav-pills nav-stacked col-md-3">
+                    {{#each selectedCriteriaRevisionModel itemController="prioritization-category-tab"}}
+                        <li {{bind-attr class='active :criteriaTab'}}>
+                            <a {{bind-attr href=anchorIDHash}} {{action "tabChanged"}} data-toggle="tab">{{title}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+
+                <div class="tab-content col-md-8 categoryContent" style="padding-top:0px; padding-right:0px">
+                    {{#each category in selectedCriteriaRevisionModel itemController="prioritization-category-tab-content"}}
+                        <div {{bind-attr class=':tab-pane category.active' id=category.anchorID}}>
+
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Category Title:</label>
+                                    {{input type="text" value=category.title class="form-control input-lg categoryTitle" disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Tooltip content:</label>
+                                    {{view "prioritization-editable-text-area" value=category.tooltipContent areaVisible=controller.active class="form-control col-md-12" rows=10 disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Category Order:</label>
+                                    {{input type="text" value=category.categoryOrder class="form-control input-lg categoryOrder" disabled=parentController.disabled}}
+                                </div>
+
+                                {{#if parentController.canEdit}}
+                                    <div class="col-md-12 form-group">
+                                        <button type="button" class="btn btn-danger btn-sm" {{action "deleteCategory"}}>Delete Category <i class="glyphicon glyphicon-minus-sign"></i></button>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+
+        {{!-- TOPIC CONTAINER --}}
+        <div class="container">
+            <div class="row">
+                <h3>Topics:
+                    {{#if canEdit}}
+                        {{#if unsavedCategory}}
+                            <button type="button" class="btn btn-success btn-sm add" data-toggle="tooltip" data-position="right" data-container="body" data-title="There are unsaved changes. Save before creating new topics."><i class="glyphicon glyphicon-plus"></i></button>
+                        {{else}}
+                            <button {{action "addNewTopic"}} type="button" class="btn btn-success btn-xs add"><i class="glyphicon glyphicon-plus"></i></button>
+                        {{/if}}
+                    {{/if}}
+                </h3>
+                <ul class="nav nav-pills nav-stacked col-md-3">
+                    {{#each topic in controller.currentCategory.topics itemController="prioritization-topic-tab"}}
+                        <li {{bind-attr class='active'}}><a {{bind-attr href=topic.anchorIDHash}} {{action "tabChanged"}} data-toggle="tab">{{topic.title}}</a></li>
+                    {{/each}}
+                </ul>
+
+                <div class="tab-content col-md-8 topicContent" style="padding-top:0px; padding-right:0px">
+                    {{#each topic in controller.currentCategory.topics itemController="prioritization-topic-tab-content"}}
+                        <div {{bind-attr class=":tab-pane topic.active" id=topic.anchorID}}>
+
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Topic Title:</label>
+                                    {{input type="text" value=topic.title class="form-control input-lg topicTitle" disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Tooltip content:</label>
+                                    {{view "prioritization-editable-text-area" value=topic.tooltipContent areaVisible=controller.active class="form-control" rows=10 disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Category Order:</label>
+                                    {{input type="text" value=topic.topicOrder class="form-control input-lg topicOrder" disabled=parentController.disabled}}
+                                </div>
+
+                                {{#if parentController.canEdit}}
+                                    <div class="col-md-12 form-group">
+                                        <button type="button" class="btn btn-danger btn-sm" {{action "deleteTopic"}}>Delete Topic <i class="glyphicon glyphicon-minus-sign"></i></button>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        {{!-- QUESTION CONTAINER --}}
+        <div class="container">
+            <div class="row">
+                <h3>Criteria:
+                    {{#if canEdit}}
+                        {{#if unsavedTopic}}
+                            <button type="button" class="btn btn-success btn-xs add" data-toggle="tooltip" data-position="right" data-container="body" data-title="There are unsaved changes. Save before creating new categories."><i class="glyphicon glyphicon-plus"></i></button>
+                        {{else}}
+                            <button {{action "addNewCriteria"}} type="button" class="btn btn-success btn-xs add"><i class="glyphicon glyphicon-plus"></i></button>
+                        {{/if}}
+                    {{/if}}
+                </h3>
+                <ul class="nav nav-pills nav-stacked col-md-3">
+                    {{#each criteria in controller.currentTopic.criteria itemController="prioritization-criteria-tab"}}
+                        <li {{bind-attr class='active'}}><a {{bind-attr href=criteria.anchorIDHash}} {{action "tabChanged"}} data-toggle="tab">{{criteria.title}}</a></li>
+                    {{/each}}
+                </ul>
+
+                <div class="tab-content col-md-8 criteriaContent" style="padding-top:0px; padding-right:0px">
+                    {{#each criteria in controller.currentTopic.criteria itemController="prioritizationCriteriaTabContent"}}
+                        <div {{bind-attr class=":tab-pane criteria.active" id=criteria.anchorID}}>
+
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Critieria Title:</label>
+                                    {{input type="text" value=criteria.title class="form-control input-lg criteriaTitle" disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Tooltip content:</label>
+                                    {{view "prioritization-editable-text-area" value=criteria.tooltipContent areaVisible=controller.active class="form-control" rows=10 disabled=parentController.disabled}}
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Priority Value:</label>
+                                    {{input type="text" value=criteria.priorityValue class="form-control input-lg" disabled=parentController.disabled}}
+                                </div>
+                                {{#if parentController.canEdit}}
+                                    <div class="col-md-12 form-group">
+                                        <button type="button" class="btn btn-danger btn-sm" {{action "deleteCriteria"}}>Delete Criteria <i class="glyphicon glyphicon-minus-sign"></i></button>
+                                    </div>
+                                {{/if}}
+
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{{!--{{/if}}--}}
+
+{{#bs-modal name="revisionDeleteModal" fade=true footerButtonsBinding='revisionDeleteModalButtons' title="Confirm Revision Delete"}}
+    <p>This will delete all elements of this prioritization criteria revision.</p>
+    <p>If you wish to continue, click &quot;Confirm&quot; below.</p>
+{{/bs-modal}}
+
+{{#bs-modal name="categoryDeleteModal" fade=true footerButtonsBinding='categoryDeleteModalButtons' title="Confirm Category Delete"}}
+    <p>This will delete all elements of this category, this includes all topics and criteria that pertain to it.</p>
+    <p>If you wish to continue, click &quot;Confirm&quot; below.</p>
+{{/bs-modal}}
+
+{{#bs-modal name="topicDeleteModal" fade=true footerButtonsBinding='topicDeleteModalButtons' title="Confirm Topic Delete"}}
+    <p>This will delete all elements of this topic, this includes all criteria that pertain to it.</p>
+    <p>If you wish to continue, click &quot;Confirm&quot; below.</p>
+{{/bs-modal}}
+
+{{#bs-modal name="criteriaDeleteModal" fade=true footerButtonsBinding='criteriaDeleteModalButtons' title="Confirm Criteria Delete"}}
+    <p>This will delete the selected criteria.</p>
+    <p>If you wish to continue, click &quot;Confirm&quot; below.</p>
+{{/bs-modal}}
+

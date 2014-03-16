@@ -1,0 +1,14 @@
+<div id="loginContainer" class="bg-danger">
+	<div id="loginBox">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="text-danger">GREAT SCOTT!!!!! We've damaged the time-flux capacitor!</h1>
+                <h2>{{errorCode}}</h2>
+                {{#if model}}
+                    <div class="well"><b>Details:</b><br/><code style="white-space: normal">{{model}}</code><br/><code style="white-space: normal">{{model.stack}}</code></div>
+                {{/if}}
+                <p>Have no fear, ping Chuck (<a href="mailto:chshipma@cisco.com">chshipma@cisco.com</a>)</p>
+            </div>
+        </div>
+	</div>
+</div>

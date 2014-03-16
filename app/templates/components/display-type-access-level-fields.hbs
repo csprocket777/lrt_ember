@@ -1,0 +1,54 @@
+<table class="table table-striped">
+    {{#if canEdit}}
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <button {{action "addNew" subGroupModel}} type="button" class="btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </thead>
+    {{/if}}
+    <thead>
+        <tr>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-7">Description</th>
+            <th class="col-md-2">Status</th>
+            <th class="col-md-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {{!--{{modelToDisplay}}--}}
+    {{!--{{modelToDisplay.displayStyle}}--}}
+        {{#each model.modelToDisplay itemController="access-level-privilege-item"}}
+            <tr {{bind-attr class="isDirty:warning"}}>
+                <td>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">{{id}}</span>
+                        {{input type='text' value=title class='form-control' disabled=controller.disabled}}
+                    </div>
+                    {{!--{{input type='text' value=title class='form-control'}}--}}
+                </td>
+                <td>{{view Ember.TextArea class='form-control' value=description disabled=controller.disabled}}</td>
+                <td>
+                        {{control-toggle-switch
+                        onLabel="True"
+                        offLabel="False"
+                        value=active
+                        isDisabled=controller.disabled
+                        }}
+                </td>
+                <td>
+                    {{#unless isNew}}
+                        {{#link-to "accessLevel" this.id class="btn btn-sm btn-default" disabled=controller.disabled}}Assign Privileges{{/link-to}}
+                        {{#link-to "accessLevelPermissionPrivilege" this.id class="btn btn-sm btn-default" disabled=controller.disabled}}Permission Privilege{{/link-to}}
+                    {{/unless}}
+
+                    {{#if isNew}}
+                        <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

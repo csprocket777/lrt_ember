@@ -1,0 +1,19 @@
+{{#if canViewOptionGroup}}
+    {{#unless canEditOptionGroup}}
+        <span class="label label-danger">VIEW ONLY</span>
+    {{/unless}}
+    <p class="lead">
+    {{{descriptionToDisplay}}}
+    </p>
+    {{#if optionContentLoaded}}
+        {{option-display-type optionsController=optionsController model=model providedStore=store trackingObject=trackingObject canEdit=canEditOptionGroup newAction="addNew" cancelAction="cancelNew"}}
+    {{else}}
+        {{view "sub-data-loader"}}
+    {{/if}}
+    {{!--{{lookup model.displayStyle}}--}}
+{{else}}
+    <div class="alert alert-warning alert-block">
+        <h4>RESTRICTED:</h4>
+        <p>You do not have permission to view this option group.</p>
+    </div>
+{{/if}}

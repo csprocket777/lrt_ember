@@ -1,0 +1,47 @@
+<table class="table table-striped">
+    {{!--{{#each modelToDisplay.options}}--}}
+    {{#each model.modelToDisplay itemController="option-item"}}
+        <tr {{bind-attr class="isDirty:warning :singleTextFieldContainer"}}>
+            <td class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{id}}</span>
+                        {{input type="text" value=data_label class="form-control" disabled=controller.disabled placeholder="Humanized Label"}}
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-3">
+                <div class="form-group">
+                    {{input type="text" value=data_type class="form-control" disabled=controller.disabled placeholder="Programmer Speak"}}
+                </div>
+            </td>
+            <td class="col-md-3">
+                {{#if isNew}}
+                    <button class="btn btn-danger btn-sm pull-right cancelButton" {{action "cancelNew" this}}>Cancel</button>
+                {{/if}}
+
+                <div class="checkbox single">
+                    <label>
+                        {{!--{{view Ember.Checkbox checkedBinding="active" disabled=controller.disabled}} Active--}}
+                        {{control-toggle-switch
+                        onLabel="Active"
+                        offLabel="Inactive"
+                        value=active
+                        isDisabled=controller.disabled
+                        }}
+                    </label>
+                </div>
+
+            </td>
+        </tr>
+    {{/each}}
+    {{#if canEdit}}
+        <tfoot>
+            <tr>
+                <th colspan="2">
+                    <button {{action "addNew" subGroupModel}} type="button" class="newBtn btn btn-success add">Add <i class="glyphicon glyphicon-plus"></i></button>
+                </th>
+            </tr>
+        </tfoot>
+    {{/if}}
+</table>
