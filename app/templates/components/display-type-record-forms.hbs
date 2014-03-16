@@ -4,7 +4,7 @@
         contentBinding='model.modelToDisplay'
         optionLabelPath="content.name"
         optionValuePath="content.id"
-        selection=currentTemplate
+        selection=currentForm
         prompt="Select a template to edit"
     }}
 </div>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <label>Fieldset Template Title:</label>
-        {{input id="templateNameField" type="text" value=currentTemplate.name class="form-control input-lg" placeholder="Template Name"}}
+        {{input id="templateNameField" type="text" value=currentForm.name class="form-control input-lg" placeholder="Template Name"}}
     </div>
 
         <ul class="nav nav-tabs">
@@ -79,19 +79,19 @@
                                             {{/if}}
                                         </div>
 
-                                        <h4 class="list-group-heading">{{record_field_id.name}}</h4>
+                                        <h4 class="list-group-heading">{{record_field.name}}</h4>
                                         <p class="list-group-item-text">
-                                            <div class="panel-group list-detail-group" {{bind-attr id=record_field_id.anchorAccordionIDHash}}>
+                                            <div class="panel-group list-detail-group" {{bind-attr id=record_field.anchorAccordionIDHash}}>
                                             <div class="panel panel-default">
                                                     <div class="panel-heading">
                                                         <h5 class="panel-title">
-                                                            {{#view "accordion-header-link" href=record_field_id.anchorAccordionDetailsIDHash dataParent=record_field_id.anchorAccordionIDHash dataToggle="collapse"}}
+                                                            {{#view "accordion-header-link" href=record_field.anchorAccordionDetailsIDHash dataParent=record_field.anchorAccordionIDHash dataToggle="collapse"}}
                                                             Details
                                                             {{/view}}
                                                         </h5>
                                                     </div>
 
-                                                    <div class="panel-collapse collapse" {{bind-attr id=record_field_id.anchorAccordionDetailsID}}>
+                                                    <div class="panel-collapse collapse" {{bind-attr id=record_field.anchorAccordionDetailsID}}>
                                                         <div class="panel-body">
 
                                                             <div class="form-group">
@@ -152,7 +152,7 @@
                                                                         content=controller.contentSourceValues
                                                                         optionLabelPath=controller.labelKey
                                                                         optionValuePath=controller.valueKey
-                                                                        value=content_source_relation_id
+                                                                        value=content_source_relation
                                                                         prompt="Select a content source value"
                                                                         }}
                                                                     </div>
@@ -182,8 +182,8 @@
                 <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
                 <div class="layoutArea container editMode">
 
-                    {{#each currentTemplate.topLevelComponents}}
-                        {{record-layout-component
+                    {{#each currentForm.topLevelComponents}}
+                        {{record-layout-definition
                             model=this
                             layoutEditMode=true
                             addRowAction="addRow"

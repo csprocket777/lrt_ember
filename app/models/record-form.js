@@ -2,15 +2,15 @@
  * Created by chshipma on 2/20/14.
  */
 export default DS.Model.extend({
-    name:               DS.attr('string'),
-    fields:             DS.hasMany('recordFieldsetFieldAssociation', {inverse:'record_fieldset_template_id'}),
-    orig_fields:        DS.hasMany('recordFieldsetFieldAssociation'),
+    name:                       DS.attr('string'),
+    field_associations:         DS.hasMany('record-form-field-association', {inverse:'record_form'}),
+    orig_field_associations:    DS.hasMany('record-form-field-association'),
 
-    layout_components:  DS.hasMany('recordLayoutComponent'),
+    layout_definitions:         DS.hasMany('record-layout-definition'),
 
     topLevelComponents: function(){
-        return this.get('layout_components').filterBy('isTopLevel', true);
-    }.property('layout_components.@each'),
+        return this.get('layout_definitions').filterBy('isTopLevel', true);
+    }.property('layout_definitions.@each'),
 
     updated_at:         DS.attr(),
     created_at:         DS.attr(),
@@ -19,12 +19,12 @@ export default DS.Model.extend({
 
     rawFieldList: function(){
         var tmpFieldList = [];
-        this.get('fields').forEach(function(item, index, enumerable){
-            tmpFieldList.pushObject(item.get('record_field_id'));
+        this.get('field_associations').forEach(function(item, index, enumerable){
+            tmpFieldList.pushObject(item.get('record_field'));
         }, this);
 
         return tmpFieldList;
-    }.property('fields.@each'),
+    }.property('field_associations.@each'),
 
     anchorIDHash: function(){
         return "#recordFieldset_"+this.get('id');
@@ -36,9 +36,9 @@ export default DS.Model.extend({
 
     dirtyWatcher: function(){
         this.propertyWillChange('isDirty');
-        this.set('fieldsDirty', this.get('fields.content').compareEmber(this.get('orig_fields.content')) === false);
+        this.set('field_associations_dirty', this.get('field_associations.content').compareEmber(this.get('orig_field_associations.content')) === false);
         this.propertyDidChange('isDirty');
-    }.observes('fields.@each', 'orig_fields.@each'),
+    }.observes('field_associations.@each', 'orig_field_associations.@each'),
 
     fetchRequiredData: function() {
 //      var self = this,

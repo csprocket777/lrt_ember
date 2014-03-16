@@ -72,7 +72,7 @@ export default Ember.Component.extend({
             switch( contentSourceModel )
             {
                 case "optionSubGroup":
-                    return this.get('model.store').find( this.get('childModel'), {optionType: this.get('model.content_source_relation_id'), active:true });
+                    return this.get('model.store').find( this.get('childModel'), {optionType: this.get('model.content_source_relation'), active:true });
             }
 //        }
     }.property('model.content_source'),

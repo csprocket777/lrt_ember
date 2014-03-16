@@ -5,9 +5,9 @@
 var Bootstrap = window.Bootstrap;
 
 export default Ember.Component.extend({
-   layoutName: "display-type-record-fieldset-template-fields",
+   layoutName: "display-type-record-forms",
 
-    currentTemplate:null,
+    currentForm:null,
     fieldList: null,
 
     fieldsToRemove: null,
@@ -19,13 +19,13 @@ export default Ember.Component.extend({
 
     availableFields: function(){
         return this.get('fieldList').filterBy('active', true).sortBy('name').filter(function(item,index,enumerable){
-            return this.get('currentTemplate.rawFieldList').contains(item) === false;
+            return this.get('currentForm.rawFieldList').contains(item) === false;
         }, this);
-    }.property('fieldList.@each', 'currentTemplate.fields.@each', 'currentTemplate.rawFieldList.@each', 'currentTemplate'),
+    }.property('field_associations.@each', 'currentForm.field_associations.@each', 'currentForm.rawFieldList.@each', 'currentForm'),
 
     fieldsInTemplate: function(){
-        return this.get('currentTemplate.fields').sortBy('label');
-    }.property('currentTemplate.fields.@each'),
+        return this.get('currentForm.field_associations').sortBy('label');
+    }.property('currentForm.field_associations.@each'),
 
     fieldDetailsDirty: function(){
         return this.get('fieldsInTemplate').any(function(item,index,enumerable){
@@ -34,16 +34,16 @@ export default Ember.Component.extend({
     }.property('fieldsInTemplate.@each.isDirty'),
 
     fieldsInLayout: function(){
-        return this.get('currentTemplate.fields').filter(function(item,index,enumerable){
-            return !Ember.isNone( item.get('record_layout_component_id') );
+        return this.get('currentForm.field_associations').filter(function(item,index,enumerable){
+            return !Ember.isNone( item.get('record_layout_definition') );
         }).sortBy('label');
-    }.property('currentTemplate.fields.@each.record_layout_component_id'),
+    }.property('currentForm.field_associations.@each.record_layout_definition'),
 
     fieldsAvailableForLayout: function(){
-        return this.get('currentTemplate.fields').filter(function(item,index,enumerable){
-            return Ember.isNone( item.get('record_layout_component_id') );
+        return this.get('currentForm.field_associations').filter(function(item,index,enumerable){
+            return Ember.isNone( item.get('record_layout_definition') );
         }).sortBy('label');
-    }.property('currentTemplate.fields.@each.record_layout_component_id', 'fieldsInLayout.length'),
+    }.property('currentForm.field_associations.@each.record_layout_definition', 'fieldsInLayout.length'),
 
     confirmSingleFieldAssociationDeletionModalButtons: [
         Ember.Object.create({title:'Delete', clicked:"confirmSingleFieldAssociationDeletion", type:'danger'}),
@@ -71,7 +71,7 @@ export default Ember.Component.extend({
     ],
 
     _setup:function(){
-        this.set('currentTemplate', this.get('model.modelToDisplay.firstObject'));
+        this.set('currentForm', this.get('model.modelToDisplay.firstObject'));
 //        this.set('fieldList', this.get('providedStore').find('recordField'));
         this.set('fieldList', []);
     }.on('init'),
@@ -136,14 +136,14 @@ export default Ember.Component.extend({
 
 
         addFieldToTemplate:function(evt){
-            var newAssoc = this.get('providedStore').createRecord('recordFieldsetFieldAssociation', {
-                record_fieldset_template_id: this.get('currentTemplate'),
-                record_field_id: evt,
+            var newAssoc = this.get('providedStore').createRecord('record-form-field-association', {
+                record_form: this.get('currentForm'),
+                record_field: evt,
                 label: evt.get("name"),
                 displayType: "text-field"
             });
             newAssoc.save();
-            this.get('currentTemplate.fields').addObject(newAssoc);
+            this.get('currentForm.field_associations').addObject(newAssoc);
             newAssoc = null;
         },
         removeFieldFromTemplate: function(evt){
@@ -152,9 +152,9 @@ export default Ember.Component.extend({
         },
 
         confirmSingleFieldAssociationDeletion: function(){
-            if( this.get('currentTemplate.fields.content') )
+            if( this.get('currentForm.field_associations.content') )
             {
-                this.get('currentTemplate.fields').removeObject(this.get('fieldsToRemove'));
+                this.get('currentForm.field_associations').removeObject(this.get('fieldsToRemove'));
             }
             this.get('providedStore').deleteRecord(this.get('fieldsToRemove'));
             this.get('fieldsToRemove').save();
@@ -163,14 +163,14 @@ export default Ember.Component.extend({
         addAllFieldsToTemplate: function(evt){
                 var newAssocToSave = [];
                 this.get('availableFields').forEach(function(item){
-                    var newAssoc = this.get('providedStore').createRecord('recordFieldsetFieldAssociation', {
-                        record_fieldset_template_id: this.get('currentTemplate'),
-                        record_field_id: item,
+                    var newAssoc = this.get('providedStore').createRecord('record-form-field-association', {
+                        record_form: this.get('currentForm'),
+                        record_field: item,
                         label: item.get("name"),
                         displayType: "text-field"
                     });
                     newAssocToSave.pushObject(newAssoc);
-                    this.get('currentTemplate.fields').addObject(newAssoc);
+                    this.get('currentForm.field_associations').addObject(newAssoc);
                     newAssoc = null;
                 }, this);
 
@@ -183,9 +183,9 @@ export default Ember.Component.extend({
         },
 
         confirmFieldAssociationDeletion: function(evt){
-            while(this.get('currentTemplate.fields.length') > 0){
-                var toDelete = this.get('currentTemplate.fields').objectAt( this.get('currentTemplate.fields.length')-1 );
-                this.get('currentTemplate.fields').removeObject( toDelete );
+            while(this.get('currentForm.field_associations.length') > 0){
+                var toDelete = this.get('currentForm.field_associations').objectAt( this.get('currentForm.field_associations.length')-1 );
+                this.get('currentForm.field_associations').removeObject( toDelete );
                 this.get('providedStore').deleteRecord(toDelete);
                 toDelete.save();
             }
@@ -199,14 +199,14 @@ export default Ember.Component.extend({
 
 
        saveAllRecordFieldChanges: function(evt){
-            this.get('currentTemplate.fields').filterBy('isDirty', true).invoke('save');
+            this.get('currentForm.field_associations').filterBy('isDirty', true).invoke('save');
        },
 
        addNewTemplate: function(evt){
            var newTemplate = this.get('providedStore').createRecord('record-form');
            newTemplate.save();
 
-           this.set('currentTemplate', newTemplate);
+           this.set('currentForm', newTemplate);
 
            Ember.run.next(function(){
                 $('#templateNameField').focus();
@@ -217,16 +217,16 @@ export default Ember.Component.extend({
        addNewLayoutRow: function(evt){
            var self = this;
 
-           var newRow = this.get('providedStore').createRecord('recordLayoutComponent', {
+           var newRow = this.get('providedStore').createRecord('record-layout-definition', {
                displayType: "row",
-               record_fieldset_template_id: this.get('currentTemplate')
+               record_form: this.get('currentForm')
            });
 
            newRow.save().then(function(result){
-               var newCol = self.get('providedStore').createRecord('recordLayoutComponent', {
+               var newCol = self.get('providedStore').createRecord('record-layout-definition', {
                    displayType: "column",
-                   record_fieldset_template_id: self.get('currentTemplate'),
-                   record_layout_component_id: result,
+                   record_form: self.get('currentForm'),
+                   record_layout_definition: result,
                    parent_component: result
                });
 
@@ -240,18 +240,18 @@ export default Ember.Component.extend({
 
        addRow: function(evt){
            var self = this;
-           var newRow = this.get('providedStore').createRecord('recordLayoutComponent', {
+           var newRow = this.get('providedStore').createRecord('record-layout-definition', {
                displayType: "row",
-               record_fieldset_template_id: this.get('currentTemplate'),
-               record_layout_component_id: evt,
+               record_form: this.get('currentForm'),
+               record_layout_definition: evt,
                parent_component: evt
            });
 
            newRow.save().then(function(result){
-               var newCol = self.get('providedStore').createRecord('recordLayoutComponent', {
+               var newCol = self.get('providedStore').createRecord('record-layout-definition', {
                    displayType: "column",
-                   record_fieldset_template_id: self.get('currentTemplate'),
-                   record_layout_component_id: result,
+                   record_form: self.get('currentForm'),
+                   record_layout_definition: result,
                    parent_component: result
                });
                newCol.save();
@@ -261,10 +261,10 @@ export default Ember.Component.extend({
            newRow = null;
        },
        addColumn: function(evt){
-           var newRow = this.get('providedStore').createRecord('recordLayoutComponent', {
+           var newRow = this.get('providedStore').createRecord('record-layout-definition', {
                displayType: "column",
-               record_fieldset_template_id: this.get('currentTemplate'),
-               record_layout_component_id: evt,
+               record_form: this.get('currentForm'),
+               record_layout_definition: evt,
                parent_component: evt
            });
 
@@ -297,7 +297,7 @@ export default Ember.Component.extend({
 
        continueAddFieldsToLayoutComponent: function(evt){
            this.get('fieldsToAdd').forEach(function(item,index,enumerable){
-               item.set('record_layout_component_id', this.get('selectedLayoutComponent'));
+               item.set('record_layout_definition', this.get('selectedLayoutComponent'));
                item.save();
            }, this);
            Bootstrap.ModalManager.hide('addFieldToLayoutComponentModal');
@@ -310,19 +310,19 @@ export default Ember.Component.extend({
        },
 
        confirmLayoutFieldDeletion: function(){
-           this.get('fieldToRemoveFromLayout').set('record_layout_component_id', null);
+           this.get('fieldToRemoveFromLayout').set('record_layout_definition', null);
            this.get('fieldToRemoveFromLayout').save();
            Bootstrap.ModalManager.hide('fieldDeletionConfirmation');
        },
 
        reloadLayoutData: function(){
-           this.get('currentTemplate').reload();
+           this.get('currentForm').reload();
        }
     },
 
     recursiveDelete: function(itemToDelete){
-        itemToDelete.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
-            fieldItem.set('record_layout_component_id', null);
+        itemToDelete.get('field_associations').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
+            fieldItem.set('record_layout_definition', null);
             fieldItem.save();
         });
 
@@ -330,8 +330,8 @@ export default Ember.Component.extend({
         {
             itemToDelete.get('child_components.content').forEach(function(item,index,enumerable){
 
-                item.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
-                    fieldItem.set('record_layout_component_id', null);
+                item.get('field_associations').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
+                    fieldItem.set('record_layout_definition', null);
                     fieldItem.save();
                 });
 

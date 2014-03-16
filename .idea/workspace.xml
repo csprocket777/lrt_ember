@@ -1,319 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3e6d760-3f44-4354-954c-7d013a3400d3" name="Default" comment="Initial Commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/components/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/utils/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/custom-options/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.bowerrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Brocfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/LRT_Ember.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Node_js_Dependencies_for_LRT_Ember.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api-stub/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/_colors.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/components/_controls.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/pages/_fieldset_layout.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/_general.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/components/_login.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/pages/_options.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/pages/_userProfile.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/includes/pages/_users.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/access-level-permission-privilege.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/access-level-permission-privilege.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/access-level-permission-privilege.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/access-level-privilege-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/access-level.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/access-level.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/access-level.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/access-level.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/accordion-header-link.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/utils/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/app-data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/app.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/app.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/app.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/application-menu-nav-item.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/application-menu-nav-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/application-menu.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/application-menu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/application.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/application.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/adapters/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/auth.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/auth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/autoprefixer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/base-model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/bootstrap.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/bs-panel.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkbox-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/clean.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/coffee.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/compass.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/component-test.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/component-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/component-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/concat_sourcemap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/concurrent.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/control-button-dropdown.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/control-button-dropdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/control-list-toggle-switch.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/control-list-toggle-switch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/control-pagination.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/control-pagination.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/control-toggle-switch.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/control-toggle-switch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/copy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/crossdomain.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/current-user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/date-picker-field.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/date-picker-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/development-team.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/development.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/environments/development.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-access-level-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-access-level-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-feature-option-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-feature-option-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-fiscal-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-fiscal-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-option-sub-group-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-option-sub-group-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-prioritization-category-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-prioritization-category-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-privilege-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-privilege-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-privilege-group-fields.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-privilege-group-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-record-field-types-layout.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-record-field-types-layout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-record-fields-layout.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-record-fields-layout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-single-text-field-with-relations.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-single-text-field-with-relations.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-single-text-field.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-single-text-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/display-type-tabbed-text-field-with-relation.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/display-type-tabbed-text-field-with-relation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/dropdown-menu-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/emberTemplates.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/emberscript.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/emblem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/environment.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/error.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/error.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/express-server.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/express-server.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/extra-privileges-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/fancySprites.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/feature-option.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/fiscal-quarter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/friendlyTime-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/utils/genericFunctions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/group-association.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/help-tool-tip.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/help-tool-tip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/helper-test.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/helper-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/helper-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/helpers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/htmlmin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/humans.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/imagemin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/index-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/routes/index-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/index.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/auth/index.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/index.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/list/index.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/users/index.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/list/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/accessLevel/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/list/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/users/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/helpers/isolated-container.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/job-role.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/jshint.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/less.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/loading.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/loading.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/loading.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/locking.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/login.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/helpers/module-for.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/money-field.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/money-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/multi-select.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/nav-menu-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users/new.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/users/new.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/news.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/newsTypeDisplay-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/option-display-type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/option-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/option-item-tab-content.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/option-item-tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/option-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/option-sub-group.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/option-sub-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/option-sub-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/option-sub-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/option-sub-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/option-usage.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/option-usage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/option.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/options.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/options.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/options.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package_bak.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/list/page.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/users/page.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mixins/pagination.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/parent-model-item-tab-content.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/parent-model-item-tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/preprocess.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/components/pretty-color-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/eak/components/pretty-color.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/pretty-color.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-category-row.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-category-tab-content.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-category-tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-criteria-tab-content.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-criteria-tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/prioritization-editable-text-area.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/prioritization-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-topic-tab-content.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/prioritization-topic-tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/privilege-group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/privilege.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mixins/privileged-controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mixins/privileged-model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mixins/privileged-route.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/production.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/environments/production.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/radio-button.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-layout-edit-controls.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-layout-edit-controls.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-date.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-date.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-money.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-money.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-multi-select-checkbox.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-text-area.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-text-area.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-text-field.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-text-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/record-field-display-type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-field-type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-field-value.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/adapters/record-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-field.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-fieldset-field-association.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/record-layout-component.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/record-layout-component.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record-layout-component.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/record.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/related-child-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/related-record.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/relationship-multi-select.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/relationship-select.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/reports.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/helpers/resolver.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/rev.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/reverse-word.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/robots.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api-stub/routes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/sass.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/save-menu.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/save-menu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/single-text-field-with-relation-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/helpers/start-app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/stylus.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/sub-data-loader.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sub-data-loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/sync.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/system-error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/tab-pane-content.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/tab-panes.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/template-field-list-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/components/template-less-component-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/template-less.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test-loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/environments/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/testem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/testem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testem.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/transpile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/trigger-event.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/usemin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/useminPrepare.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/user-access-level-privileges.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/user-profile-attributes.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/user-profile-attributes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/components/user-profile-menu.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/user-profile-menu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/user-profile.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/user-type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/user.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/routes/user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users-display-list-item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/users.hbs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/options/watch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="c3e6d760-3f44-4354-954c-7d013a3400d3" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js" afterPath="$PROJECT_DIR$/app/components/display-type-record-forms.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/record-layout-component.js" afterPath="$PROJECT_DIR$/app/components/record-layout-definition.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/models/record-fieldset-field-association.js" afterPath="$PROJECT_DIR$/app/models/record-form-field-association.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/models/record-layout-component.js" afterPath="$PROJECT_DIR$/app/models/record-layout-definition.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/templates/components/record-layout-component.hbs" afterPath="$PROJECT_DIR$/app/templates/components/record-layout-definition.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/concurrent.js" afterPath="$PROJECT_DIR$/tasks/options/concurrent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" afterPath="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/htmlmin.js" afterPath="$PROJECT_DIR$/tasks/options/htmlmin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/imagemin.js" afterPath="$PROJECT_DIR$/tasks/options/imagemin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/preprocess.js" afterPath="$PROJECT_DIR$/tasks/options/preprocess.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/record-field.js" afterPath="$PROJECT_DIR$/app/models/record-field.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/record-form.js" afterPath="$PROJECT_DIR$/app/models/record-form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LRT_Ember.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -336,60 +40,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="display-type-record-fieldset-template-fields.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js">
+      <file leaf-file-name="record-form-field-association.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/record-form-field-association.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="77" selection-start="7937" selection-end="7937" vertical-scroll-proportion="0.0" vertical-offset="2819" max-vertical-offset="5310">
-              <folding>
-                <marker date="1394929014000" expanded="true" signature="8066:8129" placeholder="{...}" />
-              </folding>
+            <state line="12" column="36" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="record-field.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/adapters/record-field.js">
+        <entry file="file://$PROJECT_DIR$/app/models/record-field.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="3" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+            <state line="33" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="record-form.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
+      <file leaf-file-name="display-type-record-forms.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/display-type-record-forms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+            <state line="162" column="45" selection-start="6169" selection-end="6169" vertical-scroll-proportion="0.5825826" vertical-offset="1848" max-vertical-offset="5310">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="option-sub-group.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/routes/option-sub-group.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3120">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="record-fieldset-field-association.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/record-fieldset-field-association.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="61" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="record-layout-component.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/record-layout-component.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="25" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <folding>
-                <element signature="e#0#42#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -403,16 +76,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/checkbox-group.js" />
-        <option value="$PROJECT_DIR$/app/views/dynamic-display-type.js" />
-        <option value="$PROJECT_DIR$/app/templates/components/help-tool-tip.hbs" />
-        <option value="$PROJECT_DIR$/app/components/help-tool-tip.js" />
-        <option value="$PROJECT_DIR$/app/templates/components/date-picker-field.hbs" />
-        <option value="$PROJECT_DIR$/app/components/date-picker-field.js" />
         <option value="$PROJECT_DIR$/app/templates/record-field-display-type.hbs" />
         <option value="$PROJECT_DIR$/app/styles/includes/components/_controls.less" />
         <option value="$PROJECT_DIR$/app/styles/includes/pages/_fieldset_layout.less" />
@@ -431,10 +103,7 @@
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/app/components/money-field.js" />
         <option value="$PROJECT_DIR$/app/templates/components/record-field-display-type-multi-select-checkbox.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" />
         <option value="$PROJECT_DIR$/app/controllers/template-field-list-item.js" />
-        <option value="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
-        <option value="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
         <option value="$PROJECT_DIR$/app/templates/components/display-type-record-fieldset-template-fields.hbs" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/node_modules/broccoli-es6-concatenator/index.js" />
@@ -443,7 +112,6 @@
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
-        <option value="$PROJECT_DIR$/app/models/record-field.js" />
         <option value="$PROJECT_DIR$/app/adapters/record-field.js" />
         <option value="$PROJECT_DIR$/app/routes/option-sub-group.js" />
         <option value="$PROJECT_DIR$/app/views/record-field-display-type.js" />
@@ -454,10 +122,20 @@
         <option value="$PROJECT_DIR$/app/config/production.js" />
         <option value="$PROJECT_DIR$/app/adapters/application.js" />
         <option value="$PROJECT_DIR$/app/models/record-fieldset-template.js" />
-        <option value="$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js" />
         <option value="$PROJECT_DIR$/app/models/record-fieldset-field-association.js" />
+        <option value="$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js" />
+        <option value="$PROJECT_DIR$/app/models/record-field.js" />
         <option value="$PROJECT_DIR$/app/models/record-layout-component.js" />
+        <option value="$PROJECT_DIR$/app/components/display-type-record-form-fields.js" />
+        <option value="$PROJECT_DIR$/app/templates/components/record-layout-definition.hbs" />
         <option value="$PROJECT_DIR$/app/models/record-form.js" />
+        <option value="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
+        <option value="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
+        <option value="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" />
+        <option value="$PROJECT_DIR$/app/models/record-form-field-association.js" />
+        <option value="$PROJECT_DIR$/app/models/record-layout-definition.js" />
+        <option value="$PROJECT_DIR$/app/components/display-type-record-forms.js" />
       </list>
     </option>
   </component>
@@ -652,7 +330,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -751,6 +429,11 @@
       <created>1393259712424</created>
       <updated>1393259712424</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1394932638748</created>
+      <updated>1394932638748</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -777,7 +460,7 @@
     <frame x="0" y="22" width="1920" height="1174" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32902032" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26432532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -785,11 +468,11 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3242525" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994455" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13045794" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16986156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299595" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -841,50 +524,25 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-layout-edit-controls.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="102" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0127551025" vertical-offset="0" max-vertical-offset="1176" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/includes/pages/_fieldset_layout.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="27" selection-start="919" selection-end="919" vertical-scroll-proportion="0.62445796" vertical-offset="0" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/includes/components/_controls.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.92346936" vertical-offset="384" max-vertical-offset="1560" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-text-area.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="35" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0625" vertical-offset="0" max-vertical-offset="1200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-text-field.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="39" selection-start="82" selection-end="217" vertical-scroll-proportion="0.036794767" vertical-offset="0" max-vertical-offset="1223">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-text-area.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="79" selection-start="557" selection-end="557" vertical-scroll-proportion="0.31887755" vertical-offset="0" max-vertical-offset="1176" />
+        <state line="25" column="79" selection-start="557" selection-end="557" vertical-scroll-proportion="0.31887755" vertical-offset="0" max-vertical-offset="1176">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-text-field.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="7" selection-start="528" selection-end="528" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="1176" />
+        <state line="24" column="7" selection-start="528" selection-end="528" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="1176">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-date.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="7" selection-start="557" selection-end="557" vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="525" />
+        <state line="29" column="7" selection-start="557" selection-end="557" vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="525">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-money.js">
@@ -905,17 +563,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-money.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="15" selection-start="291" selection-end="291" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="480" />
+        <state line="15" column="15" selection-start="291" selection-end="291" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/money-field.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="11" selection-start="129" selection-end="134" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="165" />
+        <state line="4" column="11" selection-start="129" selection-end="134" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="71" selection-start="715" selection-end="715" vertical-scroll-proportion="0.21683674" vertical-offset="0" max-vertical-offset="1176" />
+        <state line="17" column="71" selection-start="715" selection-end="715" vertical-scroll-proportion="0.21683674" vertical-offset="0" max-vertical-offset="1176">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/autoNumeric/autoNumeric.jquery.json">
@@ -937,13 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="785" selection-end="785" vertical-scroll-proportion="0.115384616" vertical-offset="240" max-vertical-offset="3675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-multi-select-checkbox.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="53" selection-start="424" selection-end="424" vertical-scroll-proportion="0.32687652" vertical-offset="0" max-vertical-offset="826">
@@ -951,30 +608,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="151" selection-start="2524" selection-end="2524" vertical-scroll-proportion="1.1141176" vertical-offset="163" max-vertical-offset="1350">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="134" selection-start="2415" selection-end="2428" vertical-scroll-proportion="0.742268" vertical-offset="432" max-vertical-offset="1305">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/checkbox-group.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="3" selection-start="350" selection-end="350" vertical-scroll-proportion="0.20857474" vertical-offset="0" max-vertical-offset="863">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/record-layout-component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="54" selection-start="1181" selection-end="1181" vertical-scroll-proportion="0.53608245" vertical-offset="147" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
@@ -989,13 +625,6 @@
     <entry file="file://$PROJECT_DIR$/package_bak.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="36" selection-start="1511" selection-end="1511" vertical-scroll-proportion="-29.666666" vertical-offset="83" max-vertical-offset="1050">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="6" selection-start="266" selection-end="266" vertical-scroll-proportion="0.3254973" vertical-offset="0" max-vertical-offset="615">
           <folding />
         </state>
       </provider>
@@ -1081,13 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/record-field.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="64" selection-start="313" selection-end="313" vertical-scroll-proportion="0.13671875" vertical-offset="0" max-vertical-offset="768">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/production.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="19" selection-start="62" selection-end="62" vertical-scroll-proportion="0.05859375" vertical-offset="0" max-vertical-offset="768">
@@ -1140,48 +762,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/components/record-layout-component.hbs">
+    <entry file="file://$PROJECT_DIR$/app/models/record-field-type.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="23" selection-start="1538" selection-end="1538" vertical-scroll-proportion="0.38967973" vertical-offset="336" max-vertical-offset="1080">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/adapters/record-field.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="3" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="77" selection-start="7937" selection-end="7937" vertical-scroll-proportion="0.0" vertical-offset="2819" max-vertical-offset="5310">
-          <folding>
-            <marker date="1394929014000" expanded="true" signature="8066:8129" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/record-fieldset-field-association.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="61" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/record-layout-component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+        <state line="9" column="3" selection-start="298" selection-end="298" vertical-scroll-proportion="0.19340974" vertical-offset="0" max-vertical-offset="698">
           <folding />
         </state>
       </provider>
@@ -1189,6 +772,123 @@
     <entry file="file://$PROJECT_DIR$/app/routes/option-sub-group.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/adapters/record-field.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="449" selection-end="449" vertical-scroll-proportion="0.32234958" vertical-offset="0" max-vertical-offset="698">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/assets/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="727" selection-start="194039" selection-end="194039" vertical-scroll-proportion="0.36642337" vertical-offset="1324" max-vertical-offset="3600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LS_Request_Tracking/ember_dev/lrt/app/storage/logs/log-apache2handler-2014-03-16.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="131833" selection-end="131833" vertical-scroll-proportion="0.43895057" vertical-offset="0" max-vertical-offset="991">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LS_Request_Tracking/ember_dev/lrt/app/storage/cache/1c/3a/1c3adb8cd5fe88b51b5e9448fa9ffb81">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="32681" selection-start="32681" selection-end="32681" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="106" selection-start="2387" selection-end="2387" vertical-scroll-proportion="0.7817653" vertical-offset="274" max-vertical-offset="1305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="78" selection-start="10564" selection-end="10564" vertical-scroll-proportion="0.33264464" vertical-offset="1988" max-vertical-offset="3675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="110" selection-start="2483" selection-end="2483" vertical-scroll-proportion="0.76721627" vertical-offset="319" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="14" selection-start="479" selection-end="479" vertical-scroll-proportion="0.30582523" vertical-offset="0" max-vertical-offset="1030">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/record-layout-definition.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="54" selection-start="1181" selection-end="1181" vertical-scroll-proportion="0.58349144" vertical-offset="0" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/components/record-layout-definition.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="23" selection-start="2575" selection-end="2863" vertical-scroll-proportion="0.815534" vertical-offset="0" max-vertical-offset="1080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="46" selection-start="859" selection-end="859" vertical-scroll-proportion="0.31309298" vertical-offset="0" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record-layout-definition.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="329" selection-end="329" vertical-scroll-proportion="0.056925997" vertical-offset="0" max-vertical-offset="1054">
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record-field.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record-form-field-association.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="36" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="18" selection-start="94" selection-end="94" vertical-scroll-proportion="0.056925997" vertical-offset="0" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/display-type-record-forms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="45" selection-start="6169" selection-end="6169" vertical-scroll-proportion="0.5825826" vertical-offset="1848" max-vertical-offset="5310">
           <folding />
         </state>
       </provider>
