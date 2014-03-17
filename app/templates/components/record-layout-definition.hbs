@@ -50,15 +50,23 @@
 
         {{#if model.verticalOrdering}}
             <div class="btn-group layoutCreation rowButtons">
-                <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-up"></i></button>
-                <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-down"></i></button>
+                {{#if model.orderCanMoveUp}}
+                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-up"></i></button>
+                {{/if}}
+                {{#if model.orderCanMoveDown}}
+                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-down"></i></button>
+                {{/if}}
             </div>
         {{/if}}
 
         {{#if model.horizontalOrdering}}
             <div class="btn-group layoutCreation rowButtons">
-                <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-left"></i></button>
-                <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+                {{#if model.orderCanMoveUp}}
+                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-left"></i></button>
+                {{/if}}
+                {{#if model.orderCanMoveDown}}
+                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+                {{/if}}
             </div>
         {{/if}}
 
@@ -69,7 +77,7 @@
     {{record-field-display-type model=field displayStyle=field.displayType layoutEditMode=layoutEditMode removeFieldAction=removeFieldAction}}
 {{/each}}
 
-{{#each child in model.child_definitions}}
+{{#each child in model.child_definitions_list}}
     {{record-layout-definition
         model=child
         parentModel=model

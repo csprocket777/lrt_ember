@@ -219,7 +219,8 @@ export default Ember.Component.extend({
 
            var newRow = this.get('providedStore').createRecord('record-layout-definition', {
                displayType: "row",
-               record_form: this.get('currentForm')
+               record_form: this.get('currentForm'),
+               order: this.get('currentForm.topLevelDefinitions.length')
            });
 
            newRow.save().then(function(result){
@@ -227,7 +228,8 @@ export default Ember.Component.extend({
                    displayType: "column",
                    record_form: self.get('currentForm'),
                    record_layout_definition: result,
-                   parent_definition: result
+                   parent_definition: result,
+                   order: 0
                });
 
                newCol.save();
@@ -290,12 +292,19 @@ export default Ember.Component.extend({
        },
 
        confirmLayoutComponentDeletion: function(){
-           this.recursiveDelete(this.get('layoutComponentsToRemove'));
 
-           this.get('layoutComponentsToDelete').forEach(function(item, index, enumerable){
-               item.destroyRecord();
+           var self = this;
+           // TO SOLVE FOR A RACE CONDITION, EMPLOYING PROMISES TO ENSURE THAT THE DELETIONS HAPPEN IN THE ORDER IN WHICH THEY NEED TO HAPPEN
+           var deletePromise = new Ember.RSVP.Promise(function(resolve, reject){
+               // RESOLVE WITH THE RESULT OF THE RECURSIVE DELETION RESULT
+               resolve(self.recursiveDelete( self.get('layoutComponentsToRemove') ));
+           }).then(function(value){
+               // WHEN ALL ARE DELETED SUCCESSFULLY, CLOSE THE DIALOG
+               Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
+           }, function(reason){
+               // OTHERWISE, WE HAVE AN ERROR
+               console.log("Not resolved", reason);
            });
-           Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
        },
 
        continueAddFieldsToLayoutComponent: function(evt){
@@ -326,57 +335,81 @@ export default Ember.Component.extend({
        changeOrderUp: function(evt){
            var curOrder = parseInt(evt.get('order'), 10);
 
-           if( this.get('parent_definition') )
-           {
-                console.log("HERE");
-           }else{
+//           if( evt.get('parent_definition') )
+//           {
+//                console.log("HERE");
+               var defToSwap = evt.get('parent_definition') ?
+                   evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
+                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
+//           }else{
                var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
-               defToSwap.incrementProperty('order');
-               defToSwap.save();
-               evt.decrementProperty('order');
-               evt.save();
-           }
+//               defToSwap.incrementProperty('order');
+//               defToSwap.save();
+//               evt.decrementProperty('order');
+//               evt.save();
+//           }
+           defToSwap.incrementProperty('order');
+           defToSwap.save();
+           evt.decrementProperty('order');
+           evt.save();
        },
 
        changeOrderDown: function(evt){
            var curOrder = parseInt(evt.get('order'), 10);
 
-           if( this.get('parent_definition') )
-           {
-               console.log("HERE");
-           }else{
-               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
-               defToSwap.decrementProperty('order');
-               defToSwap.save();
-               evt.incrementProperty('order');
-               evt.save();
-           }
+//           if( evt.get('parent_definition') )
+//           {
+               var defToSwap = evt.get('parent_definition') ?
+                   evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
+                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+//               console.log("HERE");
+//           }else{
+//               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+//               defToSwap.decrementProperty('order');
+//               defToSwap.save();
+//               evt.incrementProperty('order');
+//               evt.save();
+//           }
+           defToSwap.decrementProperty('order');
+           defToSwap.save();
+           evt.incrementProperty('order');
+           evt.save();
        }
     },
 
     recursiveDelete: function(itemToDelete){
-        itemToDelete.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
-            fieldItem.set('record_layout_definition', null);
-            fieldItem.save();
-        });
+        var self = this;
 
-        if( !Ember.isNone(itemToDelete.get('child_definitions.content')) && !Ember.isNone(itemToDelete.get('child_definitions.length')) )
-        {
-            itemToDelete.get('child_definitions.content').forEach(function(item,index,enumerable){
-
-                item.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
+        return new Ember.RSVP.Promise( function(resolve, reject){
+            if( itemToDelete.get('fields') )
+            {
+                itemToDelete.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
                     fieldItem.set('record_layout_definition', null);
+                    fieldItem.set('order', null);
                     fieldItem.save();
                 });
+            };
 
-                if( item.get('child_definitions.length') )
-                {
-                    this.recursiveDelete(item);
-                }else{
-                    this.get('layoutComponentsToDelete').pushObject(item);
-                }
-            }, this);
-        }
-        this.get('layoutComponentsToDelete').pushObject(itemToDelete);
+            var deletePromiseArray = [];
+
+            if( !Ember.isNone(itemToDelete.get('child_definitions.content')) && !Ember.isNone(itemToDelete.get('child_definitions.length')) )
+            {
+                itemToDelete.get('child_definitions.content').forEach(function(item,index,enumerable){
+                    var tmpDelPromise = new Ember.RSVP.Promise(function(resolve,reject){
+                        resolve(self.recursiveDelete(item));
+                    });
+                    deletePromiseArray.pushObject( tmpDelPromise );
+                }, this);
+            };
+
+            Ember.RSVP.all(deletePromiseArray).then(function(array){
+                itemToDelete.destroyRecord().then(function(){
+                    resolve(1);
+                }, function(){
+                    reject("deletion error");
+                });
+            });
+        });
+
     }
 });

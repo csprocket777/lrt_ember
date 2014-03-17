@@ -12,6 +12,9 @@ export default DS.Model.extend({
     title:                          DS.attr('string'),
     order:                          DS.attr('number'),
 
+    child_definitions_list: function(){
+        return this.get('child_definitions').sortBy('order');
+    }.property('child_definitions.@each'),
 
     isTopLevel: function(){
         return Ember.isNone(this.get('parent_definition'));
@@ -37,6 +40,18 @@ export default DS.Model.extend({
 
         return hasSiblings;
     }.property('parent_definition.child_definitions.length'),
+
+    orderCanMoveUp: function(){
+        return parseInt(this.get('order'), 10) > 0;
+    }.property('order'),
+
+    orderCanMoveDown: function(){
+        var endIndex = this.get('parent_definition') ?
+            this.get('parent_definition.child_definitions.length')-1 :
+            this.get('record_form.topLevelDefinitions.length')-1;
+
+        return parseInt(this.get('order'), 10) < endIndex;
+    }.property('order','parent_definition.child_definitions.@each', 'record_form.topLevelDefinitions.@each'),
 
     verticalOrdering: function(){
         return this.get('displayType') === "row" && this.get('hasSiblings');
