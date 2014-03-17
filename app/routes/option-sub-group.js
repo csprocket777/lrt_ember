@@ -30,8 +30,6 @@ export default Ember.Route.extend( PrivilegedRoute, {
 	},
 
     afterModel: function(model, transition){
-//        debugger;
-
         sessionStorage[ this.controllerFor('app-data').get('data_prefix') + this.controllerFor('app-data').get('data_name') +"_optionsModelChosen" ] = model.optionSubGroup ? model.optionSubGroup.get('id'): model.get('id');
         if( Ember.isNone( this.controllerFor('options').get('selectedOptionGroup') ) ){
             this.controllerFor('options').setSelectedOptionGroup();
@@ -40,50 +38,6 @@ export default Ember.Route.extend( PrivilegedRoute, {
 	
 	setupController:function(controller, model){
 		controller.set( 'model', model);
-
-//        if( controller.get('trackingObject') === null )
-//        {
-//            controller.set('trackingObject', new Ember.Object());
-//        }
-
-//        switch ( model.optionSubGroup.get('modelName') )
-//        {
-//            case "option":
-//                controller.set('modelToDisplay', model.optionSubGroup);
-//                controller.set('displayStyle', model.optionSubGroup.get('displayStyle') );
-//                controller.set('descriptionToDisplay', model.optionSubGroup.get('description'));
-//                break;
-//
-//            default:
-//                controller.set('modelToDisplay', model.modelToDisplay );
-//                controller.set('displayStyle', model.optionSubGroup.get('displayStyle') );
-//                controller.set('descriptionToDisplay', model.optionSubGroup.get('description'));
-//
-//                break;
-//
-//            case "option-sub-group":
-//                controller.set('modelToDisplay', model.modelToDisplay );
-//                controller.set('displayStyle', model.optionSubGroup.get('displayStyle') );
-//                controller.set('descriptionToDisplay', model.optionSubGroup.get('description'));
-//                controller.set('parentModelData',  model.parentModelData);
-//                break;
-//
-//            case "prioritization-item":
-//                controller.set('modelToDisplay', model.modelToDisplay );
-//                controller.set('displayStyle', model.optionSubGroup.get('displayStyle') );
-//                controller.set('descriptionToDisplay', model.optionSubGroup.get('description'));
-//                break;
-//
-//            case "privilege":
-//                controller.set('modelToDisplay', model.modelToDisplay );
-//                controller.set('displayStyle', model.optionSubGroup.get('displayStyle') );
-//                controller.set('descriptionToDisplay', model.optionSubGroup.get('description'));
-//                controller.set('parentModelData', model.parentModelData);
-//                break;
-//        }
-
-
-
 	},
 
     actions: {

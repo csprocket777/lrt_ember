@@ -18,10 +18,10 @@ export default Ember.Component.extend({
     fieldToRemoveFromLayout:null,
 
     availableFields: function(){
-        return this.get('fieldList').filterBy('active', true).sortBy('name').filter(function(item,index,enumerable){
+        return this.get('fieldList') ? this.get('fieldList').filterBy('active', true).sortBy('name').filter(function(item,index,enumerable){
             return this.get('currentForm.rawFieldList').contains(item) === false;
-        }, this);
-    }.property('field_associations.@each', 'currentForm.field_associations.@each', 'currentForm.rawFieldList.@each', 'currentForm'),
+        }, this) : [];
+    }.property('fieldList.@each','field_associations.@each', 'currentForm.field_associations.@each', 'currentForm.rawFieldList.@each', 'currentForm'),
 
     fieldsInTemplate: function(){
         return this.get('currentForm.field_associations').sortBy('label');
@@ -72,8 +72,8 @@ export default Ember.Component.extend({
 
     _setup:function(){
         this.set('currentForm', this.get('model.modelToDisplay.firstObject'));
-//        this.set('fieldList', this.get('providedStore').find('recordField'));
-        this.set('fieldList', []);
+        this.set('fieldList', this.get('model._preload.fields'));
+//        this.set('fieldList', []);
     }.on('init'),
 
 

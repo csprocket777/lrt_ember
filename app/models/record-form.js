@@ -41,13 +41,15 @@ export default DS.Model.extend({
     }.observes('field_associations.@each', 'orig_field_associations.@each'),
 
     fetchRequiredData: function() {
+        return Ember.RSVP.hash({
+            fields: this.get('store').find('record-field')
+        });
 //      var self = this,
-//          fields = this.get('fields'); // fields might be a promise?
-//
+//          fields = this.get('store').find('record-field'); // fields might be a promise?
+
 //      debugger;
 //      return new Ember.RSVP.Promise(function(resolve, reject) {
 //        fields.on('didLoad', function() {
-//          fields.get('')
 //          resolve(self);
 //        });
 //      });

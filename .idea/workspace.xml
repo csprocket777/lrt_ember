@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3e6d760-3f44-4354-954c-7d013a3400d3" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/display-type-record-fieldset-template-fields.js" afterPath="$PROJECT_DIR$/app/components/display-type-record-forms.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/record-layout-component.js" afterPath="$PROJECT_DIR$/app/components/record-layout-definition.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/models/record-fieldset-field-association.js" afterPath="$PROJECT_DIR$/app/models/record-form-field-association.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/models/record-layout-component.js" afterPath="$PROJECT_DIR$/app/models/record-layout-definition.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/templates/components/record-layout-component.hbs" afterPath="$PROJECT_DIR$/app/templates/components/record-layout-definition.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/concurrent.js" afterPath="$PROJECT_DIR$/tasks/options/concurrent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" afterPath="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/display-type-record-forms.js" afterPath="$PROJECT_DIR$/app/components/display-type-record-forms.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/htmlmin.js" afterPath="$PROJECT_DIR$/tasks/options/htmlmin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/imagemin.js" afterPath="$PROJECT_DIR$/tasks/options/imagemin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/option-sub-group.js" afterPath="$PROJECT_DIR$/app/routes/option-sub-group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks/options/preprocess.js" afterPath="$PROJECT_DIR$/tasks/options/preprocess.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" afterPath="$PROJECT_DIR$/app/templates/components/record-field-display-type-single-select-dropdown.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" afterPath="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/record-field.js" afterPath="$PROJECT_DIR$/app/models/record-field.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/record-form.js" afterPath="$PROJECT_DIR$/app/models/record-form.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,35 +32,84 @@
     <favorites_list name="LRT_Ember" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="record-form-field-association.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/record-form-field-association.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="36" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="record-field.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/record-field.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="display-type-record-forms.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/components/display-type-record-forms.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="45" selection-start="6169" selection-end="6169" vertical-scroll-proportion="0.5825826" vertical-offset="1848" max-vertical-offset="5310">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="record-form-field-association.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/record-form-field-association.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="12" column="36" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="record-field.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/record-field.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="33" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="display-type-record-forms.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/display-type-record-forms.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="23" column="31" selection-start="709" selection-end="709" vertical-scroll-proportion="-5.7272725" vertical-offset="30" max-vertical-offset="5310">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="record-form.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="20" column="30" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="50" selection-start="78" selection-end="78" vertical-scroll-proportion="0.031914894" vertical-offset="0" max-vertical-offset="940">
+                  <folding />
+                </state>
+              </provider>
+              <provider editor-type-id="MarkdownPreviewEditor">
+                <state />
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="record-form.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="0" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+                  <folding>
+                    <marker date="1395068644000" expanded="true" signature="1661:1956" placeholder="//..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="option-sub-group.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/routes/option-sub-group.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="31" column="44" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.4874214" vertical-offset="0" max-vertical-offset="2430">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -85,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/templates/record-field-display-type.hbs" />
         <option value="$PROJECT_DIR$/app/styles/includes/components/_controls.less" />
         <option value="$PROJECT_DIR$/app/styles/includes/pages/_fieldset_layout.less" />
         <option value="$PROJECT_DIR$/app/templates/components/record-field-display-type-date.hbs" />
@@ -113,7 +154,6 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/app/adapters/record-field.js" />
-        <option value="$PROJECT_DIR$/app/routes/option-sub-group.js" />
         <option value="$PROJECT_DIR$/app/views/record-field-display-type.js" />
         <option value="$PROJECT_DIR$/config/production.js" />
         <option value="$PROJECT_DIR$/config/development.js" />
@@ -128,7 +168,6 @@
         <option value="$PROJECT_DIR$/app/models/record-layout-component.js" />
         <option value="$PROJECT_DIR$/app/components/display-type-record-form-fields.js" />
         <option value="$PROJECT_DIR$/app/templates/components/record-layout-definition.hbs" />
-        <option value="$PROJECT_DIR$/app/models/record-form.js" />
         <option value="$PROJECT_DIR$/app/components/record-field-display-type-multi-select-checkbox.js" />
         <option value="$PROJECT_DIR$/app/components/record-field-display-type-single-select-dropdown.js" />
         <option value="$PROJECT_DIR$/app/templates/components/display-type-record-forms.hbs" />
@@ -136,14 +175,17 @@
         <option value="$PROJECT_DIR$/app/models/record-form-field-association.js" />
         <option value="$PROJECT_DIR$/app/models/record-layout-definition.js" />
         <option value="$PROJECT_DIR$/app/components/display-type-record-forms.js" />
+        <option value="$PROJECT_DIR$/app/routes/option-sub-group.js" />
+        <option value="$PROJECT_DIR$/app/models/record-form.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1920" />
-    <option name="height" value="1174" />
+    <option name="width" value="2560" />
+    <option name="height" value="1574" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -433,7 +475,11 @@
       <created>1394932638748</created>
       <updated>1394932638748</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Done refactoring the record form stuff and removal of _id from names">
+      <created>1394940857202</created>
+      <updated>1394940857202</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -457,11 +503,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="1174" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="22" width="2560" height="1574" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32902032" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32860997" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26432532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -472,7 +518,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16986156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12668785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299595" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -518,19 +564,13 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Done refactoring the record form stuff and removal of _id from names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done refactoring the record form stuff and removal of _id from names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-text-area.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="79" selection-start="557" selection-end="557" vertical-scroll-proportion="0.31887755" vertical-offset="0" max-vertical-offset="1176">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/record-field-display-type-text-field.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="7" selection-start="528" selection-end="528" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="1176">
@@ -769,13 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/option-sub-group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/adapters/record-field.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="3" selection-start="449" selection-end="449" vertical-scroll-proportion="0.32234958" vertical-offset="0" max-vertical-offset="698">
@@ -849,13 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="46" selection-start="859" selection-end="859" vertical-scroll-proportion="0.31309298" vertical-offset="0" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/record-layout-definition.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="36" selection-start="329" selection-end="329" vertical-scroll-proportion="0.056925997" vertical-offset="0" max-vertical-offset="1054">
@@ -888,9 +914,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/display-type-record-forms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="45" selection-start="6169" selection-end="6169" vertical-scroll-proportion="0.5825826" vertical-offset="1848" max-vertical-offset="5310">
+        <state line="23" column="31" selection-start="709" selection-end="709" vertical-scroll-proportion="-5.7272725" vertical-offset="30" max-vertical-offset="5310">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/option-sub-group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="44" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.4874214" vertical-offset="0" max-vertical-offset="2430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/record-form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="30" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="50" selection-start="78" selection-end="78" vertical-scroll-proportion="0.031914894" vertical-offset="0" max-vertical-offset="940">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
