@@ -25,11 +25,24 @@ export default DS.Model.extend({
         return this.get('displayType') === "column";
     }.property('displayType'),
 
+    hasSiblings: function(){
+        var hasSiblings = false;
+
+        if( this.get('parent_definition') )
+        {
+            hasSiblings = this.get('parent_definition') && this.get('parent_definition.child_definitions') ? this.get('parent_definition.child_definitions.length') > 1 : hasSiblings;
+        }else{
+            hasSiblings = this.get('record_form.topLevelDefinitions') ? this.get('record_form.topLevelDefinitions.length') > 1 : hasSiblings;
+        }
+
+        return hasSiblings;
+    }.property('parent_definition.child_definitions.length'),
+
     verticalOrdering: function(){
-        return this.get('displayType') === "row";
+        return this.get('displayType') === "row" && this.get('hasSiblings');
     }.property('displayType'),
 
     horizontalOrdering: function(){
-        return this.get('displayType') === "column";
+        return this.get('displayType') === "column" && this.get('hasSiblings');
     }.property('displayType')
 });
