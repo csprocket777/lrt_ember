@@ -58,6 +58,14 @@ export default Ember.Component.extend({
 
         editComponentTitle: function(){
             this.set('titleInEditMode', true);
+        },
+
+        changeOrderUp: function(evt){
+            this.sendAction('changeOrderUpAction', evt);
+        },
+
+        changeOrderDown: function(evt){
+            this.sendAction('changeOrderDownAction', evt);
         }
     }
 });

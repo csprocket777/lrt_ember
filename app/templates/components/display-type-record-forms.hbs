@@ -182,7 +182,7 @@
                 <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
                 <div class="layoutArea container editMode">
 
-                    {{#each currentForm.topLevelComponents}}
+                    {{#each currentForm.topLevelDefinitions}}
                         {{record-layout-definition
                             model=this
                             layoutEditMode=true
@@ -191,6 +191,8 @@
                             addFieldAction="addField"
                             deleteAction="deleteItem"
                             removeFieldAction="removeField"
+                            changeOrderUpAction="changeOrderUp"
+                            changeOrderDownAction="changeOrderDown"
                         }}
                     {{/each}}
 

@@ -321,6 +321,36 @@ export default Ember.Component.extend({
 
        reloadLayoutData: function(){
            this.get('currentForm').reload();
+       },
+
+       changeOrderUp: function(evt){
+           var curOrder = parseInt(evt.get('order'), 10);
+
+           if( this.get('parent_definition') )
+           {
+                console.log("HERE");
+           }else{
+               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
+               defToSwap.incrementProperty('order');
+               defToSwap.save();
+               evt.decrementProperty('order');
+               evt.save();
+           }
+       },
+
+       changeOrderDown: function(evt){
+           var curOrder = parseInt(evt.get('order'), 10);
+
+           if( this.get('parent_definition') )
+           {
+               console.log("HERE");
+           }else{
+               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+               defToSwap.decrementProperty('order');
+               defToSwap.save();
+               evt.incrementProperty('order');
+               evt.save();
+           }
        }
     },
 

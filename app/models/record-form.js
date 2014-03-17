@@ -8,14 +8,16 @@ export default DS.Model.extend({
 
     layout_definitions:         DS.hasMany('record-layout-definition'),
 
-    topLevelComponents: function(){
+    topLevelDefinitions: function(){
         return this.get('layout_definitions').filterBy('isTopLevel', true).sortBy('order');
-    }.property('layout_definitions.@each'),
+    }.property('layout_definitions.@each', 'layout_definitions.@each.order'),
 
     updated_at:         DS.attr(),
     created_at:         DS.attr(),
 
     fieldsDirty:        DS.attr('boolean', {default:false}),
+
+    order:              DS.attr('number', {default: 0}),
 
     rawFieldList: function(){
         var tmpFieldList = [];
