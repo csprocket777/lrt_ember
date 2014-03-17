@@ -227,13 +227,13 @@ export default Ember.Component.extend({
                    displayType: "column",
                    record_form: self.get('currentForm'),
                    record_layout_definition: result,
-                   parent_component: result
+                   parent_definition: result
                });
 
                newCol.save();
-               newCol = null;
+//               newCol = null;
+//               newRow = null;
            });
-           newRow = null;
        },
 
 
@@ -244,7 +244,8 @@ export default Ember.Component.extend({
                displayType: "row",
                record_form: this.get('currentForm'),
                record_layout_definition: evt,
-               parent_component: evt
+               parent_definition: evt,
+               order: 0
            });
 
            newRow.save().then(function(result){
@@ -252,7 +253,8 @@ export default Ember.Component.extend({
                    displayType: "column",
                    record_form: self.get('currentForm'),
                    record_layout_definition: result,
-                   parent_component: result
+                   parent_definition: result,
+                   order: 0
                });
                newCol.save();
                newCol = null;
@@ -265,7 +267,8 @@ export default Ember.Component.extend({
                displayType: "column",
                record_form: this.get('currentForm'),
                record_layout_definition: evt,
-               parent_component: evt
+               parent_definition: evt,
+               order: evt.get('child_definitions.length')
            });
 
            newRow.save();
@@ -297,6 +300,7 @@ export default Ember.Component.extend({
 
        continueAddFieldsToLayoutComponent: function(evt){
            this.get('fieldsToAdd').forEach(function(item,index,enumerable){
+               item.set('order', this.get('selectedLayoutComponent.child_definitions.length'));
                item.set('record_layout_definition', this.get('selectedLayoutComponent'));
                item.save();
            }, this);
@@ -321,21 +325,21 @@ export default Ember.Component.extend({
     },
 
     recursiveDelete: function(itemToDelete){
-        itemToDelete.get('field_associations').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
+        itemToDelete.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
             fieldItem.set('record_layout_definition', null);
             fieldItem.save();
         });
 
-        if( !Ember.isNone(itemToDelete.get('child_components.content')) && !Ember.isNone(itemToDelete.get('child_components.length')) )
+        if( !Ember.isNone(itemToDelete.get('child_definitions.content')) && !Ember.isNone(itemToDelete.get('child_definitions.length')) )
         {
-            itemToDelete.get('child_components.content').forEach(function(item,index,enumerable){
+            itemToDelete.get('child_definitions.content').forEach(function(item,index,enumerable){
 
-                item.get('field_associations').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
+                item.get('fields').forEach(function(fieldItem, fieldIndex, fieldEnumerable){
                     fieldItem.set('record_layout_definition', null);
                     fieldItem.save();
                 });
 
-                if( item.get('child_components.length') )
+                if( item.get('child_definitions.length') )
                 {
                     this.recursiveDelete(item);
                 }else{

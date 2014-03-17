@@ -9,7 +9,7 @@ export default DS.Model.extend({
     layout_definitions:         DS.hasMany('record-layout-definition'),
 
     topLevelComponents: function(){
-        return this.get('layout_definitions').filterBy('isTopLevel', true);
+        return this.get('layout_definitions').filterBy('isTopLevel', true).sortBy('order');
     }.property('layout_definitions.@each'),
 
     updated_at:         DS.attr(),

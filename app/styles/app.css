@@ -194,7 +194,7 @@ body {
   min-height: 50px;
   margin-bottom: 10px;
   border: dashed 1px #d5d5d5;
-  padding-bottom: 20px;
+  padding-bottom: 35px;
 }
 .layoutArea.editMode .row:hover,
 .layoutArea.editMode .col:hover {

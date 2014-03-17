@@ -4,9 +4,9 @@
 export default DS.Model.extend({
     fields:                         DS.hasMany('record-form-field-association', {inverse:"record_layout_definition"}),
     record_form:                    DS.belongsTo('record-form', {inverse: 'layout_definitions'}),
-    record_layout_definition:       DS.belongsTo('record-layout-definition', {inverse:'child_components'}),
-    child_components:               DS.hasMany('record-layout-definition', {inverse:'parent_component'}),
-    parent_component:               DS.belongsTo('record-layout-definition', {inverse:'child_components'}),
+    record_layout_definition:       DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
+    child_definitions:              DS.hasMany('record-layout-definition', {inverse:'parent_definition'}),
+    parent_definition:              DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     displayType:                    DS.attr('string'),
     hasTitle:                       DS.attr('boolean'),
     title:                          DS.attr('string'),
@@ -14,14 +14,22 @@ export default DS.Model.extend({
 
 
     isTopLevel: function(){
-        return Ember.isNone(this.get('parent_component'));
-    }.property('parent_component'),
+        return Ember.isNone(this.get('parent_definition'));
+    }.property('parent_definition'),
 
     isRow: function(){
         return this.get('displayType') === "row";
     }.property('displayType'),
 
     isColumn: function(){
+        return this.get('displayType') === "column";
+    }.property('displayType'),
+
+    verticalOrdering: function(){
+        return this.get('displayType') === "row";
+    }.property('displayType'),
+
+    horizontalOrdering: function(){
         return this.get('displayType') === "column";
     }.property('displayType')
 });

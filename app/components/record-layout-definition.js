@@ -17,7 +17,7 @@ export default Ember.Component.extend({
 
             if( this.get('model.isColumn') && !Ember.isNone(this.get('parentModel')) )
             {
-                var columnCount = this.get('parentModel.child_components').filterBy('isColumn', true).get('length');
+                var columnCount = this.get('parentModel.child_definitions').filterBy('isColumn', true).get('length');
                 ret += " col col-md-"+( 12 / columnCount );
             }
 

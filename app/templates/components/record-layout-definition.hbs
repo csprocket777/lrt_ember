@@ -44,8 +44,24 @@
             {{#unless model.isRow}}
                 <button class="btn btn-default btn-xs" {{action "addField" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Field</button>
             {{/unless}}
+
             <button class="btn btn-danger btn-xs" {{action "deleteItem" model}} type="button"><i class="glyphicon glyphicon-remove"></i></button>
         </div>
+
+        {{#if model.verticalOrdering}}
+            <div class="btn-group layoutCreation rowButtons">
+                <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-up"></i></button>
+                <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-down"></i></button>
+            </div>
+        {{/if}}
+
+        {{#if model.horizontalOrdering}}
+            <div class="btn-group layoutCreation rowButtons">
+                <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-left"></i></button>
+                <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+            </div>
+        {{/if}}
+
     </div>
 {{/if}}
 
@@ -53,7 +69,7 @@
     {{record-field-display-type model=field displayStyle=field.displayType layoutEditMode=layoutEditMode removeFieldAction=removeFieldAction}}
 {{/each}}
 
-{{#each child in model.child_components}}
+{{#each child in model.child_definitions}}
     {{record-layout-definition
         model=child
         parentModel=model
