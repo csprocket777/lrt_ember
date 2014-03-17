@@ -38,20 +38,5 @@ export default DS.Model.extend({
         this.propertyWillChange('isDirty');
         this.set('field_associations_dirty', this.get('field_associations.content').compareEmber(this.get('orig_field_associations.content')) === false);
         this.propertyDidChange('isDirty');
-    }.observes('field_associations.@each', 'orig_field_associations.@each'),
-
-    fetchRequiredData: function() {
-        return Ember.RSVP.hash({
-            fields: this.get('store').find('record-field')
-        });
-//      var self = this,
-//          fields = this.get('store').find('record-field'); // fields might be a promise?
-
-//      debugger;
-//      return new Ember.RSVP.Promise(function(resolve, reject) {
-//        fields.on('didLoad', function() {
-//          resolve(self);
-//        });
-//      });
-    }
+    }.observes('field_associations.@each', 'orig_field_associations.@each')
 });

@@ -17,8 +17,12 @@ export default Ember.Route.extend( PrivilegedRoute, {
             }
         });
 
-        var preloadPromise = modelToDisplay.then(function(result) {
-            return Ember.RSVP.all(result.invoke('fetchRequiredData'));
+//        var preloadPromise = modelToDisplay.then(function(result) {
+//            return Ember.RSVP.all(result.invoke('fetchRequiredData'));
+//        });
+
+        var preloadPromise = optionSubGroup.then(function(result) {
+            return result.fetchRequiredData();
         });
 
         return Ember.RSVP.hash({

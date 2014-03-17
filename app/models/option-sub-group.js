@@ -21,5 +21,18 @@ export default DS.Model.extend({
         return this.get('childOptions').every(function(item,index,enumerable){
             return item.get("isLoaded") === true;
         });
-    }.property('childOptions.@each')
+    }.property('childOptions.@each'),
+
+    fetchRequiredData: function() {
+        var hash = {};
+
+        switch( this.get('optionType') )
+        {
+            case "recordForm":
+                hash.fields = this.get('store').find('record-field');
+                break;
+        }
+
+        return Ember.RSVP.hash(hash);
+    }
 });
