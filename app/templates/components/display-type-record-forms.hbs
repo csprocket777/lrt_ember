@@ -157,6 +157,19 @@
                                                                         }}
                                                                     </div>
                                                                 {{/if}}
+
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="name">Depends on value from:</label>
+                                                                    {{view Ember.Select
+                                                                    classNames="form-control"
+                                                                    content=parentController.fieldsInTemplate
+                                                                    optionLabelPath="content.label"
+                                                                    optionValuePath="content"
+                                                                    value=field_dependant_on
+                                                                    prompt="Which field in the form is this dependant upon?"
+                                                                    }}
+                                                                </div>
                                                             {{/if}}
 
                                                         </div>
@@ -176,13 +189,17 @@
                 </div>
             </div>
 
+
+
             <div class="tab-pane active" id="layout">
                 <p class="lead">This is the design of the layout of this fieldset. This is exactly how it will appear to the user.</p>
 
-                <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
+                <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button><br>
+
                 <div class="layoutArea container editMode">
 
                     {{#each currentForm.topLevelDefinitions}}
+                        <button class="btn btn-info btn-xs"><i class="glyphicon glyphicon-plus"></i></button>
                         {{record-layout-definition
                             model=this
                             layoutEditMode=true
