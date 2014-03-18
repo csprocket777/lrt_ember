@@ -39,11 +39,11 @@ export default DS.Model.extend({
         }
 
         return hasSiblings;
-    }.property('parent_definition.child_definitions.length'),
+    }.property('parent_definition.child_definitions.length', 'record_form.topLevelDefinitions.length'),
 
     orderCanMoveUp: function(){
         return parseInt(this.get('order'), 10) > 0;
-    }.property('order'),
+    }.property('order', 'hasSiblings'),
 
     orderCanMoveDown: function(){
         var endIndex = this.get('parent_definition') ?
@@ -51,13 +51,13 @@ export default DS.Model.extend({
             this.get('record_form.topLevelDefinitions.length')-1;
 
         return parseInt(this.get('order'), 10) < endIndex;
-    }.property('order','parent_definition.child_definitions.@each', 'record_form.topLevelDefinitions.@each'),
+    }.property('order', 'hasSiblings'),
 
     verticalOrdering: function(){
         return this.get('displayType') === "row" && this.get('hasSiblings');
-    }.property('displayType'),
+    }.property('displayType', 'hasSiblings'),
 
     horizontalOrdering: function(){
         return this.get('displayType') === "column" && this.get('hasSiblings');
-    }.property('displayType')
+    }.property('displayType', 'hasSiblings')
 });

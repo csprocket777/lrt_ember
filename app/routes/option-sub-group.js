@@ -5,6 +5,10 @@ export default Ember.Route.extend( PrivilegedRoute, {
         var self = this,
             optionSubGroup = this.get('store').find('optionSubGroup', params.option_sub_group_id);
 
+        var preloadPromise = optionSubGroup.then(function(result) {
+            return result.fetchRequiredData();
+        });
+
         var modelToDisplay = optionSubGroup.then(function(result){
                                 return self.store.find(result.get('modelName'));
                              });
@@ -17,13 +21,6 @@ export default Ember.Route.extend( PrivilegedRoute, {
             }
         });
 
-//        var preloadPromise = modelToDisplay.then(function(result) {
-//            return Ember.RSVP.all(result.invoke('fetchRequiredData'));
-//        });
-
-        var preloadPromise = optionSubGroup.then(function(result) {
-            return result.fetchRequiredData();
-        });
 
         return Ember.RSVP.hash({
             optionSubGroup:     optionSubGroup,

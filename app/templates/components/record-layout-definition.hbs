@@ -2,12 +2,14 @@
     {{#if titleInEditMode}}
         <h3>
             {{#if layoutEditMode}}
-                <div class="input-group">
-                    {{input type="text" value=model.title class="form-control input" placeholder="Area Title"}}
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" {{action "saveComponentChanges"}}>Save</button>
-                    </span>
-                </div>
+                <form {{action "saveComponentChanges" on="submit"}}>
+                    <div class="input-group">
+                        {{input type="text" value=model.title class="form-control input recordLayoutDefinitionTitle" placeholder="Area Title" action="saveComponentChanges" on="submit"}}
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" {{action "saveComponentChanges"}}>Save</button>
+                        </span>
+                    </div>
+                </form>
             {{/if}}
         </h3>
     {{else}}

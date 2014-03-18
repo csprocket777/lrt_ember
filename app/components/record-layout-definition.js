@@ -49,6 +49,10 @@ export default Ember.Component.extend({
         addComponentTitle: function(){
             this.set('model.hasTitle', true);
             this.set('titleInEditMode', true);
+            var self = this;
+            Ember.run.next(function(){
+                self.$().find('.recordLayoutDefinitionTitle').focus();
+            });
         },
 
         removeComponentTitle: function(){
@@ -58,6 +62,10 @@ export default Ember.Component.extend({
 
         editComponentTitle: function(){
             this.set('titleInEditMode', true);
+            var self = this;
+            Ember.run.next(function(){
+                self.$().find('.recordLayoutDefinitionTitle').focus();
+            });
         },
 
         changeOrderUp: function(evt){

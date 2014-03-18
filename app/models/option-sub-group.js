@@ -24,15 +24,17 @@ export default DS.Model.extend({
     }.property('childOptions.@each'),
 
     fetchRequiredData: function() {
-        var hash = {};
+        var hash = {},
+            ret = [];
 
         switch( this.get('optionType') )
         {
             case "recordForm":
-                hash.fields = this.get('store').find('record-field');
+//                hash.fields =
+                ret.pushObject( this.get('store').find('record-field') );
                 break;
         }
 
-        return Ember.RSVP.hash(hash);
+        return ret;// Ember.RSVP.hash(hash);
     }
 });
