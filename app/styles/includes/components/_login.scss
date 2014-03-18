@@ -5,7 +5,7 @@
 	right: 0px;
 	left: 0px;
 	
-	#gradient > .vertical( darken(white,10%), white );
+	@include gradient-vertical( darken(white,10%), white );
 	background-color: white !important;
 	
 	display: table-cell;
@@ -13,7 +13,7 @@
 	vertical-align: middle;
 	
 	padding-top: 60px;//5%;
-	.box-sizing(border-box);
+	@include box-sizing(border-box);
 	
 	
 	#loginBox{

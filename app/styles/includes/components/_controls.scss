@@ -1,7 +1,7 @@
 .multiselect{
   &.dropdown-toggle{
     &.btn{
-      #gradient.vertical( #e3e3e3, #fefefe );
+      @include gradient-vertical( #e3e3e3, #fefefe );
       border: 1px solid darken(#FFFFFF, 20%);
     }
   }
@@ -12,7 +12,7 @@
     &.active{
       a.dropdown-toggle{
         background: none !important;
-        color: #77777 !important;
+        color: #777777 !important;
       }
     }
   }

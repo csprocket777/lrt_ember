@@ -2,7 +2,8 @@ module.exports = function (broccoli) {
   var filterTemplates = require('broccoli-template');
   var uglifyJavaScript = require('broccoli-uglify-js');
   var compileES6 = require('broccoli-es6-concatenator');
-  var compileLess = require('broccoli-less');
+//  var compileLess = require('broccoli-less');
+  var compileSass = require('broccoli-sass');
   var pickFiles = require('broccoli-static-compiler');
   var env = require('broccoli-env').getEnv();
 
@@ -25,8 +26,8 @@ module.exports = function (broccoli) {
   styles = pickFiles(styles, {
     srcDir: '/',
     destDir: 'appkit'
-  })
-  styles = preprocess(styles)
+  });
+  styles = preprocess(styles);
 
 //  var tests = broccoli.makeTree('tests')
 //  tests = pickFiles(tests, {
@@ -89,7 +90,8 @@ module.exports = function (broccoli) {
     outputFile: '/assets/app.js'
   })
 
-  var appCss = compileLess(styles, {paths: ['app.less', 'bootstrap.less', './appkit/includes/'], filename: 'app.css'});
+//  var appCss = compileLess(styles, {paths: ['app.less', 'bootstrap.less', './appkit/includes/'], filename: 'app.css'});
+  var appCss = compileSass(sourceTrees, "appkit/styles/app.scss", "assets/app.css");
 
   var vendorCss = pickFiles(appAndDependencies, {
       srcDir: '/',
@@ -99,12 +101,12 @@ module.exports = function (broccoli) {
 
   if (env === 'production') {
     appJs = uglifyJavaScript(appJs, {
-      mangle: false,
-      compress: false
+//      mangle: false,
+//      compress: false
     })
   }
 
   var publicFiles = broccoli.makeTree('public');
 
-  return [appJs, /* appCss, */ vendorCss, publicFiles];
+  return [appJs, appCss, vendorCss, publicFiles];
 }

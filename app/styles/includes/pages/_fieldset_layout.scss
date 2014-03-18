@@ -1,8 +1,11 @@
 /**
  * Created by chshipma on 3/12/14.
+ TEST TEST TEST
  */
 
 .layoutArea{
+
+  //TEST
 
   &.editMode{
     .row, .col{
@@ -46,6 +49,7 @@
         &:hover{
           .record-field-display-layout-edit-controls-container{
             display: block;
+            z-index: 2;
           }
         }
 

@@ -54,7 +54,7 @@ body{
     right: 5px;
     top:-1px;
     text-align: left;
-    .border-top-radius(0);
+    @include border-top-radius(0);
     white-space: normal;
   }
 }
