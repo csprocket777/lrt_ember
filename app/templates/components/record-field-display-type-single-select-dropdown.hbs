@@ -16,9 +16,9 @@
 {{#if model.content_source}}
     {{view Ember.Select
         classNames="form-control"
-        content=contentSourceValues
-        optionLabelPath=labelKey
-        optionValuePath=valueKey
+        content=model.content_source_relation_values
+        optionLabelPath=model.model.content_source_relation_values_labelKey
+        optionValuePath=model.model.content_source_relation_values_valueKey
         value=content_source_relation
         prompt="Choose"
     }}

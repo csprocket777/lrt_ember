@@ -15,8 +15,8 @@
 
 {{#if model.content_source}}
     <ul class="list-group">
-        {{#each contentSourceValues}}
-            <li class="list-group-item">{{optionValue}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
+        {{#each model.content_source_relation_values}}
+            <li class="list-group-item">{{model.content_source_relation_values_labelKey}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
         {{/each}}
     </ul>
 {{/if}}

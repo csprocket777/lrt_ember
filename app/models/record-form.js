@@ -40,5 +40,58 @@ export default DS.Model.extend({
         this.propertyWillChange('isDirty');
         this.set('field_associations_dirty', this.get('field_associations.content').compareEmber(this.get('orig_field_associations.content')) === false);
         this.propertyDidChange('isDirty');
-    }.observes('field_associations.@each', 'orig_field_associations.@each')
+    }.observes('field_associations.@each', 'orig_field_associations.@each'),
+
+    fetchRequiredData: function() {
+        var modelsToFetch = [],
+            ret = [];
+
+        var content_source_options = [
+            {
+                value: "optionSubGroup",
+                label: "System Options",
+                valueKey: "content.id",
+                labelKey: "content.optionValue",
+                childModel: "option",
+                searchKey: "optionType"
+            }
+        ];
+
+        if( this.get('field_associations.length') )
+        {
+            this.get('field_associations').forEach(function(item, index, enumerable){
+                if( !Ember.isNone(item.get('content_source')) )
+                {
+                    var childModel = content_source_options.findBy('value', item.get('content_source')).childModel,
+                        searchKey = content_source_options.findBy('value', item.get('content_source')).searchKey;
+
+                    if(modelsToFetch.isAny('model', childModel) )
+                    {
+                        modelsToFetch.findBy('model', childModel).ids.pushObject( item.get('content_source_relation') );
+                    }else{
+                        modelsToFetch.pushObject( { model: childModel, ids:[], searchKey:searchKey } );
+                    }
+                }
+            });
+        }
+
+        if( modelsToFetch.get('length') > 0 ){
+            modelsToFetch.forEach( function(item, index, enumerable ){
+                var searchString = {};
+                searchString[ item.searchKey ] = item.ids.join(',');
+                searchString.active = true;
+                ret.pushObject( this.get('store').find( item.model, searchString ) );
+            }, this);
+        }
+
+//        switch( this.get('optionType') )
+//        {
+//            case "recordForm":
+////                hash.fields =
+//                ret.pushObject( this.get('store').find('record-field') );
+//                break;
+//        }
+
+        return ret;// Ember.RSVP.hash(hash);
+    }
 });

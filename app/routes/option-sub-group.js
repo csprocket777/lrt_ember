@@ -12,6 +12,16 @@ export default Ember.Route.extend( PrivilegedRoute, {
         var modelToDisplay = optionSubGroup.then(function(result){
                                 return self.store.find(result.get('modelName'));
                              });
+
+        var modelToDisplayPreloadPromise = modelToDisplay.then(function(result) {
+            return result.forEach( function(item, index, enumerable ){
+                if( item.fetchRequiredData )
+                {
+                    return item.fetchRequiredData();
+                }
+            });
+        });
+
         var parentModelData = optionSubGroup.then(function(result){
             if( result.get('parentOptionType') )
             {
@@ -23,10 +33,11 @@ export default Ember.Route.extend( PrivilegedRoute, {
 
 
         return Ember.RSVP.hash({
-            optionSubGroup:     optionSubGroup,
-            modelToDisplay:     modelToDisplay,
-            parentModelData:    parentModelData,
-            _preload:           preloadPromise
+            optionSubGroup:         optionSubGroup,
+            modelToDisplay:         modelToDisplay,
+            parentModelData:        parentModelData,
+            _preload:               preloadPromise,
+            _modelToDisplayPreload: modelToDisplayPreloadPromise
         });
 	},
 
