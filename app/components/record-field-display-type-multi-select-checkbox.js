@@ -65,18 +65,6 @@ export default Ember.Component.extend({
         return this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).searchKey;
     }.property('model.content_source'),
 
-    contentSourceValues: function(){
-//        if( !Ember.isNone(this.get('model.content_source')) )
-//        {
-            var contentSourceModel = this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).value;
-            switch( contentSourceModel )
-            {
-                case "optionSubGroup":
-                    return [];//this.get('model.store').find( this.get('childModel'), {optionType: this.get('model.content_source_relation'), active:true });
-            }
-//        }
-    }.property('model.content_source'),
-
     actions:{
         removeField: function(evt){
             this.sendAction("removeFieldAction", this.get('model'));
