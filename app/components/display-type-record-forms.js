@@ -355,6 +355,10 @@ export default Ember.Component.extend({
            defToSwap.save();
            evt.incrementProperty('order');
            evt.save();
+       },
+
+       toggleFormPreview: function(){
+           this.$().find('.layoutArea').toggleClass('editMode');
        }
     },
 

@@ -194,12 +194,17 @@
             <div class="tab-pane active" id="layout">
                 <p class="lead">This is the design of the layout of this fieldset. This is exactly how it will appear to the user.</p>
 
-                <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button><br>
+                <div class="btn-group">
+                    <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
+                    <button class="btn btn-default btn-xs" {{action "toggleFormPreview"}}>Toggle Preview</button>
+                </div><br>
 
                 <div class="layoutArea container editMode">
 
                     {{#each currentForm.topLevelDefinitions}}
-                        <button class="btn btn-info btn-xs"><i class="glyphicon glyphicon-plus"></i></button>
+                        <div class="row insertRowIndicator">
+                            <button class="btn btn-info btn-xs insertButton right"><i class="glyphicon glyphicon-plus"></i></button>
+                        </div>
                         {{record-layout-definition
                             model=this
                             layoutEditMode=true

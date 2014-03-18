@@ -7,6 +7,15 @@
 
   //TEST
 
+  .editPalette,
+  .record-field-display-layout-edit-controls-container,
+  .insertButton,
+  .editButton,
+  .inlineEditButton{
+    display: none;
+  }
+
+
   &.editMode{
     .row, .col{
       border: dashed 1px #ffffff;
@@ -15,6 +24,15 @@
       margin-bottom: 10px;
       border: dashed 1px #d5d5d5;
       padding-bottom: 35px;
+
+      .insertButton,
+      .editButton{
+        display: block;
+      }
+
+      .inlineEditButton{
+        display: inline-block;
+      }
 
       &:hover{
         background: #fafafa;
