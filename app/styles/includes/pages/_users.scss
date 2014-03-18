@@ -30,7 +30,7 @@
     .small{
       display: inline-block;
       clear: none;
-      color: fade(black, 50%);
+      color: transparentize(black, 0.5);
     }
   }
 }

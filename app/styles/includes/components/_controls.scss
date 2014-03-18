@@ -2,7 +2,7 @@
   &.dropdown-toggle{
     &.btn{
       @include gradient-vertical( #e3e3e3, #fefefe );
-      border: 1px solid darken(#FFFFFF, 20%);
+      border: 1px solid darken(#FFFFFF, 0.8);
     }
   }
 }

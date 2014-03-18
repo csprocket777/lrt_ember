@@ -73,7 +73,6 @@ export default Ember.Component.extend({
     _setup:function(){
         this.set('currentForm', this.get('model.modelToDisplay.firstObject'));
         this.set('fieldList', this.get('model._preload.fields'));
-//        this.set('fieldList', []);
     }.on('init'),
 
 
@@ -335,19 +334,10 @@ export default Ember.Component.extend({
        changeOrderUp: function(evt){
            var curOrder = parseInt(evt.get('order'), 10);
 
-//           if( evt.get('parent_definition') )
-//           {
-//                console.log("HERE");
-               var defToSwap = evt.get('parent_definition') ?
-                   evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
-                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
-//           }else{
-               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
-//               defToSwap.incrementProperty('order');
-//               defToSwap.save();
-//               evt.decrementProperty('order');
-//               evt.save();
-//           }
+           var defToSwap = evt.get('parent_definition') ?
+               evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
+               this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
+
            defToSwap.incrementProperty('order');
            defToSwap.save();
            evt.decrementProperty('order');
@@ -357,19 +347,10 @@ export default Ember.Component.extend({
        changeOrderDown: function(evt){
            var curOrder = parseInt(evt.get('order'), 10);
 
-//           if( evt.get('parent_definition') )
-//           {
-               var defToSwap = evt.get('parent_definition') ?
-                   evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
-                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
-//               console.log("HERE");
-//           }else{
-//               var defToSwap = this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
-//               defToSwap.decrementProperty('order');
-//               defToSwap.save();
-//               evt.incrementProperty('order');
-//               evt.save();
-//           }
+           var defToSwap = evt.get('parent_definition') ?
+               evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
+               this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+
            defToSwap.decrementProperty('order');
            defToSwap.save();
            evt.incrementProperty('order');
