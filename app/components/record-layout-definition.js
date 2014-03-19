@@ -74,6 +74,10 @@ export default Ember.Component.extend({
 
         changeOrderDown: function(evt){
             this.sendAction('changeOrderDownAction', evt);
+        },
+
+        addRecordFormElement: function(evtModel, elementType){
+            this.sendAction('addRecordFormElementAction', evtModel, elementType);
         }
     }
 });

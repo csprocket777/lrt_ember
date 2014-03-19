@@ -359,6 +359,10 @@ export default Ember.Component.extend({
 
        toggleFormPreview: function(){
            this.$().find('.layoutArea').toggleClass('editMode');
+       },
+
+       addRecordFormElement: function(evtModel, elementType){
+           console.log(evtModel, elementType);
        }
     },
 

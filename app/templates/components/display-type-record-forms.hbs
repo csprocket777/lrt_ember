@@ -192,18 +192,24 @@
 
 
             <div class="tab-pane active" id="layout">
-                <p class="lead">This is the design of the layout of this fieldset. This is exactly how it will appear to the user.</p>
+                <p class="lead">This is the design of the layout of this fieldset. Use the "Toggle Preview" button to see how it will appear to the user.</p>
 
                 <div class="btn-group">
                     <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
                     <button class="btn btn-default btn-xs" {{action "toggleFormPreview"}}>Toggle Preview</button>
-                </div><br>
-
+                </div>
+                <br>
+                <br>
                 <div class="layoutArea container editMode">
 
                     {{#each currentForm.topLevelDefinitions}}
                         <div class="row insertRowIndicator">
-                            <button class="btn btn-info btn-xs insertButton right"><i class="glyphicon glyphicon-plus"></i></button>
+                            <div class="btn-group">
+                                <button class="btn btn-info btn-xs insertButton right dropdown-toggle"><i class="glyphicon glyphicon-plus" data-toggle="dropdown"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" {{action "addRecordFormElement" model "divider"}}>Divider</a></li>
+                                </ul>
+                            </div>
                         </div>
                         {{record-layout-definition
                             model=this
@@ -215,6 +221,7 @@
                             removeFieldAction="removeField"
                             changeOrderUpAction="changeOrderUp"
                             changeOrderDownAction="changeOrderDown"
+                            addRecordFormElementAction="addRecordFormElement"
                         }}
                     {{/each}}
 
