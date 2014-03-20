@@ -7,6 +7,8 @@ module.exports = function (broccoli) {
   var pickFiles = require('broccoli-static-compiler');
   var env = require('broccoli-env').getEnv();
 
+    console.log(env === "production");
+
   function preprocess (tree) {
     tree = filterTemplates(tree, {
       extensions: ['hbs', 'handlebars'],
