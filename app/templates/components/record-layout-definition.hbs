@@ -1,3 +1,10 @@
+{{#if needsSmallDeleteButton}}
+    <div class="row insertRowIndicator">
+        <button class="btn btn-danger btn-xs insertButton right" {{action "deleteItem" model}}><i class="glyphicon glyphicon-remove"></i></button>
+    </div>
+{{/if}}
+
+
 {{#if model.hasTitle}}
     {{#if titleInEditMode}}
         <h3>
@@ -53,10 +60,10 @@
         {{#if model.verticalOrdering}}
             <div class="btn-group layoutCreation rowButtons">
                 {{#if model.orderCanMoveUp}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-up"></i></button>
+                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-up"></i></button>
                 {{/if}}
                 {{#if model.orderCanMoveDown}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-down"></i></button>
+                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-down"></i></button>
                 {{/if}}
             </div>
         {{/if}}
@@ -64,10 +71,10 @@
         {{#if model.horizontalOrdering}}
             <div class="btn-group layoutCreation rowButtons">
                 {{#if model.orderCanMoveUp}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model}}><i class="glyphicon glyphicon-chevron-left"></i></button>
+                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-left"></i></button>
                 {{/if}}
                 {{#if model.orderCanMoveDown}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-right"></i></button>
                 {{/if}}
             </div>
         {{/if}}

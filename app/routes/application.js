@@ -126,7 +126,7 @@ export default Ember.Route.extend({
 								Ember.run(function(){
 									Ember.$.getJSON(
 //                                                    "system/ldap.php",
-                                                    window.apiHost + "system/ldap.php",
+                                                    window.apiHost + "/system/ldap.php",
 													{
 														action:				'loginUser',
 														lsrt_user_id:		self.controllerFor('login').get("username"),

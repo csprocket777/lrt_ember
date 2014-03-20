@@ -3,6 +3,32 @@
  */
 export default Ember.Component.extend({
     tagName: 'section',
+
+    init: function(){
+        var tag = "";
+        switch( this.get('model.displayType') )
+        {
+            case "row":
+            case "column":
+                tag = 'section';
+            break;
+
+            case "divider":
+                tag = "hr";
+            break;
+        }
+        this.set('tagName', tag);
+        this._super();
+    },
+
+    needsSmallDeleteButton: function(){
+        return [
+            "divider"
+        ].contains(this.get('model.displayType'));
+    }.property('model.displayType'),
+
+
+
     classNameBindings: ['scaffolding'],
 
     titleInEditMode: false,
@@ -10,19 +36,34 @@ export default Ember.Component.extend({
     scaffolding: function(){
         var ret = "";
 
-            if( this.get('model.isRow') )
-            {
+        switch(this.get('model.displayType'))
+        {
+            case "row":
                 ret += " row";
-            }
+                break;
 
-            if( this.get('model.isColumn') && !Ember.isNone(this.get('parentModel')) )
-            {
-                var columnCount = this.get('parentModel.child_definitions').filterBy('isColumn', true).get('length');
-                ret += " col col-md-"+( 12 / columnCount );
-            }
+            case "column":
+                if( !Ember.isNone(this.get('parentModel')) )
+                {
+                    var columnCount = this.get('parentModel.child_definitions').filterBy('isColumn', true).get('length');
+                    ret += " col col-md-"+( 12 / columnCount );
+                }
+                break;
+        }
+
+//            if( this.get('model.isRow') )
+//            {
+//                ret += " row";
+//            }
+//
+//            if( this.get('model.isColumn') && !Ember.isNone(this.get('parentModel')) )
+//            {
+//                var columnCount = this.get('parentModel.child_definitions').filterBy('isColumn', true).get('length');
+//                ret += " col col-md-"+( 12 / columnCount );
+//            }
 
         return ret;
-    }.property('model.isRow', 'model.isColumn'),
+    }.property('model.isRow', 'model.isColumn', 'model.displayType'),
 
     actions:{
         addRow: function(evt){
@@ -68,12 +109,12 @@ export default Ember.Component.extend({
             });
         },
 
-        changeOrderUp: function(evt){
-            this.sendAction('changeOrderUpAction', evt);
+        changeOrderUp: function(evt, itemType){
+            this.sendAction('changeOrderUpAction', evt, itemType);
         },
 
-        changeOrderDown: function(evt){
-            this.sendAction('changeOrderDownAction', evt);
+        changeOrderDown: function(evt, itemType){
+            this.sendAction('changeOrderDownAction', evt, itemType);
         },
 
         addRecordFormElement: function(evtModel, elementType){

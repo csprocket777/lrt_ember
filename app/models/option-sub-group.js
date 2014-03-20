@@ -31,7 +31,7 @@ export default DS.Model.extend({
         {
             case "recordForm":
 //                hash.fields =
-                ret.pushObject( this.get('store').find('record-field') );
+                ret['fields'] = this.get('store').find('record-field');
                 break;
         }
 

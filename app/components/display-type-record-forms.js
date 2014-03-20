@@ -17,6 +17,8 @@ export default Ember.Component.extend({
     selectedLayoutComponent: null,
     fieldToRemoveFromLayout:null,
 
+    layoutChangesToSave: null,
+
     availableFields: function(){
         return this.get('fieldList') ? this.get('fieldList').filterBy('active', true).sortBy('name').filter(function(item,index,enumerable){
             return this.get('currentForm.rawFieldList').contains(item) === false;
@@ -292,18 +294,26 @@ export default Ember.Component.extend({
 
        confirmLayoutComponentDeletion: function(){
 
-           var self = this;
-           // TO SOLVE FOR A RACE CONDITION, EMPLOYING PROMISES TO ENSURE THAT THE DELETIONS HAPPEN IN THE ORDER IN WHICH THEY NEED TO HAPPEN
-           var deletePromise = new Ember.RSVP.Promise(function(resolve, reject){
+            var self = this;
+            // TO SOLVE FOR A RACE CONDITION, EMPLOYING PROMISES TO ENSURE THAT THE DELETIONS HAPPEN IN THE ORDER IN WHICH THEY NEED TO HAPPEN
+            var deletePromise = new Ember.RSVP.Promise(function(resolve, reject){
                // RESOLVE WITH THE RESULT OF THE RECURSIVE DELETION RESULT
                resolve(self.recursiveDelete( self.get('layoutComponentsToRemove') ));
-           }).then(function(value){
-               // WHEN ALL ARE DELETED SUCCESSFULLY, CLOSE THE DIALOG
-               Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
-           }, function(reason){
+            }).then(function(value){
+               new Ember.RSVP.Promise(function(resolve, reject){
+                   // RESOLVE WITH THE RESULT OF THE RECURSIVE DELETION RESULT
+                   self.set('layoutChangesToSave', []);
+                   resolve(self.fixDefinitionOrderValues( self.get('currentForm.topLevelDefinitions') ));
+               }).then(function(value){
+                   // WHEN ALL ARE DELETED SUCCESSFULLY, CLOSE THE DIALOG
+                   self.get('layoutChangesToSave').invoke('save')
+                    Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
+               });
+
+            }, function(reason){
                // OTHERWISE, WE HAVE AN ERROR
                console.log("Not resolved", reason);
-           });
+            });
        },
 
        continueAddFieldsToLayoutComponent: function(evt){
@@ -331,20 +341,28 @@ export default Ember.Component.extend({
            this.get('currentForm').reload();
        },
 
-       changeOrderUp: function(evt){
-           var curOrder = parseInt(evt.get('order'), 10);
+       changeOrderUp: function(evt, itemType){
+           switch( itemType )
+           {
+               case "layoutDefinition":
+                   var curOrder = parseInt(evt.get('order'), 10);
 
-           var defToSwap = evt.get('parent_definition') ?
-               evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
-               this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
+                   var defToSwap = evt.get('parent_definition') ?
+                       evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
+                       this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
 
-           defToSwap.incrementProperty('order');
-           defToSwap.save();
-           evt.decrementProperty('order');
-           evt.save();
+                   defToSwap.incrementProperty('order');
+                   defToSwap.save();
+                   evt.decrementProperty('order');
+                   evt.save();
+                   break;
+
+               case "field":
+                   break;
+           }
        },
 
-       changeOrderDown: function(evt){
+       changeOrderDown: function(evt, itemType){
            var curOrder = parseInt(evt.get('order'), 10);
 
            var defToSwap = evt.get('parent_definition') ?
@@ -362,7 +380,52 @@ export default Ember.Component.extend({
        },
 
        addRecordFormElement: function(evtModel, elementType){
-           console.log(evtModel, elementType);
+           var self = this,
+               newOrder = evtModel.get("order");
+
+           var orderAdj = this.get('currentForm.topLevelDefinitions').filter(function(item,index,enumerable){
+               return item.get('order') >= evtModel.get('order');
+           }, this);
+
+           orderAdj.forEach(function(item,index,enumerable){
+               item.incrementProperty('order');
+           }, this);
+
+           orderAdj.invoke('save');
+
+           var self = this;
+
+           switch( elementType )
+           {
+               case "divider":
+                   var newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                       displayType: "divider",
+                       record_form: this.get('currentForm'),
+                       order: newOrder
+                   });
+
+                   newRow.save();
+                   break;
+
+               case "row":
+                   var newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                       displayType: "row",
+                       record_form: this.get('currentForm'),
+                       order: newOrder
+                   });
+
+                   newRow.save().then(function(result){
+                       var newCol = self.get('providedStore').createRecord('record-layout-definition', {
+                           displayType: "column",
+                           record_form: self.get('currentForm'),
+                           record_layout_definition: result,
+                           parent_definition: result,
+                           order: 0
+                       });
+                       newCol.save();
+                   });
+                   break;
+           }
        }
     },
 
@@ -400,5 +463,22 @@ export default Ember.Component.extend({
             });
         });
 
+    },
+
+    fixDefinitionOrderValues: function(itemsToOrder){
+        var self = this;
+
+        itemsToOrder.forEach(function(item, index, enumerable){
+            item.set('order', index);
+            self.get('layoutChangesToSave').pushObject('item');
+//            item.save();
+
+            if( !Ember.isNone(item.get('child_definitions.content')) && !Ember.isNone(item.get('child_definitions.length')) )
+            {
+                self.fixDefinitionOrderValues( item.get('child_definitions.content') );
+            };
+        });
+
+        return true;
     }
 });

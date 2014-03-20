@@ -98,32 +98,35 @@
 }
 
 
-.insertButton{
+.insertButtonGroup{
   position: absolute;
-  left: -34px;
-  top: -10px;
-
-  &.right{
-    &:after {
-      left: 100%;
-      top: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(136, 183, 213, 0);
-      border-left-color: inherit;
-    }
-
-    &.btn-xs:after{
-      margin-top: -9px;
-      border-width: 9px;
-    }
-  }
-
 }
+  .insertButton{
+    position: absolute;
+    left: -34px;
+    top: -10px;
+
+    &.right{
+      &:after {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136, 183, 213, 0);
+        border-left-color: inherit;
+      }
+
+      &.btn-xs:after{
+        margin-top: -9px;
+        border-width: 9px;
+      }
+    }
+
+  }
 
 .insertRowIndicator{
   padding-bottom: 0px !important;

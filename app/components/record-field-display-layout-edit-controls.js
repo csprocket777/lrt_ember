@@ -7,6 +7,14 @@ export default Ember.Component.extend({
     actions:{
         removeField: function(evt){
             this.sendAction("removeFieldAction", evt);
+        },
+
+        changeOrderUp: function(evt, itemType){
+            this.sendAction('changeOrderUpAction', evt, itemType);
+        },
+
+        changeOrderDown: function(evt, itemType){
+            this.sendAction('changeOrderDownAction', evt, itemType);
         }
     }
 });

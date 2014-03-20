@@ -27,11 +27,11 @@
     </div>
 
         <ul class="nav nav-tabs">
-            <li><a href="#fields" data-toggle="tab">Fields</a></li>
-            <li class="active"><a href="#layout" data-toggle="tab">Layout</a></li>
+            <li class="active"><a href="#fields" data-toggle="tab">Fields</a></li>
+            <li><a href="#layout" data-toggle="tab">Layout</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane" id="fields">
+            <div class="tab-pane active" id="fields">
                 <div class="col-md-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -191,47 +191,47 @@
 
 
 
-            <div class="tab-pane active" id="layout">
-                <p class="lead">This is the design of the layout of this fieldset. Use the "Toggle Preview" button to see how it will appear to the user.</p>
+            <div class="tab-pane" id="layout">
+                {{!--<p class="lead">This is the design of the layout of this fieldset. Use the "Toggle Preview" button to see how it will appear to the user.</p>--}}
 
-                <div class="btn-group">
-                    <button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>
-                    <button class="btn btn-default btn-xs" {{action "toggleFormPreview"}}>Toggle Preview</button>
-                </div>
-                <br>
-                <br>
-                <div class="layoutArea container editMode">
-
-                    {{#each currentForm.topLevelDefinitions}}
-                        <div class="row insertRowIndicator">
-                            <div class="btn-group">
-                                <button class="btn btn-info btn-xs insertButton right dropdown-toggle"><i class="glyphicon glyphicon-plus" data-toggle="dropdown"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" {{action "addRecordFormElement" model "divider"}}>Divider</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        {{record-layout-definition
-                            model=this
-                            layoutEditMode=true
-                            addRowAction="addRow"
-                            addColumnAction="addColumn"
-                            addFieldAction="addField"
-                            deleteAction="deleteItem"
-                            removeFieldAction="removeField"
-                            changeOrderUpAction="changeOrderUp"
-                            changeOrderDownAction="changeOrderDown"
-                            addRecordFormElementAction="addRecordFormElement"
-                        }}
-                    {{/each}}
-
-
-                    <div class="fieldsetLayout newRowPlaceholder text-center row">
-                        <button class="btn btn-primary" {{action "addNewLayoutRow"}}>Add a new row <i class="glyphicon glyphicon-plus"></i></button>
-                    </div>
+                {{!--<div class="btn-group">--}}
+                    {{!--<button class="btn btn-default btn-xs" {{action "reloadLayoutData"}}>Reload Layout Data</button>--}}
+                    {{!--<button class="btn btn-default btn-xs" {{action "toggleFormPreview"}}>Toggle Preview</button>--}}
+                {{!--</div>--}}
+                {{!--<br>--}}
+                {{!--<br>--}}
+                {{!--<div class="layoutArea container editMode">--}}
+                    {{!--{{#each currentForm.topLevelDefinitions}}--}}
+                        {{!--<div class="row insertRowIndicator">--}}
+                            {{!--<div class="btn-group insertButtonGroup">--}}
+                                {{!--<button class="btn btn-info btn-xs insertButton right dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i></button>--}}
+                                {{!--<ul class="dropdown-menu">--}}
+                                    {{!--<li><a href="#" {{action "addRecordFormElement" this "divider"}}>Divider</a></li>--}}
+                                    {{!--<li><a href="#" {{action "addRecordFormElement" this "row"}}>Row</a></li>--}}
+                                {{!--</ul>--}}
+                            {{!--</div>--}}
+                        {{!--</div>--}}
+                        {{!--{{record-layout-definition--}}
+                            {{!--model=this--}}
+                            {{!--layoutEditMode=true--}}
+                            {{!--addRowAction="addRow"--}}
+                            {{!--addColumnAction="addColumn"--}}
+                            {{!--addFieldAction="addField"--}}
+                            {{!--deleteAction="deleteItem"--}}
+                            {{!--removeFieldAction="removeField"--}}
+                            {{!--changeOrderUpAction="changeOrderUp"--}}
+                            {{!--changeOrderDownAction="changeOrderDown"--}}
+                            {{!--addRecordFormElementAction="addRecordFormElement"--}}
+                        {{!--}}--}}
+                    {{!--{{/each}}--}}
 
 
-                </div>
+                    {{!--<div class="fieldsetLayout newRowPlaceholder text-center row">--}}
+                        {{!--<button class="btn btn-primary" {{action "addNewLayoutRow"}}>Add a new row <i class="glyphicon glyphicon-plus"></i></button>--}}
+                    {{!--</div>--}}
+
+
+                {{!--</div>--}}
             </div>
         </div>
 </div>
