@@ -38,8 +38,8 @@ export default DS.Model.extend({
     }.property(),
 
     added: function(){
-        return this.get("record_form.orig_field_associations").contains(this) === false;
-    }.property('record_form.field_associations.@each'),
+        return this.get("record_form") ? this.get("record_form.orig_field_associations").contains(this) === false : false;
+    }.property('record_form.field_associations.length'),
 
     needsSourceChoice: function(){
         var choicesNeedingSource = [

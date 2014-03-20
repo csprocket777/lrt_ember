@@ -82,8 +82,14 @@
     </div>
 {{/if}}
 
-{{#each field in model.fields}}
-    {{record-field-display-type model=field displayStyle=field.displayType layoutEditMode=layoutEditMode removeFieldAction=removeFieldAction}}
+{{#each field in model.fieldsSorted}}
+    {{record-field-display-type
+    model=field
+    displayStyle=field.displayType
+    layoutEditMode=layoutEditMode
+    removeFieldAction=removeFieldAction
+    changeOrderUpAction=changeOrderUpAction
+    changeOrderDownAction=changeOrderDownAction}}
 {{/each}}
 
 {{#each child in model.child_definitions_list}}

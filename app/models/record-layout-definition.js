@@ -12,6 +12,10 @@ export default DS.Model.extend({
     title:                          DS.attr('string'),
     order:                          DS.attr('number'),
 
+    fieldsSorted: function(){
+        return this.get('fields').sortBy('order');
+    }.property('fields.@each.order'),
+
     child_definitions_list: function(){
         return this.get('child_definitions').sortBy('order');
     }.property('child_definitions.@each'),

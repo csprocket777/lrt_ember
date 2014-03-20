@@ -23,23 +23,23 @@ export default Ember.Component.extend({
         return this.get('fieldList') ? this.get('fieldList').filterBy('active', true).sortBy('name').filter(function(item,index,enumerable){
             return this.get('currentForm.rawFieldList').contains(item) === false;
         }, this) : [];
-    }.property('fieldList.@each','field_associations.@each', 'currentForm.field_associations.@each', 'currentForm.rawFieldList.@each', 'currentForm'),
+    }.property('fieldList.length', 'currentForm.rawFieldList.length'),
 
-    fieldsInTemplate: function(){
-        return this.get('currentForm.field_associations').sortBy('label');
-    }.property('currentForm.field_associations.@each'),
+//    fieldsInTemplate: function(){
+//        return this.get('currentForm.field_associations').sortBy('label');
+//    }.property('currentForm.field_associations.length'),
 
     fieldDetailsDirty: function(){
-        return this.get('fieldsInTemplate').any(function(item,index,enumerable){
+        return this.get('currentForm.field_associations').any(function(item,index,enumerable){
             return item.get('isDirty');
         }, this);
-    }.property('fieldsInTemplate.@each.isDirty'),
+    }.property('currentForm.field_associations.@each.isDirty'),
 
     fieldsInLayout: function(){
         return this.get('currentForm.field_associations').filter(function(item,index,enumerable){
             return !Ember.isNone( item.get('record_layout_definition') );
         }).sortBy('label');
-    }.property('currentForm.field_associations.@each.record_layout_definition'),
+    }.property('currentForm.field_associations.length'),
 
     fieldsAvailableForLayout: function(){
         return this.get('currentForm.field_associations').filter(function(item,index,enumerable){
@@ -142,10 +142,7 @@ export default Ember.Component.extend({
                 record_field: evt,
                 label: evt.get("name"),
                 displayType: "text-field"
-            });
-            newAssoc.save();
-            this.get('currentForm.field_associations').addObject(newAssoc);
-            newAssoc = null;
+            }).save();
         },
         removeFieldFromTemplate: function(evt){
             this.set('fieldsToRemove', evt);
@@ -157,8 +154,8 @@ export default Ember.Component.extend({
             {
                 this.get('currentForm.field_associations').removeObject(this.get('fieldsToRemove'));
             }
-            this.get('providedStore').deleteRecord(this.get('fieldsToRemove'));
-            this.get('fieldsToRemove').save();
+//            this.get('providedStore').deleteRecord(this.get('fieldsToRemove'));
+            this.get('fieldsToRemove').destroyRecord();
             Bootstrap.ModalManager.hide('singleFieldAssociationDeleteConfirmation');
         },
         addAllFieldsToTemplate: function(evt){
@@ -187,8 +184,8 @@ export default Ember.Component.extend({
             while(this.get('currentForm.field_associations.length') > 0){
                 var toDelete = this.get('currentForm.field_associations').objectAt( this.get('currentForm.field_associations.length')-1 );
                 this.get('currentForm.field_associations').removeObject( toDelete );
-                this.get('providedStore').deleteRecord(toDelete);
-                toDelete.save();
+//                this.get('providedStore').deleteRecord(toDelete);
+                toDelete.destroyRecord();
             }
            Bootstrap.ModalManager.hide('fieldAssociationDeleteConfirmation');
         },
@@ -318,7 +315,7 @@ export default Ember.Component.extend({
 
        continueAddFieldsToLayoutComponent: function(evt){
            this.get('fieldsToAdd').forEach(function(item,index,enumerable){
-               item.set('order', this.get('selectedLayoutComponent.child_definitions.length'));
+               item.set('order', this.get('selectedLayoutComponent.fields.length'));
                item.set('record_layout_definition', this.get('selectedLayoutComponent'));
                item.save();
            }, this);
@@ -342,10 +339,11 @@ export default Ember.Component.extend({
        },
 
        changeOrderUp: function(evt, itemType){
+           var curOrder = parseInt(evt.get('order'), 10);
+
            switch( itemType )
            {
                case "layoutDefinition":
-                   var curOrder = parseInt(evt.get('order'), 10);
 
                    var defToSwap = evt.get('parent_definition') ?
                        evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
@@ -358,6 +356,14 @@ export default Ember.Component.extend({
                    break;
 
                case "field":
+                   var fieldToSwapWith = evt.get('record_layout_definition.fields').findBy('order', curOrder-1);
+                   if( fieldToSwapWith )
+                   {
+                        fieldToSwapWith.incrementProperty('order');
+                        fieldToSwapWith.save();
+                        evt.decrementProperty('order');
+                        evt.save();
+                   }
                    break;
            }
        },
@@ -365,14 +371,30 @@ export default Ember.Component.extend({
        changeOrderDown: function(evt, itemType){
            var curOrder = parseInt(evt.get('order'), 10);
 
-           var defToSwap = evt.get('parent_definition') ?
-               evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
-               this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+           switch( itemType )
+           {
+               case "layoutDefinition":
+                   var defToSwap = evt.get('parent_definition') ?
+                   evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
+                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
 
-           defToSwap.decrementProperty('order');
-           defToSwap.save();
-           evt.incrementProperty('order');
-           evt.save();
+                   defToSwap.decrementProperty('order');
+                   defToSwap.save();
+                   evt.incrementProperty('order');
+                   evt.save();
+                   break;
+
+               case "field":
+                   var fieldToSwapWith = evt.get('record_layout_definition.fields').findBy('order', curOrder+1);
+                   if( fieldToSwapWith )
+                   {
+                       fieldToSwapWith.decrementProperty('order');
+                       fieldToSwapWith.save();
+                       evt.incrementProperty('order');
+                       evt.save();
+                   }
+                   break;
+           }
        },
 
        toggleFormPreview: function(){

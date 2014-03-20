@@ -9,8 +9,8 @@ export default DS.Model.extend({
     layout_definitions:         DS.hasMany('record-layout-definition'),
 
     topLevelDefinitions: function(){
-        return this.get('layout_definitions').filterBy('isTopLevel', true).sortBy('order');
-    }.property('layout_definitions.@each', 'layout_definitions.@each.order'),
+        return this.get('layout_definitions').filterBy('isTopLevel', true);
+    }.property('layout_definitions.length'),
 
     updated_at:         DS.attr(),
     created_at:         DS.attr(),
@@ -19,6 +19,10 @@ export default DS.Model.extend({
 
     order:              DS.attr('number', {default: 0}),
 
+//    fieldsInTemplate: function(){
+//        return this.get('field_associations').sortBy('label');
+//    }.property('field_associations.length'),
+
     rawFieldList: function(){
         var tmpFieldList = [];
         this.get('field_associations').forEach(function(item, index, enumerable){
@@ -26,7 +30,7 @@ export default DS.Model.extend({
         }, this);
 
         return tmpFieldList;
-    }.property('field_associations.@each'),
+    }.property('field_associations.length'),
 
     anchorIDHash: function(){
         return "#recordFieldset_"+this.get('id');
@@ -40,7 +44,7 @@ export default DS.Model.extend({
         this.propertyWillChange('isDirty');
         this.set('field_associations_dirty', this.get('field_associations.content').compareEmber(this.get('orig_field_associations.content')) === false);
         this.propertyDidChange('isDirty');
-    }.observes('field_associations.@each', 'orig_field_associations.@each'),
+    }.observes('field_associations.length', 'orig_field_associations.length'),
 
     fetchRequiredData: function() {
         var modelsToFetch = [],

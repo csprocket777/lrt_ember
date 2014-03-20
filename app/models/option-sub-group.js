@@ -21,7 +21,7 @@ export default DS.Model.extend({
         return this.get('childOptions').every(function(item,index,enumerable){
             return item.get("isLoaded") === true;
         });
-    }.property('childOptions.@each'),
+    }.property('childOptions.length'),
 
     fetchRequiredData: function() {
         var hash = {},
