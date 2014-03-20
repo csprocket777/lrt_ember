@@ -18,7 +18,6 @@
     "redactor": "http://ls-projects.cisco.com/_purchased_tool_packages/redactor919.zip",
     "autoNumeric": "git://github.com/BobKnothe/autoNumeric.git#1.9.18",
     "bootstrap-switch": "#3.0",
-    "ladda-bootstrap": "",
     "ember-addons.bs_for_ember": "~0.6.1",
     "font-awesome": "~4.0.3"
   },
