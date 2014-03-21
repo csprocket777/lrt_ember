@@ -28,6 +28,7 @@
     "broccoli-template": "^0.1.0",
     "broccoli-coffee": "^0.1.0",
     "node-sass":"~0.8.3",
-    "broccoli-sass": "~0.1.2"
+    "broccoli-sass": "~0.1.2",
+    "glob":""
   }
 }
