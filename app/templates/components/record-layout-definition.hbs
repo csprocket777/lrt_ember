@@ -4,111 +4,174 @@
     </div>
 {{/if}}
 
+{{!--HANDLE TAB CONTAINERS--}}
 
-{{#if model.hasTitle}}
-    {{#if titleInEditMode}}
-        {{#view "record-layout-definition-header"}}
-            {{#if layoutEditMode}}
-                <form {{action "saveComponentChanges" on="submit"}}>
-                    <div class="input-group">
-                        {{input type="text" value=model.title class="form-control input recordLayoutDefinitionTitle" placeholder="Area Title" action="saveComponentChanges" on="submit"}}
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit" {{action "saveComponentChanges"}}>Save</button>
-                        </span>
-                    </div>
-                </form>
-            {{/if}}
-        {{/view}}
-    {{else}}
-        {{#view "record-layout-definition-header"}}
-            {{model.title}}
-            {{#if layoutEditMode}}
-                <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
-            {{/if}}
-        {{/view}}
-    {{/if}}
+{{#if model.isTabContainer}}
+    <ul class="nav nav-tabs">
+        {{#each model.child_definitions itemController="record-layout-definition-tab"}}
+            <li {{bind-attr class="active"}}>
+                    {{#if model.hasTitle}}
+                        {{#if parentController.titleInEditMode}}
+                            {{#if parentController.layoutEditMode}}
+                                <a {{bind-attr href=model.anchorIDHash}} data-toggle="tab">
+                                    <form {{action "saveComponentChanges" model on="submit"}}>
+                                        <div class="input-group">
+                                            {{input type="text" value=model.title class="form-control input recordLayoutDefinitionTitle" placeholder="Area Title"}}
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit" {{action "saveComponentChanges" model}}>Save</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </a>
+                            {{/if}}
+                        {{else}}
+                            <a {{bind-attr href=model.anchorIDHash}} data-toggle="tab">
+                                {{model.title}}
+                                {{#if parentController.layoutEditMode}}
+                                    <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
+                                {{/if}}
+                            </a>
+                        {{/if}}
+                    {{/if}}
+            </li>
+        {{/each}}
+    </ul>
 {{/if}}
 
-{{#if layoutEditMode}}
-    <div class="editPalette">
-        <div class="btn-group layoutCreation rowButtons">
-            <button class="btn btn-default btn-xs disabled" type="button">
-                {{#if model.isRow}}
-                    Row
-                {{else}}
-                    Column
-                {{/if}} ID: {{model.id}}
-            </button>
-            {{#unless model.isRow}}
-                {{#if model.hasTitle}}
-                    <button class="btn btn-default btn-xs" {{action "removeComponentTitle"}}><i class="glyphicon glyphicon-minus"></i> Title</button>
-                {{else}}
-                    <button class="btn btn-default btn-xs" {{action "addComponentTitle"}}><i class="glyphicon glyphicon-plus"></i> Title</button>
-                {{/if}}
-                <button class="btn btn-default btn-xs" {{action "addRow" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Row</button>
-            {{/unless}}
-            {{#unless model.isColumn}}
-                <button class="btn btn-default btn-xs" {{action "addColumn" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Column</button>
-            {{/unless}}
-            {{#unless model.isRow}}
-                <button class="btn btn-default btn-xs" {{action "addField" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Field</button>
-            {{/unless}}
+{{!--EOF HANDLE TAB CONTAINERS--}}
 
-            <button class="btn btn-danger btn-xs" {{action "deleteItem" model}} type="button"><i class="glyphicon glyphicon-remove"></i></button>
+{{#unless model.isTabContainer}}
+    {{#unless model.isTab}}
+        {{#if model.hasTitle}}
+            {{#if titleInEditMode}}
+                {{#view "record-layout-definition-header"}}
+                    {{#if layoutEditMode}}
+                        <form {{action "saveComponentChanges" model on="submit"}}>
+                            <div class="input-group">
+                                {{input type="text" value=model.title class="form-control input recordLayoutDefinitionTitle" placeholder="Area Title"}}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" {{action "saveComponentChanges" model}}>Save</button>
+                                </span>
+                            </div>
+                        </form>
+                    {{/if}}
+                {{/view}}
+            {{else}}
+                {{#view "record-layout-definition-header"}}
+                    {{model.title}}
+                    {{#if layoutEditMode}}
+                        <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
+                    {{/if}}
+                {{/view}}
+            {{/if}}
+        {{/if}}
+    {{/unless}}
+
+    {{#if layoutEditMode}}
+        <div class="editPalette">
+            <div class="btn-group layoutCreation rowButtons">
+                <button class="btn btn-default btn-xs disabled" type="button">
+                    {{#if model.isRow}}
+                        Row
+                    {{else}}
+                        Column
+                    {{/if}} ID: {{model.id}}
+                </button>
+                {{#unless model.isRow}}
+                    {{#if model.hasTitle}}
+                        <button class="btn btn-default btn-xs" {{action "removeComponentTitle"}}><i class="glyphicon glyphicon-minus"></i> Title</button>
+                    {{else}}
+                        <button class="btn btn-default btn-xs" {{action "addComponentTitle"}}><i class="glyphicon glyphicon-plus"></i> Title</button>
+                    {{/if}}
+                    <button class="btn btn-default btn-xs" {{action "addRow" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Row</button>
+                {{/unless}}
+                {{#unless model.isColumn}}
+                    <button class="btn btn-default btn-xs" {{action "addColumn" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Column</button>
+                {{/unless}}
+                {{#unless model.isRow}}
+                    <button class="btn btn-default btn-xs" {{action "addField" model}} type="button"><i class="glyphicon glyphicon-plus"></i> Field</button>
+                {{/unless}}
+
+                <button class="btn btn-danger btn-xs" {{action "deleteItem" model}} type="button"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+
+            {{#if model.verticalOrdering}}
+                <div class="btn-group layoutCreation rowButtons">
+                    {{#if model.orderCanMoveUp}}
+                        <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-up"></i></button>
+                    {{/if}}
+                    {{#if model.orderCanMoveDown}}
+                        <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-down"></i></button>
+                    {{/if}}
+                </div>
+            {{/if}}
+
+            {{#if model.horizontalOrdering}}
+                <div class="btn-group layoutCreation rowButtons">
+                    {{#if model.orderCanMoveUp}}
+                        <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-left"></i></button>
+                    {{/if}}
+                    {{#if model.orderCanMoveDown}}
+                        <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    {{/if}}
+                </div>
+            {{/if}}
+
         </div>
+    {{/if}}
 
-        {{#if model.verticalOrdering}}
-            <div class="btn-group layoutCreation rowButtons">
-                {{#if model.orderCanMoveUp}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-up"></i></button>
-                {{/if}}
-                {{#if model.orderCanMoveDown}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-down"></i></button>
-                {{/if}}
-            </div>
-        {{/if}}
-
-        {{#if model.horizontalOrdering}}
-            <div class="btn-group layoutCreation rowButtons">
-                {{#if model.orderCanMoveUp}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-left"></i></button>
-                {{/if}}
-                {{#if model.orderCanMoveDown}}
-                    <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-right"></i></button>
-                {{/if}}
-            </div>
-        {{/if}}
-
-    </div>
-{{/if}}
-
-{{#with model.fields controller="template-layout-field-list"}}
-    {{#each field in arrangedContent}}
-        {{record-field-display-type
-        model=field
-        displayStyle=field.displayType
-        layoutEditMode=layoutEditMode
-        removeFieldAction=removeFieldAction
-        changeOrderUpAction=changeOrderUpAction
-        changeOrderDownAction=changeOrderDownAction}}
-    {{/each}}
-{{/with}}
-
-
-{{#with model.child_definitions controller="template-layout-field-list"}}
-    {{#each child in arrangedContent}}
-        {{record-layout-definition
-            model=child
-            parentModel=model
+    {{#with model.fields controller="template-layout-field-list"}}
+        {{#each field in arrangedContent}}
+            {{record-field-display-type
+            model=field
+            displayStyle=field.displayType
             layoutEditMode=layoutEditMode
-            addRowAction=addRowAction
-            addColumnAction=addColumnAction
-            addFieldAction=addFieldAction
-            deleteAction=deleteAction
             removeFieldAction=removeFieldAction
             changeOrderUpAction=changeOrderUpAction
-            changeOrderDownAction=changeOrderDownAction
-            addRecordFormElementAction=addRecordFormElementAction
-        }}
-    {{/each}}
-{{/with}}
+            changeOrderDownAction=changeOrderDownAction}}
+        {{/each}}
+    {{/with}}
+
+
+    {{#with model.child_definitions controller="template-layout-field-list"}}
+        {{#each child in arrangedContent}}
+            {{record-layout-definition
+                model=child
+                parentModel=model
+                layoutEditMode=layoutEditMode
+                addRowAction=addRowAction
+                addColumnAction=addColumnAction
+                addFieldAction=addFieldAction
+                deleteAction=deleteAction
+                removeFieldAction=removeFieldAction
+                changeOrderUpAction=changeOrderUpAction
+                changeOrderDownAction=changeOrderDownAction
+                addRecordFormElementAction=addRecordFormElementAction
+            }}
+        {{/each}}
+    {{/with}}
+{{else}}
+
+    <div class="tab-content">
+        {{#with model.child_definitions controller="template-layout-field-list"}}
+            {{#each child in arrangedContent itemController="record-layout-definition-tab-content"}}
+                <div {{bind-attr class=":tab-pane active"}} {{bind-attr id=model.anchorID}}>
+                    {{record-layout-definition
+                    model=child
+                    parentModel=model
+                    layoutEditMode=parentController.layoutEditMode
+                    addRowAction=parentController.addRowAction
+                    addColumnAction=parentController.addColumnAction
+                    addFieldAction=parentController.addFieldAction
+                    deleteAction=parentController.deleteAction
+                    removeFieldAction=parentController.removeFieldAction
+                    changeOrderUpAction=parentController.changeOrderUpAction
+                    changeOrderDownAction=parentController.changeOrderDownAction
+                    addRecordFormElementAction=parentController.addRecordFormElementAction
+                    }}
+                </div>
+            {{/each}}
+        {{/with}}
+    </div>
+
+{{/unless}}

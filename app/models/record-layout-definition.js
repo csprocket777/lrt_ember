@@ -28,6 +28,26 @@ export default DS.Model.extend({
         return this.get('displayType') === "column";
     }.property('displayType'),
 
+    isTabContainer: function(){
+        return this.get('displayType') === "tab-container";
+    }.property('displayType'),
+
+    isTab: function(){
+        return this.get('displayType') === "tab";
+    }.property('displayType'),
+
+    isNotTabRelated: function(){
+        return this.get('displayType') !== "tab-container";
+    }.property('displayType'),
+
+    anchorIDHash:function(){
+        return "#"+this.get('id');
+    }.property('id'),
+
+    anchorID:function(){
+        return this.get('id');
+    }.property('id'),
+
     hasSiblings: function(){
         var hasSiblings = false;
 

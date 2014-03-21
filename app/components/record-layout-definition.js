@@ -10,6 +10,7 @@ export default Ember.Component.extend({
         {
             case "row":
             case "column":
+            case "tab-container":
                 tag = 'section';
             break;
 
@@ -20,6 +21,14 @@ export default Ember.Component.extend({
         this.set('tagName', tag);
         this._super();
     },
+
+    activeTab: null,
+
+    activeTabInit: function(){
+        if( this.get('model.displayType') === "tab-container" ){
+            this.set('activeTab', this.get('model.child_definitions.firstObject'));
+        }
+    }.on('init'),
 
     needsSmallDeleteButton: function(){
         return [
@@ -82,8 +91,9 @@ export default Ember.Component.extend({
         removeField: function(evt){
             this.sendAction("removeFieldAction", evt);
         },
-        saveComponentChanges: function(){
-            this.get('model').save();
+        saveComponentChanges: function(evtModel){
+            evtModel.save();
+//            this.get('model').save();
             this.set('titleInEditMode', false);
         },
 

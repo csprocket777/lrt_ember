@@ -454,6 +454,16 @@ export default Ember.Component.extend({
                        newCol.save();
                    });
                    break;
+
+               case "tab-container":
+                   var newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                       displayType: "tab-container",
+                       record_form: this.get('currentForm'),
+                       order: newOrder
+                   });
+
+                   newRow.save();
+                   break;
            }
        }
     },
