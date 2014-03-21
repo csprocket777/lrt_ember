@@ -7,7 +7,7 @@
 
 {{#if model.hasTitle}}
     {{#if titleInEditMode}}
-        <h3>
+        {{#view "record-layout-definition-header"}}
             {{#if layoutEditMode}}
                 <form {{action "saveComponentChanges" on="submit"}}>
                     <div class="input-group">
@@ -18,14 +18,14 @@
                     </div>
                 </form>
             {{/if}}
-        </h3>
+        {{/view}}
     {{else}}
-        <h3>
+        {{#view "record-layout-definition-header"}}
             {{model.title}}
             {{#if layoutEditMode}}
                 <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
             {{/if}}
-        </h3>
+        {{/view}}
     {{/if}}
 {{/if}}
 
@@ -82,28 +82,33 @@
     </div>
 {{/if}}
 
-{{#each field in model.fieldsSorted}}
-    {{record-field-display-type
-    model=field
-    displayStyle=field.displayType
-    layoutEditMode=layoutEditMode
-    removeFieldAction=removeFieldAction
-    changeOrderUpAction=changeOrderUpAction
-    changeOrderDownAction=changeOrderDownAction}}
-{{/each}}
-
-{{#each child in model.child_definitions_list}}
-    {{record-layout-definition
-        model=child
-        parentModel=model
+{{#with model.fields controller="template-layout-field-list"}}
+    {{#each field in arrangedContent}}
+        {{record-field-display-type
+        model=field
+        displayStyle=field.displayType
         layoutEditMode=layoutEditMode
-        addRowAction=addRowAction
-        addColumnAction=addColumnAction
-        addFieldAction=addFieldAction
-        deleteAction=deleteAction
         removeFieldAction=removeFieldAction
         changeOrderUpAction=changeOrderUpAction
-        changeOrderDownAction=changeOrderDownAction
-        addRecordFormElementAction=addRecordFormElementAction
-    }}
-{{/each}}
+        changeOrderDownAction=changeOrderDownAction}}
+    {{/each}}
+{{/with}}
+
+
+{{#with model.child_definitions controller="template-layout-field-list"}}
+    {{#each child in arrangedContent}}
+        {{record-layout-definition
+            model=child
+            parentModel=model
+            layoutEditMode=layoutEditMode
+            addRowAction=addRowAction
+            addColumnAction=addColumnAction
+            addFieldAction=addFieldAction
+            deleteAction=deleteAction
+            removeFieldAction=removeFieldAction
+            changeOrderUpAction=changeOrderUpAction
+            changeOrderDownAction=changeOrderDownAction
+            addRecordFormElementAction=addRecordFormElementAction
+        }}
+    {{/each}}
+{{/with}}

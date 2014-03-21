@@ -64,6 +64,11 @@ export default Ember.ObjectController.extend({
     }.property('model.content_source'),
 
     contentSourceValues: function(){
-        return this.get('store').find( this.get('model.content_source'));
+        if( this.get('model.content_source') )
+        {
+            return this.get('model.store').find( this.get('model.content_source'));
+        }else{
+            return [];
+        }
     }.property('model.content_source'),
 });

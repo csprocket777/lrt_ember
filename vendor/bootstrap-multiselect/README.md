@@ -2,27 +2,22 @@
 
 Bootstrap Multiselect is a JQuery based plugin to provide an intuitive user interface for using select inputs with the multiple attribute present. Instead of a select a bootstrap button will be shown as dropdown menu containing the single options as checkboxes.
 
-**Note:** The option names may have changed due to the latest updates.
-
 Bootstrap 3 port by [Eduard Dudar](https://github.com/edudar).
 
-## Contribute
+## Documentation
 
-Every pull request appreciated. Note that the master branch is used for the current bootstrap version. There is an additional branch for bootstrap 2.3.x.
+Documentation, demonstrations and FAQ: [http://davidstutz.github.com/bootstrap-multiselect/](http://davidstutz.github.com/bootstrap-multiselect/).
 
-## Documentation and Demos
+**Note**: The demo page is based on JQuery 2 - so for IE 6,7 and 8 the plugin will not work properly. Nevertheless, the plugin should run as expected using the .x branch of jQuery.
 
-Full documentation and demos of different configurations can be found [here](http://davidstutz.github.com/bootstrap-multiselect/).
+## Contribute!
 
-**Note**: The demo page is based on JQuery 2 - so for IE 6,7 and 8 the plugin will not work properly, see compatibility below.
+Every pull request is appreciated. To make it easier for me to merge fixes and new features have a look at the following guidelines:
 
-For Knockout JS integration see some examples [here](http://davidstutz.github.io/bootstrap-multiselect/knockout-examples.html).
-
-## Compatibility
-
-Due to the changes with JQuery 2.x the plugin will not work in IE 6,7 and 8 when using the new JQuery version. So if compatibility for these browsers is needed simply switch to the 1.x version of JQuery. The demo page is running using JQuery 2.
-
-Details can be found [here](http://blog.jquery.com/2013/04/18/jquery-2-0-released/).
+* Include documentation for new options and features to avoid undocumented features.
+* Add a thorough description to every pull request - so I am able to understand the purpose of the pull request.
+* Have a look at the code as to keep the code as comprehensible and coherent as possible (concerning code style, indentation etc.).
+* Add comments to your code - to help me understand the committed code.
 
 ## License
 
@@ -30,7 +25,7 @@ This project is dual licensed under the Apache License, Version 2.0 and the BSD 
 
 ### Apache License, Version 2.0
 
-Copyright 2012, 2013 David Stutz
+Copyright 2012 - 2014 David Stutz
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
@@ -40,7 +35,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ### BSD 3-Clause License
 
-Copyright (c) 2012, 2013 David Stutz
+Copyright (c) 2012 - 2014 David Stutz
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

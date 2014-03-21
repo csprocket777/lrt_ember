@@ -22,8 +22,8 @@
       position: relative;
       min-height: 50px;
       margin-bottom: 10px;
-      border: dashed 1px #d5d5d5;
       padding-bottom: 35px;
+      background: #ffffff;
 
       .insertButton,
       .editButton{
@@ -36,6 +36,7 @@
 
       &:hover{
         background: #fafafa;
+        border: dashed 1px #d5d5d5;
 
         .editPalette{
           display: block;

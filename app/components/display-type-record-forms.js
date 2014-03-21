@@ -226,13 +226,10 @@ export default Ember.Component.extend({
                    displayType: "column",
                    record_form: self.get('currentForm'),
                    record_layout_definition: result,
-                   parent_definition: result,
                    order: 0
                });
 
                newCol.save();
-//               newCol = null;
-//               newRow = null;
            });
        },
 
@@ -244,7 +241,6 @@ export default Ember.Component.extend({
                displayType: "row",
                record_form: this.get('currentForm'),
                record_layout_definition: evt,
-               parent_definition: evt,
                order: 0
            });
 
@@ -253,7 +249,6 @@ export default Ember.Component.extend({
                    displayType: "column",
                    record_form: self.get('currentForm'),
                    record_layout_definition: result,
-                   parent_definition: result,
                    order: 0
                });
                newCol.save();
@@ -267,7 +262,6 @@ export default Ember.Component.extend({
                displayType: "column",
                record_form: this.get('currentForm'),
                record_layout_definition: evt,
-               parent_definition: evt,
                order: evt.get('child_definitions.length')
            });
 
@@ -292,6 +286,15 @@ export default Ember.Component.extend({
        confirmLayoutComponentDeletion: function(){
 
             var self = this;
+            var parentContextToReorder =
+                    self.get('layoutComponentsToRemove.record_layout_definition') ?
+                        self.get('layoutComponentsToRemove.record_layout_definition.child_definitions').filter(function(item,index,enumerable){
+                            return item.get('id') !== self.get('layoutComponentsToRemove.id');
+                        }, this).sortBy('order') :
+                        self.get('currentForm.topLevelDefinitions').filter(function(item,index,enumerable){
+                            return item.get('id') !== self.get('layoutComponentsToRemove.id');
+                        }, this).sortBy('order');
+
             // TO SOLVE FOR A RACE CONDITION, EMPLOYING PROMISES TO ENSURE THAT THE DELETIONS HAPPEN IN THE ORDER IN WHICH THEY NEED TO HAPPEN
             var deletePromise = new Ember.RSVP.Promise(function(resolve, reject){
                // RESOLVE WITH THE RESULT OF THE RECURSIVE DELETION RESULT
@@ -300,11 +303,16 @@ export default Ember.Component.extend({
                new Ember.RSVP.Promise(function(resolve, reject){
                    // RESOLVE WITH THE RESULT OF THE RECURSIVE DELETION RESULT
                    self.set('layoutChangesToSave', []);
-                   resolve(self.fixDefinitionOrderValues( self.get('currentForm.topLevelDefinitions') ));
+//                   var contextToOrderFix =
+//                       self.get('layoutComponentsToRemove.record_layout_definition') ?
+//                           self.get('layoutComponentsToRemove.record_layout_definition.child_definitions').sortBy('order') :
+//                           self.get('currentForm.topLevelDefinitions').sortBy('order');
+
+                   resolve(self.fixDefinitionOrderValues( parentContextToReorder ));
                }).then(function(value){
                    // WHEN ALL ARE DELETED SUCCESSFULLY, CLOSE THE DIALOG
-                   self.get('layoutChangesToSave').invoke('save')
-                    Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
+                   self.get('layoutChangesToSave').invoke('save');
+                   Bootstrap.ModalManager.hide('layoutItemDeletionConfirmation');
                });
 
             }, function(reason){
@@ -345,8 +353,8 @@ export default Ember.Component.extend({
            {
                case "layoutDefinition":
 
-                   var defToSwap = evt.get('parent_definition') ?
-                       evt.get('parent_definition.child_definitions').findBy('order', curOrder-1):
+                   var defToSwap = evt.get('record_layout_definition') ?
+                       evt.get('record_layout_definition.child_definitions').findBy('order', curOrder-1):
                        this.get('currentForm.topLevelDefinitions').findBy('order', curOrder-1);
 
                    defToSwap.incrementProperty('order');
@@ -374,8 +382,8 @@ export default Ember.Component.extend({
            switch( itemType )
            {
                case "layoutDefinition":
-                   var defToSwap = evt.get('parent_definition') ?
-                   evt.get('parent_definition.child_definitions').findBy('order', curOrder+1):
+                   var defToSwap = evt.get('record_layout_definition') ?
+                   evt.get('record_layout_definition.child_definitions').findBy('order', curOrder+1):
                    this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
 
                    defToSwap.decrementProperty('order');
@@ -441,7 +449,6 @@ export default Ember.Component.extend({
                            displayType: "column",
                            record_form: self.get('currentForm'),
                            record_layout_definition: result,
-                           parent_definition: result,
                            order: 0
                        });
                        newCol.save();
@@ -492,12 +499,12 @@ export default Ember.Component.extend({
 
         itemsToOrder.forEach(function(item, index, enumerable){
             item.set('order', index);
-            self.get('layoutChangesToSave').pushObject('item');
+            self.get('layoutChangesToSave').pushObject(item);
 //            item.save();
 
             if( !Ember.isNone(item.get('child_definitions.content')) && !Ember.isNone(item.get('child_definitions.length')) )
             {
-                self.fixDefinitionOrderValues( item.get('child_definitions.content') );
+                self.fixDefinitionOrderValues( item.get('child_definitions.content').sortBy('order') );
             };
         });
 

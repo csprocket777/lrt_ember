@@ -6,12 +6,12 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta name="copyright" content="David Stutz" />
 
-		<link rel="stylesheet" href="css/bootstrap-3.0.3.min.css" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap-3.1.1.min.css" type="text/css">
 		<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css">
 		<link rel="stylesheet" href="css/prettify.css" type="text/css">
 
-		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap-3.0.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 		<script type="text/javascript" src="js/prettify.js"></script>
 	</head>
@@ -29,8 +29,7 @@
                             <li><a href="#methods">Methods</a></li>
                             <li><a href="#further-examples">Further Examples</a></li>
                             <li><a href="#additional-styling">Additional Styling</a></li>
-                            <li class="divider"></li>
-                            <li><a href="tests.html">Tests</a></li>
+                            <li><a href="#faq">Frequently Asked Questions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,6 +37,13 @@
                     <div class="page-header">
                         <h1>Bootstrap Multiselect</h1>
                     </div>
+                    
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#">Bootstrap 3.1 &amp; jQuery 2.1</a></li>
+                        <li><a href="index-2-3.html">Bootstrap 2.3 &amp; jQuery 2.1</a></li>
+                    </ul>
+                    <hr>
+                    
                     <p class="lead">
                         Bootstrap Multiselect is a JQuery based plugin to provide an intuitive user interface for using select inputs with the multiple attribute present. Instead of a select a bootstrap button will be shown as dropdown menu containing the single options as checkboxes.
                     </p>
@@ -49,10 +55,6 @@
 	                event.stopPropagation();
 	            });
         	</script>
-            
-			<p class="alert alert-info">
-				<b>Note:</b> The option names may have changed due to the latest updates.
-			</p>
             
             <div class="page-header">
                 <h1><a id="getting-started"></a>Getting Started</h1>
@@ -453,7 +455,7 @@
 						</select>
 					</td>
 					<td>
-						Specifiy an alternaitve label for the options: <code>&lt;option label=&quot;label&quot;&gt;&lt;/option&gt;</code>
+						Specify an alternative label for the options: <code>&lt;option label=&quot;label&quot;&gt;&lt;/option&gt;</code>
 					</td>
 				</tr>
                 <tr>
@@ -538,7 +540,7 @@
 						</select>
 					</td>
 					<td>
-						Using <code>optgroups</code>s with filtering and the select all option.
+						Using <code>optgroup</code> with filtering and the select all option.
 					</td>
 				</tr>
 			</table>
@@ -551,7 +553,7 @@
 				<thead>
 					<tr>
 						<th>Option</th>
-						<th width="30%">Explanation</th>
+						<th>Explanation</th>
 						<th>Usage</th>
 					</tr>
 				</thead>
@@ -700,7 +702,7 @@
 					</tr>
 					<tr>
 						<td><code>selectedClass</code></td>
-						<td>The class applied to the parent &lt;li&gt; of selected items. Default: <code>active</code>.</td>
+						<td>The class applied to the parent <code>&lt;li&gt;</code> of selected items. Default: <code>active</code>.</td>
 						<td>
 							<pre class="prettyprint linenums">
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -798,6 +800,24 @@
   $(document).ready(function() {
     $(&#39;.multiselect&#39;).multiselect({
       includeSelectAllOption: true
+    });
+  });
+&lt;/script&gt;
+							</pre>
+						</td>
+					</tr>
+					<tr>
+						<td><code>includeSelectAllDivider</code></td>
+						<td>
+                            If set to <code>true</code> (along with <code>includeSelectAllOption</code>) a divider will be placed below the 'Select all' option.
+						</td>
+						<td>
+							<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function() {
+    $(&#39;.multiselect&#39;).multiselect({
+      includeSelectAllOption: true,
+      includeSelectAllDivider: true
     });
   });
 &lt;/script&gt;
@@ -919,7 +939,10 @@
 			        $('#example8-destroy').on('click', function() {
 			            $('#example8').multiselect('destroy');
 			        });
-					
+					$('#example8-create').on('click', function() {
+			            $('#example8').multiselect();
+			        });
+                    
 			        $('#example10').multiselect();
 			        $('#example10-select').on('click', function() {
 			            $('option[value="tomatoes"]', $('#example10')).prop('selected', true);
@@ -1004,6 +1027,7 @@
 									<option value="onions">Onions</option>
 								</select>
 								<button id="example8-destroy" class="btn btn-danger">Destroy/Unbind</button>
+								<button id="example8-create" class="btn btn-success">Create/Bind</button>
 							</div>
 						</td>
 					</tr>
@@ -1057,7 +1081,7 @@
 						<td>
                             <p><code>.multiselect('select', value)</code></p>
                             <p>
-                                Selects an option by its value. Works also using an array of values.
+                                Selects an option by its value (which has to be given as string). Works also using an array of values.
                             </p>
                         </td>
 						<td>
@@ -1079,7 +1103,7 @@
 						<td>
                             <p><code>.multiselect('deselect', value)</code></p>
                             <p>
-                                Deselect an option by its value. Works also using an array of values.
+                                Deselect an option by its value (which has to be given as string). Works also using an array of values.
                             </p>
                         </td>
 						<td>
@@ -1417,12 +1441,44 @@ $(&quot;#multiselect&quot;).multiselect('dataprovider', data);
                             $('#example40').multiselect('deselect', values);
                         }
                     });
+                    
+                    $('#example42').multiselect({
+                        onChange: function(option, checked) {
+                            var selected = 0;
+                            $('option', $('#example42')).each(function() {
+                                if ($(this).prop('selected')) {
+                                    selected++;
+                                }
+                            });
+                            
+                            if (selected >= 3) {
+                                $('#example42').siblings('div').children('ul').dropdown('toggle');
+                            }
+                        }
+                    });
+                    
+                    $('#example43').multiselect({
+                        onDropdownHide: function() {
+                            alert('Dropdown closed ...');
+                        },
+                        onDropdownShow: function() {
+                            alert('Dropdown openend!');
+                        }
+                    });
+                    
+                    $('#example43-show').on('click', function() {
+                        $('#example43').siblings('div').trigger('show.bs.dropdown');
+                    });
+                    
+                    $('#exampler43-hide').on('click', function() {
+                        $('#example43').siblings('div').trigger('hide.bs.dropdown');
+                    });
 			    });
 			</script>
 			<table class="table table-striped">
 				<tbody>
                     <tr>
-						<td style="width:400px">
+						<td>
                             <p>
                                 Use "Select" and "Deselect" to select or deselect cheese and tomatoes. Use "Values" to display the currently selected elements by using <code>$('.multiselect').val()</code>.
                             </p>
@@ -1834,6 +1890,80 @@ $(&quot;#multiselect&quot;).multiselect('dataprovider', data);
                             </pre>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                Close dropdown after 3 selections automatically.
+                            </p>
+                            <div class="btn-group">
+                                <select id="example42" multiple="multiple">
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <pre class="linenums prettyprint">
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#example42').multiselect({
+    onChange: function(option, checked) {
+      var selected = 0;
+      $('option', $('#example42')).each(function() {
+        if ($(this).prop('selected')) {
+          selected++;
+        }
+      });
+
+      if (selected >= 3) {
+        $('#example42').siblings('div').children('ul').dropdown('toggle');
+      }
+    }
+  });
+&lt;/script&gt;
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                Trigger <code>hide.bs.dropdown</code> and <code>show.bs.dropdown</code> manually.
+                            </p>
+                            <div class="btn-group">
+                                <select id="example43" multiple="multiple">
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                                <button id="example43-show" class="btn btn-default"><code>show</code></button>
+                                <button id="example43-hide" class="btn btn-default"><code>hide</code></button>
+                            </div>
+                        </td>
+                        <td>
+                            <pre class="linenums prettyprint">
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#example40').multiselect({
+    onChange: function(option, checked) {
+      var values = [];
+      $('#example40 option').each(function() {
+        if ($(this).val() !== option.val()) {
+          values.push($(this).val());
+        }
+      });
+      
+      $('#example40').multiselect('deselect', values);
+    }
+  });
+&lt;/script&gt;
+                            </pre>
+                        </td>
+                    </tr>
 				</tbody>
 			</table>
 
@@ -1841,7 +1971,7 @@ $(&quot;#multiselect&quot;).multiselect('dataprovider', data);
 				<h1><a id="additional-styling"></a>Additional Styling</h1>
 			</div>
 			<p>
-                For additionaly styling of the multiselect button the CSS class <code>multiselect</code> can be used.
+                For additional styling of the multiselect button, the CSS class <code>multiselect</code> can be used.
             </p>
 			<style media="screen" type="text/css">
 			    .add-styling-1 .multiselect {
@@ -1943,12 +2073,28 @@ $(&quot;#multiselect&quot;).multiselect('dataprovider', data);
 					</tr>
 				</table>
 			</div>
+            
+            <div class="page-header">
+				<h1><a id="faq"></a>Frequently Asked Questions</h1>
+			</div>
+            
+            <p>
+                Here are some of the (not necessarily that frequently) asked questions and their answers.
+            </p>
+            
+            <p>
+                <b>What about older browsers, i.e. Internet Explorer 6, 7 and 8?</b>
+            </p>
+            
+            <p>
+                With version 2.0, jQuery no longer supports the older IE versions. Nevertheless, the plugin should run as expected using the 1.x branch of jQuery. See <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/">here</a> for details.
+            </p>
 		</div>
 
 		<div class="container">
 			<hr>
 			<p>
-				&copy; 2012, 2013
+				&copy; 2012 - 2014
 				<a href="http://davidstutz.de">David Stutz</a> - dual licensed: <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>, <a href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>
 			</p>
 		</div>
