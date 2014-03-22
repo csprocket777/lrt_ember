@@ -1,0 +1,39 @@
+{{#if model.label}}
+    <label>
+        {{model.label}}:
+        {{#if model.required}}*{{/if}}
+    </label>
+{{/if}}
+
+{{#if model.tooltipContent}}
+    {{help-tool-tip
+        dataHtml="true"
+        dataContent=model.tooltipContent
+        dataTrigger="hover"
+    }}
+{{/if}}
+
+{{#if model.content_source}}
+    {{#if model.content_source_relation_values}}
+        <ul class="list-group">
+            {{#each model.content_source_relation_values itemController='checkbox-group-list-item'}}
+                <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>
+            <small>{{{model.related_field_info}}}</small>
+        </p>
+    {{/if}}
+{{/if}}
+
+{{#if model.helpLine}}
+    <p class="help-block">
+        {{{model.helpLine}}}
+    </p>
+{{/if}}
+
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}
+{{/if}}
