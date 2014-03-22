@@ -49,7 +49,7 @@ export default Ember.Component.extend({
         this.$('input[type="checkbox"]')
             .data('animated', false)
             .bootstrapSwitch()
-            .on('switchChange', function(e, data){
+            .on('switchChange.bootstrapSwitch', function(e, data){
             tThis.sendAction('changeAction', { value: $tmpValue, content: $tmpContent, switchData: data });
         });
     },

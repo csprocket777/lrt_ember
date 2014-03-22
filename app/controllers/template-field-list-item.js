@@ -35,6 +35,10 @@ export default Ember.ObjectController.extend({
             {
                 value: "multi-select-checkbox",
                 label: "Choice (Checkboxes - Multiple)"
+            },
+            {
+                value: "multi-person-select",
+                label: "Person Selection (Multiple)"
             }
         ];
     }.property(),
@@ -45,8 +49,19 @@ export default Ember.ObjectController.extend({
                 value: "optionSubGroup",
                 label: "System Options",
                 valueKey: "content.id",
-                labelKey: "content.title",
-                sortkey: "title"
+                labelKey: "content.optionValue",
+                childModel: "option",
+                searchKey: "optionType",
+//                relationType: "optionCategories"
+            },
+            {
+                value: "jobRole",
+                label: "Personnel",
+                valueKey: "content.id",
+                labelKey: "content.optionValue",
+                childModel: "option",
+                searchKey: "optionType",
+//                relationType: "optionValues"
             }
         ];
     }.property(),

@@ -1,18 +1,8 @@
 /**
  * Created by chshipma on 3/14/14.
  */
-export default Ember.Component.extend({
-    actions:{
-        removeField: function(evt){
-            this.sendAction("removeFieldAction", this.get('model'));
-        },
 
-        changeOrderUp: function(itemType){
-            this.sendAction('changeOrderUpAction', this.get('model'), itemType);
-        },
+import recordFieldDisplayTypeBase from "appkit/components/record-field-display-type-base";
 
-        changeOrderDown: function(itemType){
-            this.sendAction('changeOrderDownAction', this.get('model'), itemType);
-        }
-    }
+export default recordFieldDisplayTypeBase.extend({
 });

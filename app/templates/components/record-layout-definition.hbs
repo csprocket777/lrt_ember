@@ -8,7 +8,8 @@
 
 {{#if model.isTabContainer}}
     <ul class="nav nav-tabs">
-        {{#each model.child_definitions itemController="record-layout-definition-tab"}}
+    {{#with model.child_definitions controller="template-layout-field-list"}}
+        {{#each model in arrangedContent itemController="record-layout-definition-tab"}}
             <li {{bind-attr class="active"}}>
                     {{#if model.hasTitle}}
                         {{#if parentController.titleInEditMode}}
@@ -28,13 +29,24 @@
                             <a {{bind-attr href=model.anchorIDHash}} data-toggle="tab">
                                 {{model.title}}
                                 {{#if parentController.layoutEditMode}}
-                                    <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
+                                    <div class="btn-group layoutCreation rowButtons">
+                                        {{#if model.orderCanMoveUp}}
+                                            <button class="btn btn-default btn-xs" {{action "changeOrderUp" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-left"></i></button>
+                                        {{/if}}
+                                        {{#if model.orderCanMoveDown}}
+                                            <button class="btn btn-default btn-xs" {{action "changeOrderDown" model "layoutDefinition"}}><i class="glyphicon glyphicon-chevron-right"></i></button>
+                                        {{/if}}
+                                        <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentTitle"}}>Edit Title</button>
+                                        <button class="btn btn-danger btn-xs" {{action "deleteItem" model}} type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                                    </div>
                                 {{/if}}
                             </a>
                         {{/if}}
                     {{/if}}
             </li>
         {{/each}}
+    {{/with}}
+        <li><a href="#" class='btn btn-success tabAddButton' {{action "addRecordFormElement" model.child_definitions.lastObject "tab"}}><i class="glyphicon glyphicon-plus"></i> Add Tab</a></li>
     </ul>
 {{/if}}
 

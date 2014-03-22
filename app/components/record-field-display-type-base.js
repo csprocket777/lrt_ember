@@ -48,7 +48,17 @@ export default Ember.Component.extend({
                 valueKey: "content.id",
                 labelKey: "content.optionValue",
                 childModel: "option",
-                searchKey: "optionType"
+                searchKey: "optionType",
+//                relationType: "specificOptionValues"
+            },
+            {
+                value: "user",
+                label: "Personnel",
+                valueKey: "content.id",
+                labelKey: "content.optionValue",
+                childModel: "option",
+                searchKey: "optionType",
+//                relationType: "recordType"
             }
         ];
     }.property(),

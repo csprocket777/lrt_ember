@@ -25,6 +25,12 @@
       padding-bottom: 35px;
       background: #ffffff;
 
+      .tabAddButton{
+        &:hover{
+          background: #5cb85c !important;
+        }
+      }
+
       .insertButton,
       .editButton{
         display: block;

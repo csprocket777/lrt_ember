@@ -377,14 +377,13 @@ export default Ember.Component.extend({
        },
 
        changeOrderDown: function(evt, itemType){
-           var curOrder = parseInt(evt.get('order'), 10);
-
-           switch( itemType )
-           {
+            var curOrder = parseInt(evt.get('order'), 10);
+            switch( itemType )
+            {
                case "layoutDefinition":
                    var defToSwap = evt.get('record_layout_definition') ?
-                   evt.get('record_layout_definition.child_definitions').findBy('order', curOrder+1):
-                   this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
+                       evt.get('record_layout_definition.child_definitions').findBy('order', curOrder+1):
+                       this.get('currentForm.topLevelDefinitions').findBy('order', curOrder+1);
 
                    defToSwap.decrementProperty('order');
                    defToSwap.save();
@@ -402,7 +401,8 @@ export default Ember.Component.extend({
                        evt.save();
                    }
                    break;
-           }
+            };
+
        },
 
        toggleFormPreview: function(){
@@ -463,6 +463,19 @@ export default Ember.Component.extend({
                    });
 
                    newRow.save();
+                   break;
+
+               case "tab":
+                   var newTab = this.get('providedStore').createRecord('record-layout-definition', {
+                       displayType: "tab",
+                       record_form: this.get('currentForm'),
+                       order: newOrder+1,
+                       record_layout_definition: evtModel.get("record_layout_definition"),
+                       hasTitle: true,
+                       title: "New Tab"
+                   });
+
+                   newTab.save();
                    break;
            }
        }

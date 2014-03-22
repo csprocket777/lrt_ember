@@ -32,7 +32,17 @@ export default DS.Model.extend({
                 valueKey: "content.id",
                 labelKey: "content.optionValue",
                 childModel: "option",
-                searchKey: "optionType"
+                searchKey: "optionType",
+//                relationType: "optionCategories"
+            },
+            {
+                value: "jobRole",
+                label: "Personnel",
+                valueKey: "content.id",
+                labelKey: "content.optionValue",
+                childModel: "option",
+                searchKey: "optionType",
+//                relationType: "optionValues"
             }
         ];
     }.property(),
@@ -46,7 +56,8 @@ export default DS.Model.extend({
             "single-select-dropdown",
             "multi-select-dropdown",
             "single-select-radio",
-            "multi-select-checkbox"
+            "multi-select-checkbox",
+            "multi-person-select"
         ];
 
         return choicesNeedingSource.contains(this.get('displayType'));
@@ -57,15 +68,24 @@ export default DS.Model.extend({
         {
             if( !Ember.isNone( this.get('content_source') ) && !Ember.isNone( this.get('content_source_relation') ) )
             {
-
-                var childModel = this.get('content_source_options').findBy('value', this.get('content_source')).childModel,
-                    searchKey = this.get('content_source_options').findBy('value', this.get('content_source')).searchKey,
+                var contentSourceOption = this.get('content_source_options').findBy('value', this.get('content_source'));
+                var childModel = contentSourceOption.childModel,
+                    searchKey = contentSourceOption.searchKey,
                     searchString = {};
+//                    relationType = contentSourceOption.relationType,
 
                 searchString[ searchKey ] = this.get('content_source_relation');
                 searchString.active = true;
 
-                return this.get('store').find(childModel, searchString);
+//                switch( relationType ){
+//                    case "optionCategories":
+                        return this.get('store').find(childModel, searchString);
+//                        break;
+
+//                    case "optionValues":
+//                        break;
+//                }
+
             }
         }else{
 

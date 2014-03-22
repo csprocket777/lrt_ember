@@ -45,9 +45,12 @@ export default Ember.ObjectController.extend( PrivilegedController, {
             {
                 unsavedRecords.addObject(item);
             }else{
-                if( unsavedRecords.contains(item) )
+                if( item.get('isDirty') !== true )
                 {
-                    unsavedRecords.removeObject(item);
+                    if( unsavedRecords.contains(item) )
+                    {
+                        unsavedRecords.removeObject(item);
+                    }
                 }
             }
         });
@@ -60,9 +63,12 @@ export default Ember.ObjectController.extend( PrivilegedController, {
                     unsavedRecords.addObject(item);
                 }
             }else{
-                if( unsavedRecords.contains(item) )
+                if( item.get('isDirty') !== true )
                 {
-                    unsavedRecords.removeObject(item);
+                    if( unsavedRecords.contains(item) )
+                    {
+                        unsavedRecords.removeObject(item);
+                    }
                 }
             }
         });
