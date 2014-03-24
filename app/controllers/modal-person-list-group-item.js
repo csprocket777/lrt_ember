@@ -7,16 +7,16 @@ export default Ember.ObjectController.extend({
     classNameBindings: ['isSelected:list-group-item-success'],
 
     isSelected: function(){
-        return this.get('parentController.returnValueList').contains(this.get('model'));
-    }.property('parentController.returnValueList'),
+        return this.get('parentController.selectedPersonnel').contains(this.get('model'));
+    }.property('parentController.selectedPersonnel'),
 
     actions: {
         selectPerson: function(evt){
-            if( this.get('parentController.returnValueList').contains(evt) )
+            if( this.get('parentController.selectedPersonnel').contains(evt) )
             {
-                this.get('parentController.returnValueList').removeObject(evt);
+                this.get('parentController.selectedPersonnel').removeObject(evt);
             }else{
-                this.get('parentController.returnValueList').addObject(evt);
+                this.get('parentController.selectedPersonnel').addObject(evt);
             }
         }
     }

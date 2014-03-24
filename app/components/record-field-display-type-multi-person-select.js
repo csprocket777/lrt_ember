@@ -6,6 +6,11 @@ import recordFieldDisplayTypeBase from "appkit/components/record-field-display-t
 
 var Bootstrap = window.Bootstrap;
 export default recordFieldDisplayTypeBase.extend({
+    selectedPersonnel: null,
+
+    _setup: function(){
+        this.set('selectedPersonnel', []);
+    }.on('init'),
 
     modalButtons: [
         Ember.Object.create({title:'Delete All', clicked:"confirmFieldAssociationDeletion", type:'danger'}),
