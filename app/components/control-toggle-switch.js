@@ -39,10 +39,6 @@ export default Ember.Component.extend({
         return this.get('off');
     }.property('off'),
 
-//    dataSize: function(){
-//        return this.get('dataSize');
-//    }.property('dataSize'),
-
     didInsertElement:function(){
         var self = this;
 
@@ -56,13 +52,7 @@ export default Ember.Component.extend({
             })
             .bootstrapSwitch()
             .on('switchChange.bootstrapSwitch', function(e,data){
-//                var $element = $(data.el),
-//                    value = data.value;
-
-                self.set('value', data.value);
-
-//                console.log(e, $element, value);
-//                console.log( self.get('value') );
+                self.set('value', data);
             });
     },
 

@@ -78,7 +78,7 @@ module.exports = function (broccoli) {
         "ember-addons.bs_for_ember/dist/js/bs-notifications.max.js",
         "ember-addons.bs_for_ember/dist/js/bs-progressbar.max.js",
         "ember-addons.bs_for_ember/dist/js/bs-wizard.max.js",
-        "ember-validations/dist/ember-validations.js",
+        "ember-validations/index.js",
         "momentjs/moment.js",
         "bootstrap-multiselect/js/bootstrap-multiselect.js",
         "bootstrap-datepicker/js/bootstrap-datepicker.js",

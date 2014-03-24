@@ -58,6 +58,15 @@ export default DS.Model.extend({
                 labelKey: "content.optionValue",
                 childModel: "option",
                 searchKey: "optionType"
+            },
+            {
+                value: "jobRole",
+                label: "Personnel",
+                valueKey: "content.id",
+                labelKey: "content.optionValue",
+                childModel: "user",
+                searchKey: "jobRole",
+//                relationType: "optionValues"
             }
         ];
 

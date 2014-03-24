@@ -44,12 +44,13 @@ export default Ember.ObjectController.extend({
     }.property(),
 
     contentSourceOptions: function(){
+        // THESE PERTAIN TO THE CONTROL SETUP
         return [
             {
                 value: "optionSubGroup",
                 label: "System Options",
                 valueKey: "content.id",
-                labelKey: "content.optionValue",
+                labelKey: "content.title",
                 childModel: "option",
                 searchKey: "optionType",
 //                relationType: "optionCategories"
@@ -59,8 +60,8 @@ export default Ember.ObjectController.extend({
                 label: "Personnel",
                 valueKey: "content.id",
                 labelKey: "content.optionValue",
-                childModel: "option",
-                searchKey: "optionType",
+                childModel: "user",
+                searchKey: "jobRole",
 //                relationType: "optionValues"
             }
         ];
@@ -81,9 +82,9 @@ export default Ember.ObjectController.extend({
     contentSourceValues: function(){
         if( this.get('model.content_source') )
         {
-            return this.get('model.store').find( this.get('model.content_source'));
+            return this.get('model.store').find( this.get('model.content_source'), {active:true});
         }else{
             return [];
         }
-    }.property('model.content_source'),
+    }.property('model.content_source')
 });

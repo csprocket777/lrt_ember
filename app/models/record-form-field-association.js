@@ -25,6 +25,7 @@ export default DS.Model.extend({
 
 
     content_source_options: function(){
+        // THESE PERTAIN TO THE RESULTING VALUE SELECTION, NOT THE CONTROL SETUP
         return [
             {
                 value: "optionSubGroup",
@@ -40,8 +41,8 @@ export default DS.Model.extend({
                 label: "Personnel",
                 valueKey: "content.id",
                 labelKey: "content.optionValue",
-                childModel: "option",
-                searchKey: "optionType",
+                childModel: "user",
+                searchKey: "jobRole",
 //                relationType: "optionValues"
             }
         ];
@@ -79,7 +80,9 @@ export default DS.Model.extend({
 
 //                switch( relationType ){
 //                    case "optionCategories":
-                        return this.get('store').find(childModel, searchString);
+                var ret = this.get('store').find(childModel, searchString);
+
+                return ret;
 //                        break;
 
 //                    case "optionValues":

@@ -41,6 +41,7 @@ export default Ember.Component.extend({
     }.property(),
 
     contentSourceOptions: function(){
+        // THESE PERTAIN TO THE RESULTING VALUE SELECTION, NOT THE CONTROL SETUP
         return [
             {
                 value: "optionSubGroup",
@@ -52,13 +53,13 @@ export default Ember.Component.extend({
 //                relationType: "specificOptionValues"
             },
             {
-                value: "user",
+                value: "jobRole",
                 label: "Personnel",
                 valueKey: "content.id",
                 labelKey: "content.optionValue",
-                childModel: "option",
-                searchKey: "optionType",
-//                relationType: "recordType"
+                childModel: "user",
+                searchKey: "jobRole",
+//                relationType: "optionValues"
             }
         ];
     }.property(),

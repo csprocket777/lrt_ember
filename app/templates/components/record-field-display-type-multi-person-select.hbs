@@ -15,15 +15,8 @@
 
 {{#if model.content_source}}
     {{#if model.content_source_relation_values}}
-        <ul class="list-group">
-            {{#each model.content_source_relation_values itemController='checkbox-group-list-item'}}
-                <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=controller.fieldsToAdd}}</li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p>
-            <small>{{{model.related_field_info}}}</small>
-        </p>
+        <button class="btn btn-default btn-xs" {{action "showUserSelectModal"}}>Assign <i class="glyphicon glyphicon-user"></i></button>
+        {{model.content_source_relation_values.length}}
     {{/if}}
 {{/if}}
 
@@ -37,3 +30,19 @@
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}
 {{/if}}
+
+
+{{!--PERSONNEL SELECTION MODAL DIALOG BOX--}}
+{{#bs-modal name=modalID fade=true footerButtons=modalButtons title=modalTitle}}
+    <div class="alert alert-block alert-warning">
+        <h4>TODO:</h4>
+        <p>Need to implement value read out so that you see what you've assigned and what you can remove.</p>
+    </div>
+    <ul class="list-group">
+        {{#with model.content_source_relation_values controller="modal-person-list-group"}}
+            {{#each arrangedContent itemController="modal-person-list-group-item" }}
+                <li class="list-group-item" {{action "selectPerson"}}>{{name}}</li>
+            {{/each}}
+        {{/with}}
+    </ul>
+{{/bs-modal}}

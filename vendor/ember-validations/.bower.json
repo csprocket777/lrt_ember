@@ -1,13 +1,14 @@
 {
   "name": "ember-validations",
-  "homepage": "https://github.com/dockyard/ember-validations",
-  "_release": "356c8ab27c",
-  "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "356c8ab27c75933b0e4ad81c7ff1503ff7fabdd7"
+  "_cacheHeaders": {
+    "ETag": "\"75c09e5-4fa7-4f55df8cbb9ae\"",
+    "Last-Modified": "Mon, 24 Mar 2014 17:57:41 GMT",
+    "Content-Length": "20391",
+    "Content-Type": "application/javascript"
   },
-  "_source": "git://github.com/dockyard/ember-validations.git",
-  "_target": "master",
-  "_originalSource": "git://github.com/dockyard/ember-validations.git"
+  "_release": "e-tag:75c09e5-4",
+  "main": "index.js",
+  "_source": "http://tm-projects.cisco.com/_customized_javascript_dependancies/ember-validations.js",
+  "_target": "*",
+  "_originalSource": "http://tm-projects.cisco.com/_customized_javascript_dependancies/ember-validations.js"
 }
