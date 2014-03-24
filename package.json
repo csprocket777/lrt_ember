@@ -28,7 +28,6 @@
     "broccoli-es6-concatenator": "^0.1.0",
     "broccoli-template": "^0.1.0",
     "broccoli-coffee": "^0.1.0",
-    "broccoli-sass": "~0.1.2",
-    "grunt-sass":""
+    "broccoli-sass": "~0.1.2"
   }
 }
