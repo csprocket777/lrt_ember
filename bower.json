@@ -9,7 +9,7 @@
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
     "ic-ajax": "~0.3.0",
     "ember-testing-httpRespond": "~0.1.1",
-    "ember-validations": "http://tm-projects.cisco.com/_customized_javascript_dependancies/ember-validations.zip",
+    "ember-validations": "http://tm-projects.cisco.com/_customized_javascript_dependanciesember-validations.zip",
     "bootstrap": "~3.1.1",
     "bootstrap-sass": "twbs/bootstrap-sass",
     "momentjs": "~2.5.1",
@@ -23,5 +23,10 @@
   },
   "resolutions": {
     "ember": "~1.4.0"
-  }
+  },
+  "storage":{
+      "packages": ".bower-cache",
+      "registry": ".bower-registry"
+  },
+  "tmp": ".bower-tmp"
 }
