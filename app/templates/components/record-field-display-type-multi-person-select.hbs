@@ -41,7 +41,7 @@
     <ul class="list-group">
         {{#with model.content_source_relation_values controller="modal-person-list-group"}}
             {{#each arrangedContent itemController="modal-person-list-group-item" }}
-                <li class="list-group-item" {{action "selectPerson"}}>{{name}}</li>
+                <li class="list-group-item" {{action "selectPerson" this}}>{{name}}</li>
             {{/each}}
         {{/with}}
     </ul>

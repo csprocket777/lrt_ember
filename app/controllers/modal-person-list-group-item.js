@@ -12,7 +12,12 @@ export default Ember.ObjectController.extend({
 
     actions: {
         selectPerson: function(evt){
-            console.log(evt);
+            if( this.get('parentController.returnValueList').contains(evt) )
+            {
+                this.get('parentController.returnValueList').removeObject(evt);
+            }else{
+                this.get('parentController.returnValueList').addObject(evt);
+            }
         }
     }
 });
