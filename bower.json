@@ -19,7 +19,8 @@
     "autoNumeric": "git://github.com/BobKnothe/autoNumeric.git#1.9.18",
     "bootstrap-switch": "https://github.com/nostalgiaz/bootstrap-switch/archive/3.0.zip",
     "ember-addons.bs_for_ember": "~0.6.1",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "jquery.scrollTo": "~1.4.11"
   },
   "resolutions": {
     "ember": "~1.4.0"
