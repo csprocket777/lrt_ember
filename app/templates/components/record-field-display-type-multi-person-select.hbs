@@ -16,7 +16,6 @@
 {{#if model.content_source}}
     {{#if model.content_source_relation_values}}
         <button class="btn btn-default btn-xs" {{action "showUserSelectModal"}}>Assign <i class="glyphicon glyphicon-user"></i></button>
-        {{model.content_source_relation_values.length}}
     {{/if}}
 {{/if}}
 
@@ -34,14 +33,15 @@
 
 {{!--PERSONNEL SELECTION MODAL DIALOG BOX--}}
 {{#bs-modal name=modalID fade=true footerButtons=modalButtons title=modalTitle}}
-    <div class="alert alert-block alert-warning">
-        <h4>TODO:</h4>
-        <p>Need to implement value read out so that you see what you've assigned and what you can remove.</p>
-    </div>
     <ul class="list-group">
         {{#with model.content_source_relation_values controller="modal-person-list-group"}}
             {{#each arrangedContent itemController="modal-person-list-group-item" }}
-                <li class="list-group-item" {{action "selectPerson" this}}>{{name}}</li>
+                <a href="#" {{bind-attr class=":list-group-item controller.isSelected:list-group-item-success"}} {{action "selectPerson" this}}>
+                    {{name}}
+                    {{#if isSelected}}
+                        <i class="glyphicon glyphicon-ok pull-right"></i>
+                    {{/if}}
+                </a>
             {{/each}}
         {{/with}}
     </ul>

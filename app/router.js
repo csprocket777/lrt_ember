@@ -11,6 +11,9 @@ Router.map(function() {
         this.resource("list", function(){
             this.route('page', {path: "/page/:page_id"});
         });
+
+        this.resource('record', {path: "/record/:record_id"});
+
         this.resource("reports");
 
         this.resource("users", function(){

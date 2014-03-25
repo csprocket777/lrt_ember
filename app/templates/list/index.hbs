@@ -26,7 +26,7 @@
             {{#each record in model itemController="usersDisplayListItem" canEditOwnGroupUsers=canEditOwnGroupUsers}}
                 <tr>
                     <td class="col-md-4 listColumn">
-                        {{record.id}}
+                        {{#link-to "record" record.id}}{{record.id}}{{/link-to}}
                     </td>
                 </tr>
             {{/each}}

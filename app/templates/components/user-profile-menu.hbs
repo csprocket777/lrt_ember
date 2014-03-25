@@ -2,6 +2,12 @@
 <ul class="dropdown-menu">
 	<li>{{#link-to "user" model.id}}My Account{{/link-to}}</li>
     <li><a href="#" {{action "reloadAccount"}}><i class="glyphicon glyphicon-repeat"></i> Refresh Account</a></li>
+    <li class="divider"></li>
+    <li>
+        <a href="http://tm-projects.cisco.com:8111/viewType.html?buildTypeId=Lrt2_NodeBuild">
+            <img src="http://tm-projects.cisco.com:8111/app/rest/builds/buildType:(id:Lrt2_NodeBuild)/statusIcon"/>
+        </a>
+    </li>
 	<li class="divider"></li>
 	<li><a href="#" {{action "logout"}} id="loginMenuItem">Logout</a></li>
 </ul>

@@ -13,8 +13,8 @@ export default recordFieldDisplayTypeBase.extend({
     }.on('init'),
 
     modalButtons: [
-        Ember.Object.create({title:'Delete All', clicked:"confirmFieldAssociationDeletion", type:'danger'}),
-        Ember.Object.create({title:'Cancel', dismiss:'modal'})
+        Ember.Object.create({title:'Cancel', dismiss:'modal'}),
+        Ember.Object.create({title:'Assign', clicked:"assignPersonnel", type:'primary'})
     ],
 
     modalTitle: function(){
@@ -28,6 +28,11 @@ export default recordFieldDisplayTypeBase.extend({
     actions:{
         showUserSelectModal: function(){
             Bootstrap.ModalManager.show(this.get('modalID'));
+        },
+
+        assignPersonnel: function(){
+            console.log('NEED TO ASSIGN BACK TO RECORD VALUE', this.get('selectedPersonnel'));
+            Bootstrap.ModalManager.hide(this.get('modalID'));
         }
     }
 });
