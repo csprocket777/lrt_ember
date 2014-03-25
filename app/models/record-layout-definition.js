@@ -10,6 +10,8 @@ export default DS.Model.extend({
 //    parent_definition:              DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     displayType:                    DS.attr('string'),
     hasTitle:                       DS.attr('boolean'),
+    hasMessage:                     DS.attr('boolean'),
+    message_text:                   DS.attr('string'),
     title:                          DS.attr('string'),
     order:                          DS.attr('number'),
 

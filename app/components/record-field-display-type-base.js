@@ -10,6 +10,14 @@ export default Ember.Component.extend({
                 label: "Text Field"
             },
             {
+                value: "money",
+                label: "Monetary Amount"
+            },
+            {
+                value: "yes-no-toggle",
+                label: "Yes / No"
+            },
+            {
                 value: "text-area",
                 label: "Text Area"
             },

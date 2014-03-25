@@ -13,6 +13,10 @@ export default Ember.ObjectController.extend({
                 label: "Monetary Amount"
             },
             {
+                value: "yes-no-toggle",
+                label: "Yes / No"
+            },
+            {
                 value: "text-area",
                 label: "Text Area"
             },

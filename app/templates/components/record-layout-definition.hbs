@@ -77,6 +77,27 @@
                 {{/view}}
             {{/if}}
         {{/if}}
+
+
+        {{#if model.hasMessage}}
+            {{#if messageInEditMode}}
+                {{#if layoutEditMode}}
+                    <form {{action "saveComponentChanges" model on="submit"}}>
+                        <div class="form-group">
+                            {{view "prioritization-editable-text-area" value=model.message_text class="form-control input-sm col-md-12 recordLayoutMessageText" rows=10 placeholder="foo"}}
+                            <button class="btn btn-default" type="submit" {{action "saveComponentChanges" model}}>Save</button>
+                        </div>
+                    </form>
+                {{/if}}
+            {{else}}
+                {{{model.message_text}}}
+                {{#if layoutEditMode}}
+                    <button class="btn btn-default btn-xs editButton inlineEditButton" {{action "editComponentMessage"}}>Edit Message</button>
+                {{/if}}
+            {{/if}}
+        {{/if}}
+
+
     {{/unless}}
 
     {{#if model.isTopContentInTab}}
@@ -107,6 +128,12 @@
                     <button class="btn btn-default btn-xs" {{action "removeComponentTitle"}}><i class="glyphicon glyphicon-minus"></i> Title</button>
                 {{else}}
                     <button class="btn btn-default btn-xs" {{action "addComponentTitle"}}><i class="glyphicon glyphicon-plus"></i> Title</button>
+                {{/if}}
+
+                {{#if model.hasMessage}}
+                    <button class="btn btn-default btn-xs" {{action "removeComponentMessage"}}><i class="glyphicon glyphicon-minus"></i> Message</button>
+                {{else}}
+                    <button class="btn btn-default btn-xs" {{action "addComponentMessage"}}><i class="glyphicon glyphicon-plus"></i> Message</button>
                 {{/if}}
 
                 <div class="btn-group">

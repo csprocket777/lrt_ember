@@ -41,6 +41,7 @@ export default Ember.Component.extend({
     classNameBindings: ['scaffolding'],
 
     titleInEditMode: false,
+    messageInEditMode: false,
 
     scaffolding: function(){
         var ret = "";
@@ -94,7 +95,10 @@ export default Ember.Component.extend({
         saveComponentChanges: function(evtModel){
             evtModel.save();
 //            this.get('model').save();
-            this.set('titleInEditMode', false);
+            this.setProperties({
+                titleInEditMode:false,
+                messageInEditMode: false
+            });
         },
 
         addComponentTitle: function(){
@@ -106,13 +110,35 @@ export default Ember.Component.extend({
             });
         },
 
+        addComponentMessage: function(){
+            this.set('model.hasMessage', true);
+            this.set('messageInEditMode', true);
+            var self = this;
+            Ember.run.next(function(){
+                self.$().find('.recordLayoutMessageText').focus();
+            });
+        },
+
         removeComponentTitle: function(){
             this.set('model.hasTitle', false);
             this.set('titleInEditMode', false);
         },
 
+        removeComponentMessage: function(){
+            this.set('model.hasMessage', false);
+            this.set('messageInEditMode', false);
+        },
+
         editComponentTitle: function(){
             this.set('titleInEditMode', true);
+            var self = this;
+            Ember.run.next(function(){
+                self.$().find('.recordLayoutMessageText').focus();
+            });
+        },
+
+        editComponentMessage: function(){
+            this.set('messageInEditMode', true);
             var self = this;
             Ember.run.next(function(){
                 self.$().find('.recordLayoutDefinitionTitle').focus();
