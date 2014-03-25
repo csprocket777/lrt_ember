@@ -40,6 +40,10 @@ export default DS.Model.extend({
         return this.get('displayType') !== "tab-container";
     }.property('displayType'),
 
+    isTopContentInTab: function(){
+        return this.get('record_layout_definition.displayType') === "tab";
+    }.property('record_layout_definition.displayType'),
+
     anchorIDHash:function(){
         return "#"+this.get('id');
     }.property('id'),

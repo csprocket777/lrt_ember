@@ -410,12 +410,22 @@ export default Ember.Component.extend({
        },
 
        addRecordFormElement: function(evtModel, elementType){
+
            var self = this,
                newOrder = evtModel.get("order");
 
-           var orderAdj = this.get('currentForm.topLevelDefinitions').filter(function(item,index,enumerable){
-               return item.get('order') >= evtModel.get('order');
-           }, this);
+           var orderAdj = null;
+
+           if( !Ember.isNone(evtModel.get('record_layout_definition')) )
+           {
+               orderAdj = evtModel.get('record_layout_definition.child_definitions').filter(function(item,index,enumerable){
+                   return item.get('order') >= evtModel.get('order');
+               }, this);
+           }else{
+               orderAdj = this.get('currentForm.topLevelDefinitions').filter(function(item,index,enumerable){
+                   return item.get('order') >= evtModel.get('order');
+               }, this);
+           }
 
            orderAdj.forEach(function(item,index,enumerable){
                item.incrementProperty('order');
@@ -428,21 +438,46 @@ export default Ember.Component.extend({
            switch( elementType )
            {
                case "divider":
-                   var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                       displayType: "divider",
-                       record_form: this.get('currentForm'),
-                       order: newOrder
-                   });
 
-                   newRow.save();
+                   if( !Ember.isNone(evtModel.get('record_layout_definition')) )
+                   {
+                       var newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                           displayType: "divider",
+                           record_form: this.get('currentForm'),
+                           order: newOrder,
+                           record_layout_definition: evtModel.get('record_layout_definition')
+                       });
+
+                       newRow.save();
+                   }else{
+                       var newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                           displayType: "divider",
+                           record_form: this.get('currentForm'),
+                           order: newOrder
+                       });
+
+                       newRow.save();
+                   }
                    break;
 
                case "row":
-                   var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                       displayType: "row",
-                       record_form: this.get('currentForm'),
-                       order: newOrder
-                   });
+                   var newRow = null;
+
+                   if( !Ember.isNone(evtModel.get('record_layout_definition')) )
+                   {
+                       newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                           displayType: "row",
+                           record_form: this.get('currentForm'),
+                           order: newOrder,
+                           record_layout_definition: evtModel.get('record_layout_definition')
+                       });
+                   }else{
+                       newRow = this.get('providedStore').createRecord('record-layout-definition', {
+                           displayType: "row",
+                           record_form: this.get('currentForm'),
+                           order: newOrder
+                       });
+                   }
 
                    newRow.save().then(function(result){
                        var newCol = self.get('providedStore').createRecord('record-layout-definition', {
@@ -476,6 +511,15 @@ export default Ember.Component.extend({
                    });
 
                    newTab.save();
+                   break;
+
+               case "relatedRecordsView":
+                   var newComp = this.get('providedStore').createRecord('record-layout-definition',{
+                       displayType: "relatedRecordsView",
+                       record_form: this.get('currentForm'),
+                       order: newOrder+1,
+                       record_layout_definition: evtModel.get('record_layout_definition')
+                   })
                    break;
            }
        }
