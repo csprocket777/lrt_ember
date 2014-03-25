@@ -6,6 +6,7 @@ export default DS.Model.extend({
     record_form:                    DS.belongsTo('record-form', {inverse: 'layout_definitions'}),
     record_layout_definition:       DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     child_definitions:              DS.hasMany('record-layout-definition', {inverse:'record_layout_definition'}),
+    related_model:                  DS.attr('string'),
 //    parent_definition:              DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     displayType:                    DS.attr('string'),
     hasTitle:                       DS.attr('boolean'),
@@ -43,6 +44,14 @@ export default DS.Model.extend({
     isTopContentInTab: function(){
         return this.get('record_layout_definition.displayType') === "tab";
     }.property('record_layout_definition.displayType'),
+
+    isRelatedRecordsView: function(){
+        return this.get('displayType') === "relatedRecordsView";
+    }.property('displayType'),
+
+    isWorkflowView: function(){
+        return this.get('displayType') === "workflowView";
+    }.property('displayType'),
 
     anchorIDHash:function(){
         return "#"+this.get('id');

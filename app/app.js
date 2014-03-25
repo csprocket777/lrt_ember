@@ -2,6 +2,7 @@ import Resolver from 'ember/resolver';
 
 import optionDisplayTypeHelper from "appkit/views/option-display-type";
 import recordFieldDisplayTypeHelper from "appkit/views/record-field-display-type";
+import relatedRecordDisplayTypeHelper from "appkit/views/related-record-display-type";
 import trigger from "appkit/helpers/trigger-event";
 
 var App = Ember.Application.extend({
@@ -53,6 +54,7 @@ var App = Ember.Application.extend({
 
 Ember.Handlebars.helper('option-display-type', optionDisplayTypeHelper);
 Ember.Handlebars.helper('record-field-display-type', recordFieldDisplayTypeHelper);
+Ember.Handlebars.helper('related-record-display-type', relatedRecordDisplayTypeHelper);
 Ember.Handlebars.registerHelper('trigger-event', trigger);
 
 DS.DebugAdapter.reopen({

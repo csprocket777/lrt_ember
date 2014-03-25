@@ -1,0 +1,21 @@
+{{#if parentController.layoutEditMode}}
+    <div class="layoutItem">
+        <div class="input-group">
+            <label class="control-label" for="name">Record Type:</label>
+            {{view Ember.Select
+            classNames="form-control"
+            content=controller.relatedModelOptions
+            optionLabelPath="content.label"
+            optionValuePath="content.model"
+            value=model.related_model
+            prompt="Select record type"
+            }}
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" {{action "saveComponentChanges" model}}>Save</button>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+{{related-record-display-type model=model}}
+

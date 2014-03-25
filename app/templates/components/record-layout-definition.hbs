@@ -120,7 +120,7 @@
                         {{/unless}}
                         {{#unless model.isRow}}
                             <li><a href="#" {{action "addField" model}}>Field</a></li>
-                            <li><a href="#" {{action "addRecordFormElement" "relatedRecordsView" model}}>Related Records View</a></li>
+                            <li><a href="#" {{action "addRecordFormElement" model "relatedRecordsView"}}>Related Records View</a></li>
                         {{/unless}}
                     </ul>
                 </div>
@@ -168,6 +168,15 @@
         </div>
     {{/if}}
 
+    {{!--IF THIS IS A RELATED RECORD VIEW DEFINITION...--}}
+    {{#if model.isRelatedRecordsView}}
+        {{render "related-record-view" model}}
+    {{/if}}
+
+
+    {{!--IF THIS IS A WORKFLOW VIEW DEFINITION...--}}
+
+    {{!--GO THROUGH THE ASSIGNED FIELDS AND DISPLAY THEM--}}
     {{#with model.fields controller="template-layout-field-list"}}
         {{#each field in arrangedContent}}
             {{record-field-display-type
@@ -180,7 +189,7 @@
         {{/each}}
     {{/with}}
 
-
+    {{!--NOW GO THROUGH AND DISPLAY ANY CHILD LAYOUT DEFINITIONS RECURSIVELY--}}
     {{#with model.child_definitions controller="template-layout-field-list"}}
         {{#each child in arrangedContent}}
             {{record-layout-definition

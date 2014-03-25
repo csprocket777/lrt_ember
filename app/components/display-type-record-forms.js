@@ -518,8 +518,10 @@ export default Ember.Component.extend({
                        displayType: "relatedRecordsView",
                        record_form: this.get('currentForm'),
                        order: newOrder+1,
-                       record_layout_definition: evtModel.get('record_layout_definition')
-                   })
+                       record_layout_definition: evtModel
+                   });
+
+                   newComp.save();
                    break;
            }
        }

@@ -11,7 +11,8 @@
   .record-field-display-layout-edit-controls-container,
   .insertButton,
   .editButton,
-  .inlineEditButton{
+  .inlineEditButton,
+  .layoutItem{
     display: none;
   }
 
@@ -32,7 +33,8 @@
       }
 
       .insertButton,
-      .editButton{
+      .editButton,
+      .layoutItem{
         display: block;
       }
 
