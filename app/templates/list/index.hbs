@@ -5,51 +5,61 @@
 
         <table id="usersTable" class="table table-condensed table-hover col-md-12">
             <thead>
-            <tr>
-                <th style="text-align: right" colspan="5">
-                    {{control-pagination
-                    paginationSize="pagination-sm"
-                    route="list.page"
-                    prevPage=prevPage
-                    nextPage=nextPage
-                    pages=pages
-                    availablePages=availablePages
-                    unit="Records"
-                    totalRecords=recordMeta.totalItems
-                    itemsPerPage=itemsPerPage
-                    itemsPerPageChangeAction="changePerPageCount"
-                    }}
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each record in model itemController="usersDisplayListItem" canEditOwnGroupUsers=canEditOwnGroupUsers}}
                 <tr>
-                    <td class="col-md-4 listColumn">
-                        {{#link-to "record" record.id}}{{record.id}}{{/link-to}}
-                    </td>
+                    <th style="text-align: right" colspan="5">
+                        {{control-pagination
+                            paginationSize="pagination-sm"
+                            route="list.page"
+                            prevPage=prevPage
+                            nextPage=nextPage
+                            pages=pages
+                            availablePages=availablePages
+                            unit="Records"
+                            totalRecords=recordMeta.totalItems
+                            itemsPerPage=itemsPerPage
+                            itemsPerPageChangeAction="changePerPageCount"
+                        }}
+
+                    </th>
                 </tr>
-            {{/each}}
+                </thead>
+            <tbody>
+                {{#each record in model itemController="records-display-list-item" canEditOwnGroupUsers=canEditOwnGroupUsers}}
+                    <tr>
+                        <td class="col-md-4 listColumn">
+                            {{#link-to "record" record.id}}{{record.id}}{{/link-to}}
+                            {{#with listView.topLevelDefinitions controller="template-layout-field-list"}}
+                                {{#each arrangedContent}}
+                                    {{record-layout-definition
+                                        model=this
+                                        layoutEditMode=false
+                                        recordValueModel=record
+                                    }}
+                                {{/each}}
+                            {{/with}}
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
             <tfoot>
-            <tr>
-                <th style="text-align: right" colspan="5">
+                <tr>
+                    <th style="text-align: right" colspan="5">
 
-                    {{control-pagination
-                    paginationSize="pagination-sm"
-                    route="list.page"
-                    prevPage=prevPage
-                    nextPage=nextPage
-                    pages=pages
-                    availablePages=availablePages
-                    unit="Records"
-                    totalRecords=content.length
-                    itemsPerPage=itemsPerPage
-                    itemsPerPageChangeAction="changePerPageCount"
-                    }}
+                        {{control-pagination
+                            paginationSize="pagination-sm"
+                            route="list.page"
+                            prevPage=prevPage
+                            nextPage=nextPage
+                            pages=pages
+                            availablePages=availablePages
+                            unit="Records"
+                            totalRecords=content.length
+                            itemsPerPage=itemsPerPage
+                            itemsPerPageChangeAction="changePerPageCount"
+                        }}
 
-                </th>
-            </tr>
+                    </th>
+                </tr>
             </tfoot>
         </table>
 

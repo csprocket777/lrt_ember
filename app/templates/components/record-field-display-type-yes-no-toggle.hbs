@@ -13,13 +13,18 @@
     }}
 {{/if}}
 
-{{input type="text" class="form-control"}}
+{{control-toggleSwitch
+onLabel="Yes"
+offLabel="No"
+dataSize="small"
+}}
 
 {{#if model.helpLine}}
     <p class="help-block">
         {{{model.helpLine}}}
     </p>
 {{/if}}
+
 
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}

@@ -1,0 +1,11 @@
+<h3>
+    {{#if fieldValue}}
+        {{{fieldValue}}}
+    {{else}}
+        [ {{model.record_field.name}} ]
+    {{/if}}
+</h3>
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}
+{{/if}}

@@ -21,9 +21,26 @@
         </p>
     </div>
 
-    <div class="form-group">
-        <label>Fieldset Template Title:</label>
-        {{input id="templateNameField" type="text" value=currentForm.name class="form-control input-lg" placeholder="Template Name"}}
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Record Form Name:</label>
+                {{input id="templateNameField" type="text" value=currentForm.name class="form-control input-lg" placeholder="Template Name"}}
+            </div>
+
+            <div class="form-group">
+                <label>Views:</label>
+                {{view Ember.Select
+                classNames="form-control"
+                contentBinding='currentForm.views'
+                optionLabelPath="content.view_title"
+                optionValuePath="content.id"
+                selection=currentFormView
+                prompt="Select a record form view to edit"
+                }}
+            </div>
+        </div>
     </div>
 
         <ul class="nav nav-tabs">
@@ -65,8 +82,8 @@
                         </div>
 
                         <ul id="templateFieldListing" class="list-group">
-                            {{#if currentForm.field_associations.length}}
-                                {{#with currentForm.field_associations controller="template-field-list"}}
+                            {{#if currentFormView.field_associations.length}}
+                                {{#with currentFormView.field_associations controller="template-field-list"}}
                                     {{#each arrangedContent itemController="template-field-list-item"}}
                                         <li class="list-group-item">
                                             {{#if added}}
@@ -117,6 +134,7 @@
                                                                     content=controller.displayTypeValues
                                                                     optionLabelPath="content.label"
                                                                     optionValuePath="content.value"
+                                                                    optionGroupPath="optionGroup"
                                                                     value=displayType
                                                                     prompt="Select a field display type"
                                                                     }}
@@ -204,7 +222,7 @@
                 <br>
                 <br>
                 <div class="layoutArea container editMode">
-                    {{#with currentForm.topLevelDefinitions controller="template-layout-field-list"}}
+                    {{#with currentFormView.topLevelDefinitions controller="template-layout-field-list"}}
                         {{#each arrangedContent}}
                             <div class="row insertRowIndicator">
                                 <div class="btn-group insertButtonGroup">

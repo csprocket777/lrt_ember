@@ -1,0 +1,7 @@
+{{#if fieldValue}}
+    <span class="label">{{{fieldValue}}}</span>
+{{/if}}
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}
+{{/if}}

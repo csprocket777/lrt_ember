@@ -2,7 +2,7 @@
  * Created by chshipma on 3/11/14.
  */
 export default DS.Model.extend({
-    record_form:                    DS.belongsTo('record-form', {inverse:'field_associations'}),
+    record_form_view:               DS.belongsTo('record-form-view', {inverse:'field_associations'}),
     record_field:                   DS.belongsTo('record-field', {inverse: 'fieldAssociations'}),
 
     required:                       DS.attr('boolean', {default:false}),

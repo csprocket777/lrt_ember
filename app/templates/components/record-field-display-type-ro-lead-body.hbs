@@ -1,0 +1,7 @@
+{{#if fieldValue}}
+    <p class="lead">{{{fieldValue}}}</p>
+{{/if}}
+
+{{#if layoutEditMode}}
+    {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}
+{{/if}}

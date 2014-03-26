@@ -73,19 +73,19 @@ export default Ember.Component.extend({
     }.property(),
 
     valueKey: function(){
-        return this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).valueKey;
+        return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).valueKey: null;
     }.property('model.content_source'),
 
     labelKey: function(){
-        return this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).labelKey;
+        return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).labelKey: null;
     }.property('model.content_source'),
 
     childModel: function(){
-        return this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).childModel;
+        return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).childModel: null;
     }.property('model.content_source'),
 
     searchKey: function(){
-        return this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).searchKey;
+        return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).searchKey: null;
     }.property('model.content_source'),
 
     actions:{
@@ -100,5 +100,12 @@ export default Ember.Component.extend({
         changeOrderDown: function(itemType){
             this.sendAction('changeOrderDownAction', this.get('model'), itemType);
         }
-    }
+    },
+
+    recordValueModel: null,
+
+    fieldValue: function(){
+        var ret = this.get('recordValueModel') ? this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')): null;
+        return ret ? ret.get('value'): null;
+    }.property('recordValueModel.record_field_values')
 });

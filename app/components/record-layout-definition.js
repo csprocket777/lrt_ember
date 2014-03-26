@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         ].contains(this.get('model.displayType'));
     }.property('model.displayType'),
 
-
+    recordValueModel: null,
 
     classNameBindings: ['scaffolding'],
 

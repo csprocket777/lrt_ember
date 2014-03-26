@@ -3,7 +3,7 @@
  */
 export default DS.Model.extend({
     fields:                         DS.hasMany('record-form-field-association', {inverse:"record_layout_definition"}),
-    record_form:                    DS.belongsTo('record-form', {inverse: 'layout_definitions'}),
+    record_form_view:               DS.belongsTo('record-form-view', {inverse: 'layout_definitions'}),
     record_layout_definition:       DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     child_definitions:              DS.hasMany('record-layout-definition', {inverse:'record_layout_definition'}),
     related_model:                  DS.attr('string'),

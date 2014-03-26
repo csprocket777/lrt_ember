@@ -27,7 +27,8 @@ export default Ember.ContainerView.extend({
                 classNames: ['form-group', 'record-layout-field-display-type-container'],
                 removeFieldAction: this.get('removeFieldAction'),
                 changeOrderUpAction: this.get('changeOrderUpAction'),
-                changeOrderDownAction: this.get('changeOrderDownAction')
+                changeOrderDownAction: this.get('changeOrderDownAction'),
+                recordValueModel: this.get('recordValueModel')
 			}));
 						
 			this.pushObject(this.get('currentViewClass'));

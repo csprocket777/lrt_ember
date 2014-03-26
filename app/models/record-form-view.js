@@ -2,12 +2,12 @@
  * Created by chshipma on 2/20/14.
  */
 export default DS.Model.extend({
-    name:                       DS.attr('string'),
-
-    views:                      DS.hasMany('record-form-view', {inverse:'record-form', async:true}),
-
+    view_title:                 DS.attr('string'),
+    view_type:                  DS.attr('string'),
     field_associations:         DS.hasMany('record-form-field-association', {inverse:'record_form'}),
     orig_field_associations:    DS.hasMany('record-form-field-association'),
+
+    record_form:                DS.belongsTo('record-form'),
 
     layout_definitions:         DS.hasMany('record-layout-definition'),
 

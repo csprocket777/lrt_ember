@@ -5,45 +5,102 @@ export default Ember.ObjectController.extend({
     displayTypeValues: function(){
         return [
             {
-                value: "text-field",
-                label: "Text Field"
+                value:          "text-field",
+                label:          "Text Field",
+                optionGroup:    "Editable"
             },
             {
                 value: "money",
-                label: "Monetary Amount"
+                label: "Monetary Amount",
+                optionGroup:    "Editable"
             },
             {
                 value: "yes-no-toggle",
-                label: "Yes / No"
+                label: "Yes / No",
+                optionGroup:    "Editable"
             },
             {
                 value: "text-area",
-                label: "Text Area"
+                label: "Text Area",
+                optionGroup:    "Editable"
             },
             {
                 value: "date",
-                label: "Date"
+                label: "Date",
+                optionGroup:    "Editable"
             },
             {
                 value: "single-select-dropdown",
-                label: "Select Dropdown (Single)"
+                label: "Select Dropdown (Single)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-select-dropdown",
-                label: "Select Dropdown (Multiple)"
+                label: "Select Dropdown (Multiple)",
+                optionGroup:    "Editable"
             },
             {
                 value: "single-select-radio",
-                label: "Choice (Radio - Single)"
+                label: "Choice (Radio - Single)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-select-checkbox",
-                label: "Choice (Checkboxes - Multiple)"
+                label: "Choice (Checkboxes - Multiple)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-person-select",
-                label: "Person Selection (Multiple)"
-            }
+                label: "Person Selection (Multiple)",
+                optionGroup:    "Editable"
+            },
+
+            {
+                value: "ro-h3",
+                label: "Header 3",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-h4",
+                label: "Header 4",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-h5",
+                label: "Header 5",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-lead-body",
+                label: "Plain text - lead",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-plain-text",
+                label: "Plain text",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-plain-text-bold",
+                label: "Plain text - bold",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-plain-text-date",
+                label: "Date - plain",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-personnel-color-coded",
+                label: "Personnel - Badge Color Coded",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-personnel",
+                label: "Personnel - Plain",
+                optionGroup:    "View Only"
+            },
+
         ];
     }.property(),
 

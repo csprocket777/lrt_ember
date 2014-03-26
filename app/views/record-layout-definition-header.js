@@ -14,12 +14,15 @@ export default Ember.View.extend({
         switch( this.get('nestDepth') )
         {
             case 1:
-                this.set('tagName', 'h4');
+                this.set('tagName', 'h3');
                 break;
             case 2:
-                this.set('tagName', 'h5');
+                this.set('tagName', 'h4');
                 break;
             case 3:
+                this.set('tagName', 'h5');
+                break;
+            case 4:
                 this.set('tagName', 'h6');
                 break;
         }

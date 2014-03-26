@@ -207,12 +207,14 @@
     {{#with model.fields controller="template-layout-field-list"}}
         {{#each field in arrangedContent}}
             {{record-field-display-type
-            model=field
-            displayStyle=field.displayType
-            layoutEditMode=layoutEditMode
-            removeFieldAction=removeFieldAction
-            changeOrderUpAction=changeOrderUpAction
-            changeOrderDownAction=changeOrderDownAction}}
+                model=field
+                displayStyle=field.displayType
+                layoutEditMode=layoutEditMode
+                removeFieldAction=removeFieldAction
+                changeOrderUpAction=changeOrderUpAction
+                changeOrderDownAction=changeOrderDownAction
+                recordValueModel=recordValueModel
+            }}
         {{/each}}
     {{/with}}
 
@@ -231,6 +233,7 @@
                 changeOrderUpAction=changeOrderUpAction
                 changeOrderDownAction=changeOrderDownAction
                 addRecordFormElementAction=addRecordFormElementAction
+                recordValueModel=recordValueModel
             }}
         {{/each}}
     {{/with}}
@@ -241,17 +244,18 @@
             {{#each child in arrangedContent itemController="record-layout-definition-tab-content"}}
                 <div {{bind-attr class=":tab-pane active"}} {{bind-attr id=model.anchorID}}>
                     {{record-layout-definition
-                    model=child
-                    parentModel=model
-                    layoutEditMode=parentController.layoutEditMode
-                    addRowAction=parentController.addRowAction
-                    addColumnAction=parentController.addColumnAction
-                    addFieldAction=parentController.addFieldAction
-                    deleteAction=parentController.deleteAction
-                    removeFieldAction=parentController.removeFieldAction
-                    changeOrderUpAction=parentController.changeOrderUpAction
-                    changeOrderDownAction=parentController.changeOrderDownAction
-                    addRecordFormElementAction=parentController.addRecordFormElementAction
+                        model=child
+                        parentModel=model
+                        layoutEditMode=parentController.layoutEditMode
+                        addRowAction=parentController.addRowAction
+                        addColumnAction=parentController.addColumnAction
+                        addFieldAction=parentController.addFieldAction
+                        deleteAction=parentController.deleteAction
+                        removeFieldAction=parentController.removeFieldAction
+                        changeOrderUpAction=parentController.changeOrderUpAction
+                        changeOrderDownAction=parentController.changeOrderDownAction
+                        addRecordFormElementAction=parentController.addRecordFormElementAction
+                        recordValueModel=parentController.recordValueModel
                     }}
                 </div>
             {{/each}}
