@@ -237,6 +237,7 @@
     {{#if model.hasChildren}}
         {{!--NOW GO THROUGH AND DISPLAY ANY CHILD LAYOUT DEFINITIONS RECURSIVELY--}}
         {{#with model.child_definitions controller="template-layout-field-list"}}
+        {{!--{{#with controller.childDefinitionsToDisplay controller="template-layout-field-list"}}--}}
             {{#each child in arrangedContent}}
                 {{record-layout-definition
                     model=child

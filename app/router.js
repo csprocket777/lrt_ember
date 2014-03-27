@@ -8,6 +8,8 @@ Router.map(function() {
   // });
 
     this.resource('auth', { path: "/" }, function(){
+        this.resource('loading');
+
         this.resource("list", function(){
             this.route('page', {path: "/page/:page_id"});
         });

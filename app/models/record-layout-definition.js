@@ -7,17 +7,12 @@ export default DS.Model.extend({
     record_layout_definition:       DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     child_definitions:              DS.hasMany('record-layout-definition', {inverse:'record_layout_definition'}),
     related_model:                  DS.attr('string'),
-//    parent_definition:              DS.belongsTo('record-layout-definition', {inverse:'child_definitions'}),
     displayType:                    DS.attr('string'),
     hasTitle:                       DS.attr('boolean'),
     hasMessage:                     DS.attr('boolean'),
     message_text:                   DS.attr('string'),
     title:                          DS.attr('string'),
     order:                          DS.attr('number'),
-
-//    fieldsSorted: function(){
-//        return this.get('fields').sortBy('order');
-//    }.property('fields.@each.order'),
 
     isTopLevel: function(){
         return Ember.isNone(this.get('record_layout_definition'));

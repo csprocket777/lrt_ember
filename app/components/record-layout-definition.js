@@ -3,8 +3,12 @@
  */
 export default Ember.Component.extend({
     tagName: 'section',
-
+    classNameBindings: ['scaffolding'],
     layoutEditMode: false,
+    recordValueModel: null,
+    activeTab: null,
+    titleInEditMode: false,
+    messageInEditMode: false,
 
     init: function(){
         var tag = "";
@@ -24,8 +28,6 @@ export default Ember.Component.extend({
         this._super();
     },
 
-    activeTab: null,
-
     activeTabInit: function(){
         if( this.get('model.displayType') === "tab-container" ){
             this.set('activeTab', this.get('model.child_definitions.firstObject'));
@@ -38,12 +40,6 @@ export default Ember.Component.extend({
         ].contains(this.get('model.displayType'));
     }.property('model.displayType'),
 
-    recordValueModel: null,
-
-    classNameBindings: ['scaffolding'],
-
-    titleInEditMode: false,
-    messageInEditMode: false,
 
     scaffolding: function(){
         var ret = "";
@@ -62,17 +58,6 @@ export default Ember.Component.extend({
                 }
                 break;
         }
-
-//            if( this.get('model.isRow') )
-//            {
-//                ret += " row";
-//            }
-//
-//            if( this.get('model.isColumn') && !Ember.isNone(this.get('parentModel')) )
-//            {
-//                var columnCount = this.get('parentModel.child_definitions').filterBy('isColumn', true).get('length');
-//                ret += " col col-md-"+( 12 / columnCount );
-//            }
 
         return ret;
     }.property('model.isRow', 'model.isColumn', 'model.displayType'),

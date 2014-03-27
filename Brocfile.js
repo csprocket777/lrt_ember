@@ -83,7 +83,7 @@ module.exports = function (broccoli) {
         "bootstrap-multiselect/js/bootstrap-multiselect.js",
         "bootstrap-datepicker/js/bootstrap-datepicker.js",
         "redactor/redactor/redactor.js",
-        "bootstrap-switch/build/js/bootstrap-switch.js",
+        "bootstrap-switch/dist/js/bootstrap-switch.js",
         "jquery.scrollTo/jquery.scrollTo.js",
         "autoNumeric/autoNumeric.js"
     ],

@@ -15,15 +15,12 @@ export default Ember.ContainerView.extend({
 	setupView: function(){
         var displayStyle = this.get('recordEditMode') === "view" ? this.get('read_only_display_style'): this.get('edit_display_style');
 
-//        var componentLookup = this.container.lookup('component-lookup:main');
-
         var	viewClass = this.container.lookup('component-lookup:main').lookupFactory('record-field-display-type-'+displayStyle);
 
 		if( viewClass )
 		{
 			this.set('currentViewClass', this.createChildView( viewClass, {
 				model: this.get('model'),
-//                layoutName: ,
                 providedStore: this.get('store'),
                 layoutEditMode: this.get('layoutEditMode'),
                 classNames: ['form-group', 'record-layout-field-display-type-container'],
