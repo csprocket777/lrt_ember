@@ -18,5 +18,5 @@ export default Ember.View.extend({
         }
 
         return ret;
-    }.property('model.isRow', 'model.isColumn', 'model.displayType'),
+    }.property('model.isRow', 'model.isColumn', 'model.displayType')
 });

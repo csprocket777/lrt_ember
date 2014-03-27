@@ -2,7 +2,7 @@
     <h4>TODO</h4>
     <p>Complete functionality once value system is hooked up</p>
 </div>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>Modality</th>
@@ -18,16 +18,18 @@
 
     <tbody>
         {{#if model.length}}
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {{#each model}}
+                <tr>
+                    <td>{{jobModality.optionValue}}</td>
+                    <td>{{jobComplexity.optionValue}}</td>
+                    <td>{{jobContentDuration}} {{jobContentDurationUnit.optionValue}}</td>
+                    <td>{{assessment}}</td>
+                    <td>{{contentReadiness}}</td>
+                    <td>{{percentNewContent}}</td>
+                    <td>{{mobileNeeded}}</td>
+                    <td></td>
+                </tr>
+            {{/each}}
         {{else}}
             <tr>
                 <td colspan="8">No Deliverables yet...</td>

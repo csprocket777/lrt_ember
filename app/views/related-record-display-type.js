@@ -18,14 +18,21 @@ export default Ember.ContainerView.extend({
 
         if( controllerClass )
         {
-            controllerClass.set('recordType', modelStyle);
+//            controllerClass.set('recordType', modelStyle);
+            controllerClass.setProperties(
+                {
+                    layoutDefinitionModel: this.get('model'),
+                    recordValueModel: this.get('controller.parentController.recordValueModel')
+                }
+            )
         }
 
 		if( viewClass )
 		{
 			this.set('currentViewClass',
                 this.createChildView( viewClass, {
-                    controller: controllerClass
+                    controller: controllerClass,
+                    recordValueModel: this.get('recordValueModel')
                 })
             );
 						
