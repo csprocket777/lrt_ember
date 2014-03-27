@@ -4,5 +4,9 @@
 export default Ember.ObjectController.extend({
     label: function(){
         return this.get( this.get('parentController.labelKey') );
-    }.property('parentController.labelKey', 'model', 'content')
+    }.property('parentController.labelKey', 'model', 'content'),
+
+    checked: function(){
+        return this.get('parentController.fieldValue').contains(this.get('model'));
+    }.property('parentController.fieldValue.@each')
 });

@@ -13,15 +13,17 @@
     }}
 {{/if}}
 
+
 {{#if model.content_source}}
     {{#if model.content_source_relation_values}}
         {{view Ember.Select
-        classNames="form-control"
-        content=model.content_source_relation_values
-        optionLabelPath=model.content_source_relation_values_labelKey
-        optionValuePath=model.content_source_relation_values_valueKey
-        value=content_source_relation
-        prompt="Choose"
+            classNames="form-control"
+            content=model.content_source_relation_values
+            optionLabelPath=model.content_source_relation_values_labelKey
+            optionValuePath=model.content_source_relation_values_valueKey
+            value=content_source_relation
+            selection=fieldValue.firstObject
+            prompt="Choose"
         }}
     {{else}}
         <p>

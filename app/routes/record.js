@@ -1,4 +1,5 @@
 import PrivilegedRoute from 'appkit/mixins/privileged-route';
+
 export default Ember.Route.extend( PrivilegedRoute, {
 
 	model:function(params){
@@ -6,7 +7,7 @@ export default Ember.Route.extend( PrivilegedRoute, {
 	},
 
     afterModel: function(){
-        $('.loading').hide();
+        $('#recordLoading').modal('hide');
     },
 	
 	setupController:function(controller, model){
@@ -16,8 +17,10 @@ export default Ember.Route.extend( PrivilegedRoute, {
     actions:{
         loading: function( transition, originRoute )
         {
-            $('.loading').show();
-            console.log("I AM LOADING...");
+            $('#recordLoading').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
             return false;
         }
     }

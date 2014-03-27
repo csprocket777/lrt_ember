@@ -106,6 +106,12 @@ export default Ember.Component.extend({
 
     fieldValue: function(){
         var ret = this.get('recordValueModel') ? this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')): null;
-        return ret ? ret.get('value'): null;
+
+        if( ret )
+        {
+            ret = ret.get('data_type') === "relationship" ? ret.get('relatedValues'): ret.get('value');
+        }
+
+        return ret ? ret : null;
     }.property('recordValueModel.record_field_values')
 });
