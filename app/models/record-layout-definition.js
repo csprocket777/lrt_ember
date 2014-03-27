@@ -39,6 +39,10 @@ export default DS.Model.extend({
         return this.get('displayType') === "tab";
     }.property('displayType'),
 
+    isListRecordControls: function(){
+        return this.get('displayType') === "listRecordControls";
+    }.property('displayType'),
+
     isNotTabRelated: function(){
         return this.get('displayType') !== "tab-container";
     }.property('displayType'),
@@ -54,6 +58,19 @@ export default DS.Model.extend({
     isWorkflowView: function(){
         return this.get('displayType') === "workflowView";
     }.property('displayType'),
+
+    hasFields: function(){
+        return this.get('fields.length') > 0;
+    }.property('fields.length'),
+
+    hasChildren: function(){
+        return this.get('child_definitions.length') > 0;
+    }.property('child_definitions.length'),
+
+
+
+
+
 
     anchorIDHash:function(){
         return "#"+this.get('id');

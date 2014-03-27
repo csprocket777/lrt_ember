@@ -10,6 +10,11 @@ export default Ember.ObjectController.extend({
                 optionGroup:    "Editable"
             },
             {
+                value:          "text-field-lrg",
+                label:          "Text Field - Large",
+                optionGroup:    "Editable"
+            },
+            {
                 value: "money",
                 label: "Monetary Amount",
                 optionGroup:    "Editable"
@@ -55,6 +60,17 @@ export default Ember.ObjectController.extend({
                 optionGroup:    "Editable"
             },
 
+
+            {
+                value: "ro-h1",
+                label: "Header 1",
+                optionGroup:    "View Only"
+            },
+            {
+                value: "ro-h2",
+                label: "Header 2",
+                optionGroup:    "View Only"
+            },
             {
                 value: "ro-h3",
                 label: "Header 3",
@@ -97,7 +113,7 @@ export default Ember.ObjectController.extend({
             },
             {
                 value: "ro-personnel",
-                label: "Personnel - Plain",
+                label: "Personnel - Badge Color Coded",
                 optionGroup:    "View Only"
             },
 

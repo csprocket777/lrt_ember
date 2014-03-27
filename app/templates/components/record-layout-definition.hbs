@@ -46,7 +46,9 @@
             </li>
         {{/each}}
     {{/with}}
-        <li><a href="#" class='btn btn-success tabAddButton' {{action "addRecordFormElement" model.child_definitions.lastObject "tab"}}><i class="glyphicon glyphicon-plus"></i> Add Tab</a></li>
+        {{#if layoutEditMode}}
+            <li><a href="#" class='btn btn-success tabAddButton' {{action "addRecordFormElement" model.child_definitions.lastObject "tab"}}><i class="glyphicon glyphicon-plus"></i> Add Tab</a></li>
+        {{/if}}
     </ul>
 {{/if}}
 
@@ -100,20 +102,20 @@
 
     {{/unless}}
 
-    {{#if model.isTopContentInTab}}
-        <div class="row insertRowIndicator">
-            <div class="btn-group insertButtonGroup">
-                <button class="btn btn-info btn-xs insertButton right dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#" {{action "addRecordFormElement" model "divider"}}>Divider</a></li>
-                    <li><a href="#" {{action "addRecordFormElement" model "row"}}>Row</a></li>
-                    <li><a href="#" {{action "addRecordFormElement" model "tab-container"}}>Tab Container</a></li>
-                </ul>
-            </div>
-        </div>
-    {{/if}}
 
     {{#if layoutEditMode}}
+        {{#if model.isTopContentInTab}}
+            <div class="row insertRowIndicator">
+                <div class="btn-group insertButtonGroup">
+                    <button class="btn btn-info btn-xs insertButton right dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" {{action "addRecordFormElement" model "divider"}}>Divider</a></li>
+                        <li><a href="#" {{action "addRecordFormElement" model "row"}}>Row</a></li>
+                        <li><a href="#" {{action "addRecordFormElement" model "tab-container"}}>Tab Container</a></li>
+                    </ul>
+                </div>
+            </div>
+        {{/if}}
         <div class="editPalette">
             <div class="btn-group layoutCreation rowButtons">
                 <button class="btn btn-default btn-xs disabled" type="button">
@@ -138,7 +140,7 @@
 
                 <div class="btn-group">
                     <button class="btn btn-default btn-xs" data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu pull-right">
                         {{#unless model.isRow}}
                             <li><a href="#" {{action "addRow" model}}>Row</a></li>
                         {{/unless}}
@@ -148,6 +150,7 @@
                         {{#unless model.isRow}}
                             <li><a href="#" {{action "addField" model}}>Field</a></li>
                             <li><a href="#" {{action "addRecordFormElement" model "relatedRecordsView"}}>Related Records View</a></li>
+                            <li><a href="#" {{action "addRecordFormElement" model "listRecordControls"}}>List Record Controls</a></li>
                         {{/unless}}
                     </ul>
                 </div>
@@ -201,42 +204,58 @@
     {{/if}}
 
 
+    {{#if model.isListRecordControls}}
+        <div class="btn-group btn-group-vertical pull-right">
+            {{#link-to "record" recordValueModel.id class="btn btn-default" dataToggle="tooltip"  dataPlacement="left" title="View Record" dataContainer="body"}}
+                <i class="glyphicon glyphicon-eye-open"></i>
+            {{/link-to}}
+        </div>
+    {{/if}}
+
+
     {{!--IF THIS IS A WORKFLOW VIEW DEFINITION...--}}
 
-    {{!--GO THROUGH THE ASSIGNED FIELDS AND DISPLAY THEM--}}
-    {{#with model.fields controller="template-layout-field-list"}}
-        {{#each field in arrangedContent}}
-            {{record-field-display-type
-                model=field
-                displayStyle=field.displayType
-                layoutEditMode=layoutEditMode
-                removeFieldAction=removeFieldAction
-                changeOrderUpAction=changeOrderUpAction
-                changeOrderDownAction=changeOrderDownAction
-                recordValueModel=recordValueModel
-            }}
-        {{/each}}
-    {{/with}}
+    {{#if model.hasFields}}
+        {{!--GO THROUGH THE ASSIGNED FIELDS AND DISPLAY THEM--}}
+        {{#with model.fields controller="template-layout-field-list"}}
+            {{#each field in arrangedContent}}
+                {{record-field-display-type
+                    model=field
+                    edit_display_style=field.edit_display_type
+                    read_only_display_style=field.read_only_display_type
+                    layoutEditMode=layoutEditMode
+                    removeFieldAction=removeFieldAction
+                    changeOrderUpAction=changeOrderUpAction
+                    changeOrderDownAction=changeOrderDownAction
+                    recordValueModel=recordValueModel
+                    recordEditMode=recordEditMode
+                }}
+            {{/each}}
+        {{/with}}
+    {{/if}}
 
-    {{!--NOW GO THROUGH AND DISPLAY ANY CHILD LAYOUT DEFINITIONS RECURSIVELY--}}
-    {{#with model.child_definitions controller="template-layout-field-list"}}
-        {{#each child in arrangedContent}}
-            {{record-layout-definition
-                model=child
-                parentModel=model
-                layoutEditMode=layoutEditMode
-                addRowAction=addRowAction
-                addColumnAction=addColumnAction
-                addFieldAction=addFieldAction
-                deleteAction=deleteAction
-                removeFieldAction=removeFieldAction
-                changeOrderUpAction=changeOrderUpAction
-                changeOrderDownAction=changeOrderDownAction
-                addRecordFormElementAction=addRecordFormElementAction
-                recordValueModel=recordValueModel
-            }}
-        {{/each}}
-    {{/with}}
+    {{#if model.hasChildren}}
+        {{!--NOW GO THROUGH AND DISPLAY ANY CHILD LAYOUT DEFINITIONS RECURSIVELY--}}
+        {{#with model.child_definitions controller="template-layout-field-list"}}
+            {{#each child in arrangedContent}}
+                {{record-layout-definition
+                    model=child
+                    parentModel=model
+                    layoutEditMode=layoutEditMode
+                    addRowAction=addRowAction
+                    addColumnAction=addColumnAction
+                    addFieldAction=addFieldAction
+                    deleteAction=deleteAction
+                    removeFieldAction=removeFieldAction
+                    changeOrderUpAction=changeOrderUpAction
+                    changeOrderDownAction=changeOrderDownAction
+                    addRecordFormElementAction=addRecordFormElementAction
+                    recordValueModel=recordValueModel
+                    recordEditMode=recordEditMode
+                }}
+            {{/each}}
+        {{/with}}
+    {{/if}}
 {{else}}
 
     <div class="tab-content">
@@ -256,6 +275,7 @@
                         changeOrderDownAction=parentController.changeOrderDownAction
                         addRecordFormElementAction=parentController.addRecordFormElementAction
                         recordValueModel=parentController.recordValueModel
+                        recordEditMode=recordEditMode
                     }}
                 </div>
             {{/each}}

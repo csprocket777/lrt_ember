@@ -27,7 +27,7 @@
                 {{#each record in model itemController="records-display-list-item" canEditOwnGroupUsers=canEditOwnGroupUsers}}
                     <tr>
                         <td class="col-md-4 listColumn">
-                            {{#link-to "record" record.id}}{{record.id}}{{/link-to}}
+                            {{!--{{#link-to "record" record.id}}{{record.id}}{{/link-to}}--}}
                             {{#with listView.topLevelDefinitions controller="template-layout-field-list"}}
                                 {{#each arrangedContent}}
                                     {{record-layout-definition

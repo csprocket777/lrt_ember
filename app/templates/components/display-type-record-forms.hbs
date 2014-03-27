@@ -128,14 +128,27 @@
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="name">Field display type:</label>
+                                                                    <label class="control-label" for="name">Edit display type:</label>
                                                                     {{view Ember.Select
                                                                     classNames="form-control"
                                                                     content=controller.displayTypeValues
                                                                     optionLabelPath="content.label"
                                                                     optionValuePath="content.value"
                                                                     optionGroupPath="optionGroup"
-                                                                    value=displayType
+                                                                    value=edit_display_type
+                                                                    prompt="Select a field display type"
+                                                                    }}
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="name">View display type:</label>
+                                                                    {{view Ember.Select
+                                                                    classNames="form-control"
+                                                                    content=controller.displayTypeValues
+                                                                    optionLabelPath="content.label"
+                                                                    optionValuePath="content.value"
+                                                                    optionGroupPath="optionGroup"
+                                                                    value=read_only_display_type
                                                                     prompt="Select a field display type"
                                                                     }}
                                                                 </div>
@@ -245,6 +258,7 @@
                                 changeOrderUpAction="changeOrderUp"
                                 changeOrderDownAction="changeOrderDown"
                                 addRecordFormElementAction="addRecordFormElement"
+                                recordEditMode="edit"
                             }}
                         {{/each}}
                     {{/with}}

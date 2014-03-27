@@ -4,6 +4,8 @@
 export default Ember.Component.extend({
     tagName: 'section',
 
+    layoutEditMode: false,
+
     init: function(){
         var tag = "";
         switch( this.get('model.displayType') )
@@ -75,6 +77,10 @@ export default Ember.Component.extend({
         return ret;
     }.property('model.isRow', 'model.isColumn', 'model.displayType'),
 
+    didInsertElement: function(evt){
+        this.$().find('[data-toggle="tooltip"]').tooltip();
+    },
+
     actions:{
         addRow: function(evt){
             this.sendAction("addRowAction", evt);
@@ -122,11 +128,13 @@ export default Ember.Component.extend({
         removeComponentTitle: function(){
             this.set('model.hasTitle', false);
             this.set('titleInEditMode', false);
+            this.get('model').save();
         },
 
         removeComponentMessage: function(){
             this.set('model.hasMessage', false);
             this.set('messageInEditMode', false);
+            this.get('model').save();
         },
 
         editComponentTitle: function(){

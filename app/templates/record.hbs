@@ -1,1 +1,14 @@
-You are viewing record {{model.id}}
+{{model.isLoaded}}
+
+{{#with model as recordModel}}
+    {{#with fullView.topLevelDefinitions controller="template-layout-field-list"}}
+        {{#each arrangedContent}}
+            {{record-layout-definition
+                model=this
+                layoutEditMode=false
+                recordValueModel=recordModel
+                recordEditMode=controller.recordEditMode
+            }}
+        {{/each}}
+    {{/with}}
+{{/with}}

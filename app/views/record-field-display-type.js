@@ -1,5 +1,7 @@
 export default Ember.ContainerView.extend({
 	currentViewClass: null,
+    recordEditMode: "view",
+
 	init: function(){
 		this._super();
 		this.setupView();
@@ -8,10 +10,10 @@ export default Ember.ContainerView.extend({
     viewChanged:function(){
         this.removeObject( this.get('currentViewClass') );
         this.setupView();
-    }.observes("displayStyle"),//"model"),
+    }.observes("edit_display_style", "read_only_display_style", "recordEditMode"),//"model"),
 	
 	setupView: function(){
-        var displayStyle = this.get('displayStyle');
+        var displayStyle = this.get('recordEditMode') === "view" ? this.get('read_only_display_style'): this.get('edit_display_style');
 
 //        var componentLookup = this.container.lookup('component-lookup:main');
 
@@ -28,7 +30,8 @@ export default Ember.ContainerView.extend({
                 removeFieldAction: this.get('removeFieldAction'),
                 changeOrderUpAction: this.get('changeOrderUpAction'),
                 changeOrderDownAction: this.get('changeOrderDownAction'),
-                recordValueModel: this.get('recordValueModel')
+                recordValueModel: this.get('recordValueModel'),
+                recordEditMode: this.get('recordEditMode')
 			}));
 						
 			this.pushObject(this.get('currentViewClass'));

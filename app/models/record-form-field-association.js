@@ -6,7 +6,8 @@ export default DS.Model.extend({
     record_field:                   DS.belongsTo('record-field', {inverse: 'fieldAssociations'}),
 
     required:                       DS.attr('boolean', {default:false}),
-    displayType:                    DS.attr('string', {default: 'text-field'}),
+    edit_display_type:              DS.attr('string', {default: 'text-field'}),
+    read_only_display_type:         DS.attr('string', {default: 'h2'}),
     label:                          DS.attr('string'),
     helpLine:                       DS.attr('string'),
     tooltipContent:                 DS.attr('string'),
@@ -61,8 +62,8 @@ export default DS.Model.extend({
             "multi-person-select"
         ];
 
-        return choicesNeedingSource.contains(this.get('displayType'));
-    }.property('displayType'),
+        return choicesNeedingSource.contains(this.get('edit_display_type'));
+    }.property('edit_display_type'),
 
     content_source_relation_values: function(){
         if( Ember.isNone(this.get('field_dependant_on')) )
@@ -73,21 +74,11 @@ export default DS.Model.extend({
                 var childModel = contentSourceOption.childModel,
                     searchKey = contentSourceOption.searchKey,
                     searchString = {};
-//                    relationType = contentSourceOption.relationType,
 
                 searchString[ searchKey ] = this.get('content_source_relation');
                 searchString.active = true;
 
-//                switch( relationType ){
-//                    case "optionCategories":
-                var ret = this.get('store').find(childModel, searchString);
-
-                return ret;
-//                        break;
-
-//                    case "optionValues":
-//                        break;
-//                }
+                return this.get('store').find(childModel, searchString);
 
             }
         }else{

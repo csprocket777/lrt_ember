@@ -142,7 +142,7 @@ export default Ember.Component.extend({
                 record_form_view: this.get('currentFormView'),
                 record_field: evt,
                 label: evt.get("name"),
-                displayType: "text-field"
+                edit_display_type: "text-field"
             }).save();
         },
         removeFieldFromTemplate: function(evt){
@@ -166,7 +166,7 @@ export default Ember.Component.extend({
                         record_form_view: this.get('currentFormView'),
                         record_field: item,
                         label: item.get("name"),
-                        displayType: "text-field"
+                        edit_display_type: "text-field"
                     });
                     newAssocToSave.pushObject(newAssoc);
                     this.get('currentFormView.field_associations').addObject(newAssoc);
@@ -234,14 +234,14 @@ export default Ember.Component.extend({
            var self = this;
 
            var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-               displayType: "row",
+               edit_display_type: "row",
                record_form_view: this.get('currentFormView'),
                order: this.get('currentFormView.topLevelDefinitions.length')
            });
 
            newRow.save().then(function(result){
                var newCol = self.get('providedStore').createRecord('record-layout-definition', {
-                   displayType: "column",
+                   edit_display_type: "column",
                    record_form_view: self.get('currentFormView'),
                    record_layout_definition: result,
                    order: 0
@@ -256,7 +256,7 @@ export default Ember.Component.extend({
        addRow: function(evt){
            var self = this;
            var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-               displayType: "row",
+               edit_display_type: "row",
                record_form_view: this.get('currentFormView'),
                record_layout_definition: evt,
                order: 0
@@ -264,7 +264,7 @@ export default Ember.Component.extend({
 
            newRow.save().then(function(result){
                var newCol = self.get('providedStore').createRecord('record-layout-definition', {
-                   displayType: "column",
+                   edit_display_type: "column",
                    record_form_view: self.get('currentFormView'),
                    record_layout_definition: result,
                    order: 0
@@ -277,7 +277,7 @@ export default Ember.Component.extend({
        },
        addColumn: function(evt){
            var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-               displayType: "column",
+               edit_display_type: "column",
                record_form_view: this.get('currentFormView'),
                record_layout_definition: evt,
                order: evt.get('child_definitions.length')
@@ -460,7 +460,7 @@ export default Ember.Component.extend({
                    if( !Ember.isNone(evtModel.get('record_layout_definition')) )
                    {
                        var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                           displayType: "divider",
+                           edit_display_type: "divider",
                            record_form_view: this.get('currentFormView'),
                            order: newOrder,
                            record_layout_definition: evtModel.get('record_layout_definition')
@@ -469,7 +469,7 @@ export default Ember.Component.extend({
                        newRow.save();
                    }else{
                        var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                           displayType: "divider",
+                           edit_display_type: "divider",
                            record_form_view: this.get('currentFormView'),
                            order: newOrder
                        });
@@ -484,14 +484,14 @@ export default Ember.Component.extend({
                    if( !Ember.isNone(evtModel.get('record_layout_definition')) )
                    {
                        newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                           displayType: "row",
+                           edit_display_type: "row",
                            record_form_view: this.get('currentFormView'),
                            order: newOrder,
                            record_layout_definition: evtModel.get('record_layout_definition')
                        });
                    }else{
                        newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                           displayType: "row",
+                           edit_display_type: "row",
                            record_form_view: this.get('currentFormView'),
                            order: newOrder
                        });
@@ -499,7 +499,7 @@ export default Ember.Component.extend({
 
                    newRow.save().then(function(result){
                        var newCol = self.get('providedStore').createRecord('record-layout-definition', {
-                           displayType: "column",
+                           edit_display_type: "column",
                            record_form_view: self.get('currentFormView'),
                            record_layout_definition: result,
                            order: 0
@@ -510,7 +510,7 @@ export default Ember.Component.extend({
 
                case "tab-container":
                    var newRow = this.get('providedStore').createRecord('record-layout-definition', {
-                       displayType: "tab-container",
+                       edit_display_type: "tab-container",
                        record_form_view: this.get('currentFormView'),
                        order: newOrder
                    });
@@ -520,7 +520,7 @@ export default Ember.Component.extend({
 
                case "tab":
                    var newTab = this.get('providedStore').createRecord('record-layout-definition', {
-                       displayType: "tab",
+                       edit_display_type: "tab",
                        record_form_view: this.get('currentFormView'),
                        order: newOrder+1,
                        record_layout_definition: evtModel.get("record_layout_definition"),
@@ -533,12 +533,22 @@ export default Ember.Component.extend({
 
                case "relatedRecordsView":
                    var newComp = this.get('providedStore').createRecord('record-layout-definition',{
-                       displayType: "relatedRecordsView",
+                       edit_display_type: "relatedRecordsView",
                        record_form_view: this.get('currentFormView'),
                        order: newOrder+1,
                        record_layout_definition: evtModel
                    });
 
+                   newComp.save();
+                   break;
+
+               case "listRecordControls":
+                   var newComp = this.get('providedStore').createRecord('record-layout-definition',{
+                       edit_display_type: "listRecordControls",
+                       record_form_view: this.get('currentFormView'),
+                       order: newOrder+1,
+                       record_layout_definition: evtModel
+                   });
                    newComp.save();
                    break;
            }
