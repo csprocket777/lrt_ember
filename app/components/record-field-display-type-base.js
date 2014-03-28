@@ -58,6 +58,7 @@ export default Ember.Component.extend({
                 labelKey: "content.optionValue",
                 childModel: "option",
                 searchKey: "optionType",
+                shallowLabelKey: "optionValue"
 //                relationType: "specificOptionValues"
             },
             {
@@ -67,6 +68,7 @@ export default Ember.Component.extend({
                 labelKey: "content.optionValue",
                 childModel: "user",
                 searchKey: "jobRole",
+                shallowLabelKey: "name"
 //                relationType: "optionValues"
             }
         ];
@@ -74,6 +76,10 @@ export default Ember.Component.extend({
 
     valueKey: function(){
         return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).valueKey: null;
+    }.property('model.content_source'),
+
+    shallowLabelKey: function(){
+        return this.get('model.content_source') ? this.get('contentSourceOptions').findBy('value', this.get('model.content_source')).shallowLabelKey: null;
     }.property('model.content_source'),
 
     labelKey: function(){
@@ -113,5 +119,36 @@ export default Ember.Component.extend({
         }
 
         return ret ? ret : null;
-    }.property('recordValueModel.record_field_values')
+    }.property('recordValueModel.record_field_values'),
+
+    fieldValueReadOnly: function(){
+        var ret = this.get('recordValueModel') ? this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')): null;
+
+        var returnVal = null;
+
+        if( ret )
+        {
+            switch( ret.get('data_type') )
+            {
+                case "relationship":
+                    switch( this.get('childModel') )
+                    {
+                        case "user":
+                            return this.get('fieldValue');
+                            break;
+
+                        default:
+                            this.get('fieldValue').forEach(function(item, index, enumerable){
+                                returnVal = returnVal ? returnVal += ", "+item.get(this.get('shallowLabelKey')): item.get(this.get('shallowLabelKey'));
+                            }, this);
+                            break;
+                    }
+                    return returnVal;
+                    break;
+
+                default:
+                    return this.get('fieldValue');
+            }
+        }
+    }.property('fieldValue.content.length')
 });

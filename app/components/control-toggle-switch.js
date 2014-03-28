@@ -68,10 +68,5 @@ export default Ember.Component.extend({
                 "data-animate": this.get('dataAnimated')
             })
             .bootstrapSwitch('state', this.get('value'));
-
-//        this.$().find('input[type="checkbox"]')
-//            .on('switchChange.bootstrapSwitch', function(e,data){
-//                self.set('value', data.value);
-//            });
     }.observes('value')
 });

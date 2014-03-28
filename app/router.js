@@ -14,7 +14,9 @@ Router.map(function() {
             this.route('page', {path: "/page/:page_id"});
         });
 
-        this.resource('record', {path: "/record/:record_id"});
+        this.resource('record', {path: "/record/:record_id"}, function(){
+            this.route('edit');
+        });
 
         this.resource("reports");
 

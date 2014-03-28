@@ -1,4 +1,14 @@
-<p>{{friendly-time fieldValue}}</p>
+{{#if model.label}}
+    <label>
+        {{model.label}}:
+        {{#if model.required}}*{{/if}}
+    </label>
+{{/if}}
+{{#if fieldValueReadOnly}}
+    <p>{{friendly-time fieldValueReadOnly}}</p>
+{{else}}
+    <p><small>No date provided</small></p>
+{{/if}}
 
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}

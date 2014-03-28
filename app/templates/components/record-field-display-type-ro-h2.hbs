@@ -1,6 +1,12 @@
+{{!--{{#if model.label}}--}}
+    {{!--<label>--}}
+        {{!--{{model.label}}:--}}
+        {{!--{{#if model.required}}*{{/if}}--}}
+    {{!--</label>--}}
+{{!--{{/if}}--}}
 <h2>
-    {{#if fieldValue}}
-        {{{fieldValue}}}
+    {{#if fieldValueReadOnly}}
+        {{{fieldValueReadOnly}}}
     {{else}}
         [ {{model.record_field.name}} ]
     {{/if}}

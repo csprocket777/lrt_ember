@@ -1,4 +1,6 @@
-<b>{{{fieldValue}}}</b>
+{{#if fieldValueReadOnly}}
+    <b>{{{fieldValueReadOnly}}}</b>
+{{/if}}
 
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}

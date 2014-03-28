@@ -1,5 +1,11 @@
-{{#if fieldValue}}
-    <p class="lead">{{{fieldValue}}}</p>
+{{#if model.label}}
+    <label>
+        {{model.label}}:
+        {{#if model.required}}*{{/if}}
+    </label>
+{{/if}}
+{{#if fieldValueReadOnly}}
+    <p class="lead">{{{fieldValueReadOnly}}}</p>
 {{/if}}
 
 {{#if layoutEditMode}}

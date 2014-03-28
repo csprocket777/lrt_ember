@@ -1,4 +1,16 @@
-<span class="label label-primary">{{{fieldValue}}}</span>
+<div class="person-well well well-sm">
+    <div style="display: block; margin-bottom: 8px">
+        {{#if model.label}}
+            <label>
+                {{model.label}}:
+                {{#if model.required}}*{{/if}}
+            </label>
+        {{/if}}
+    </div>
+    {{#each fieldValueReadOnly}}
+        {{person-item model=this}}
+    {{/each}}
+</div>
 
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}

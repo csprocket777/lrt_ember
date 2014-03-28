@@ -1,4 +1,16 @@
-<h5>{{{fieldValue}}}</h5>
+{{!--{{#if model.label}}--}}
+    {{!--<label>--}}
+        {{!--{{model.label}}:--}}
+        {{!--{{#if model.required}}*{{/if}}--}}
+    {{!--</label>--}}
+{{!--{{/if}}--}}
+<h5>
+    {{#if fieldValueReadOnly}}
+        {{{fieldValueReadOnly}}}
+    {{else}}
+        [ {{model.record_field.name}} ]
+    {{/if}}
+</h5>
 
 {{#if layoutEditMode}}
     {{record-field-display-layout-edit-controls removeFieldAction="removeField" changeOrderUpAction="changeOrderUp" changeOrderDownAction="changeOrderDown"}}

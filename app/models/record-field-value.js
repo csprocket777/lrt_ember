@@ -8,7 +8,8 @@ var record_field_value_model = DS.Model.extend({
     data_type:                  DS.attr('string'),
     field_label:                DS.attr('string'),
     required:                   DS.attr('boolean'),
-    relatedValues:              DS.hasMany('RelatedRecord', {polymorphic:true, async: true}),
+    relatedValues:              DS.hasMany('related-record', {polymorphic:true, async: true}),
+//    relatedValues:              DS.belongsTo('related-record', {polymorphic:true, async: true}),
 
     updated_at:                 DS.attr(),
     created_at:                 DS.attr()
