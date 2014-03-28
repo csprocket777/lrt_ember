@@ -7,9 +7,11 @@
             </label>
         {{/if}}
     </div>
-    {{#each fieldValueReadOnly}}
-        {{person-item model=this}}
-    {{/each}}
+    {{#if fieldValueReadOnly}}
+        {{#each fieldValueReadOnly}}
+            {{person-item model=this}}
+        {{/each}}
+    {{/if}}
 </div>
 
 {{#if layoutEditMode}}
