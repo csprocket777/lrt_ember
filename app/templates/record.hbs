@@ -1,3 +1,4 @@
+{{#link-to "list" class="btn btn-default btn-sm"}} <i class="glyphicon glyphicon-arrow-left"></i> Back to list{{/link-to}}
 {{#with model as recordModel}}
     {{#with fullView.topLevelDefinitions controller="template-layout-field-list"}}
         {{#each arrangedContent}}
@@ -12,3 +13,21 @@
 {{/with}}
 
 {{record-loading-modal}}
+
+<nav id="save-menu" class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="navbar-header">
+        {{#if isEditable}}
+            <a class="navbar-brand" href="#">Editing</a>
+        {{else}}
+            <a class="navbar-brand" href="#">View Only</a>
+        {{/if}}
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
+        {{#if isEditable}}
+            {{#link-to "record" model.id class="btn btn-default navbar-btn"}}Cancel{{/link-to}}
+        {{else}}
+            {{#link-to "record.edit" model.id class="btn btn-default navbar-btn"}}Edit Record{{/link-to}}
+        {{/if}}
+    </div>
+</nav>

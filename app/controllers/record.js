@@ -12,6 +12,10 @@ export default Ember.ObjectController.extend({
         {
             this.set('fullView', this.get('model.record_form.views').findBy('view_type', 'full'));
         }
-    }.observes('model.record_form.views.@each.isLoaded')
+    }.observes('model.record_form.views.@each.isLoaded'),
+
+    isEditable: function(){
+        return this.get('recordEditMode') === "edit";
+    }.property('recordEditMode')
 
 });

@@ -58,7 +58,7 @@ module.exports = function (broccoli) {
     ],
     legacyFilesToAppend: [
         (env === 'production' ? 'appkit/config/production.js' : 'appkit/config/development.js'),
-        'jquery/jquery.js',
+        'jquery/dist/jquery.js',
         'handlebars/handlebars.js',
         'ember/ember.js',
         'ember-data/ember-data.js',
