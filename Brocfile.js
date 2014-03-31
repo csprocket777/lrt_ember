@@ -49,7 +49,7 @@ module.exports = function (broccoli) {
   var appAndDependencies = new broccoli.MergedTree(sourceTrees);
 
   var appJs = compileES6(appAndDependencies, {
-    loaderFile: 'loaderjs/loader.js',
+    loaderFile: 'loader.js',
     ignoredModules: [
       'ember/resolver'
     ],
