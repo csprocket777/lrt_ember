@@ -19,14 +19,107 @@
     <tbody>
         {{#if model.length}}
             {{#each model}}
-                <tr>
-                    <td>{{jobModality.optionValue}}</td>
-                    <td>{{jobComplexity.optionValue}}</td>
-                    <td>{{jobContentDuration}} {{jobContentDurationUnit.optionValue}}</td>
-                    <td>{{assessment}}</td>
-                    <td>{{contentReadiness}}</td>
-                    <td>{{percentNewContent}}</td>
-                    <td>{{mobileNeeded}}</td>
+                <tr {{bind-attr class="saveNeeded"}}>
+                    <td>
+                        {{#if controller.isEditable}}
+                            {{view Ember.Select
+                                classNames="form-control"
+                                content=controller.modalityChoiceOptions
+                                optionLabelPath="content.optionValue"
+                                optionValuePath="content.id"
+                                selection=jobModality.id
+                                prompt="Choose"
+                            }}
+                        {{else}}
+                            {{jobModality.optionValue}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if controller.isEditable}}
+                            {{view Ember.Select
+                            classNames="form-control"
+                            content=controller.complexityChoiceOptions
+                            optionLabelPath="content.optionValue"
+                            optionValuePath="content.id"
+                            value=jobComplexity.id
+                            prompt="Choose"
+                            }}
+                        {{else}}
+                            {{jobComplexity.optionValue}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if controller.isEditable}}
+                                <div class="col-md-6">
+                                    {{input type="text" class="form-control input input-sm" value=jobContentDuration}}
+                                </div>
+                                <div class="col-md-6">
+                                    {{view Ember.Select
+                                    classNames="form-control"
+                                    content=controller.contentDurationUnitOptions
+                                    optionLabelPath="content.optionValue"
+                                    optionValuePath="content.id"
+                                    value=jobContentDurationUnit.id
+                                    prompt="Choose"
+                                    }}
+                                </div>
+                        {{else}}
+                            {{jobContentDuration}} {{jobContentDurationUnit.optionValue}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if controller.isEditable}}
+                            {{control-toggleSwitch
+                            onLabel="Yes"
+                            offLabel="No"
+                            dataSize="small"
+                            value=assessment
+                            }}
+                        {{else}}
+                            {{assessment}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{log controller.contentReadinessOptions.firstObject}}
+                        {{#if controller.isEditable}}
+                            {{view Ember.Select
+                            classNames="form-control"
+                            content=controller.contentReadinessOptions
+                            optionLabelPath="content.optionValue"
+                            optionValuePath="content.id"
+                            value=contentReadiness
+                            prompt="Choose"
+                            }}
+                        {{else}}
+                            {{contentReadiness}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if controller.isEditable}}
+                            {{view Ember.Select
+                            classNames="form-control"
+                            content=controller.percentNewContentOptions
+                            optionLabelPath="content.optionValue"
+                            optionValuePath="content.id"
+                            value=percentNewContent
+                            prompt="Choose"
+                            }}
+                        {{else}}
+                            {{percentNewContent}}
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if controller.isEditable}}
+                            {{control-toggleSwitch
+                            onLabel="Yes"
+                            offLabel="No"
+                            dataSize="small"
+                            value=mobileNeeded
+                            }}
+                        {{else}}
+                            {{mobileNeeded}}
+                        {{/if}}
+                    </td>
                     <td></td>
                 </tr>
             {{/each}}
@@ -41,7 +134,7 @@
         <tr>
             <th colspan="8">
                 {{#if isEditable}}
-                    <button class="btn btn-primary btn-xs" type="button"><i class="glyphicon glyphicon-plus"></i> Add Deliverable</button>
+                    <button class="btn btn-primary btn-xs" type="button" {{action "addDeliverable"}}><i class="glyphicon glyphicon-plus"></i> Add Deliverable</button>
                 {{/if}}
             </th>
         </tr>

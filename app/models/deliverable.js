@@ -14,5 +14,9 @@ export default DS.Model.extend({
     assessment:                 DS.attr('boolean'),
     contentReadiness:           DS.attr('number'),
     percentNewContent:          DS.attr('number'),
-    mobileNeeded:               DS.attr('boolean')
+    mobileNeeded:               DS.attr('boolean'),
+
+    saveNeeded: function(){
+        return this.get('isDirty')? "warning": false;
+    }.property('isDirty')
 });

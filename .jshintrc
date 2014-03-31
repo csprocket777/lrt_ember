@@ -7,16 +7,7 @@
     "Ember": true,
     "Em": true,
     "DS": true,
-    "$": true,
-    "moment": true,
-    "bootstrap": true,
-    "console":true,
-    "sessionStorage": true,
-    "localStorage": true,
-    "alert": true,
-    "escape": true,
-    "requirejs": true,
-    "require": true
+    "$": true
   },
   "node" : false,
   "browser" : false,

@@ -24,7 +24,7 @@ export default Ember.ContainerView.extend({
                     parentController: this.get('controller.parentController'),
                     recordEditMode: this.get('controller.parentController.recordEditMode'),
                     layoutDefinitionModel: this.get('model'),
-                    recordValueModel: this.get('recordValueModel')
+                    recordValueModel: this.get('controller.parentController.recordValueModel')
                 }
             )
         }

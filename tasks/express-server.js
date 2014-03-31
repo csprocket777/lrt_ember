@@ -41,10 +41,15 @@ module.exports = function(grunt) {
     if (target === 'debug') {
       // For `expressServer:debug`
 
-      // Add livereload middlware after lock middleware if enabled
+      // Add livereload middleware after lock middleware if enabled
       if (Helpers.isPackageAvailable("connect-livereload")) {
-        app.use(require("connect-livereload")());
+        var liveReloadPort = grunt.config('watch.options.livereload');
+        app.use(require("connect-livereload")({port: liveReloadPort}));
       }
+
+      // YUIDoc serves static HTML, so just serve the index.html
+      app.all('/docs', function(req, res) { res.redirect(302, '/docs/index.html'); });
+      app.use(static({ urlRoot: '/docs', directory: 'docs' }));
 
       // These three lines simulate what the `copy:assemble` task does
       app.use(static({ urlRoot: '/config', directory: 'config' }));
@@ -62,7 +67,6 @@ module.exports = function(grunt) {
     }
 
     var port = parseInt(process.env.PORT || 8000, 10);
-//      var port = parseInt(process.env.PORT || 80, 10);
     if (isNaN(port) || port < 1 || port > 65535) {
       grunt.fail.fatal('The PORT environment variable of ' + process.env.PORT + ' is not valid.');
     }
@@ -86,7 +90,6 @@ module.exports = function(grunt) {
   function static(options) {
     return function(req, res, next) { // Gotta catch 'em all (and serve index.html)
       var filePath = "";
-
       if (options.directory) {
         var regex = new RegExp('^' + (options.urlRoot || ''));
         // URL must begin with urlRoot's value
@@ -108,7 +111,6 @@ module.exports = function(grunt) {
 
         // Is it a directory? If so, search for an index.html in it.
         if (stats.isDirectory()) { filePath = path.join(filePath, 'index.html'); }
-
 
         // Serve the file
         res.sendfile(filePath, function(err) {
