@@ -29,5 +29,10 @@
   "resolutions": {
     "ember": "1.5.0-beta.4",
     "handlebars": "~1.3.0"
-  }
+  },
+  "storage": {
+    "packages": ".bower-cache",
+    "registry": ".bower-registry"
+  },
+  "tmp": ".bower-tmp"
 }
