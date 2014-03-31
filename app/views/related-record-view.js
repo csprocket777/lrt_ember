@@ -8,6 +8,12 @@ export default Ember.View.extend({
     classNameBindings: ['scaffolding'],
 
     titleInEditMode: false,
+//    relatedModelOptions: [
+//        {
+//            label: "Deliverables",
+//            model: "deliverable"
+//        }
+//    ],
 
     scaffolding: function(){
         var ret = "";

@@ -4,6 +4,11 @@
 export default Ember.ArrayController.extend({
     recordType: null,
     recordValueModel: null,
+    recordEditMode: null,
+    parentController: null,
+    isEditable: function(){
+        return this.get('parentController.recordEditMode') === "edit";
+    }.property('parentController.recordEditMode'),
     layoutDefinitionModel: null,
 
     model: function(){

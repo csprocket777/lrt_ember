@@ -2,7 +2,8 @@
  * Created by chshipma on 3/26/14.
  */
 export default Ember.ObjectController.extend({
-    recordEditMode: "view",
+    recordEditMode: null,
+    templateName: "record.index",
 
     fullView: null,
 
