@@ -1,6 +1,6 @@
-import BaseModel from 'appkit/models/base-model';
+import Relatable from 'appkit/models/relatable';
 
-export default BaseModel.extend({
+export default Relatable.extend({
     propertiesToWatch:      function(){
         return [ 'managerID', 'approverID', 'type' ];
     }.property(),

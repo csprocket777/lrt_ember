@@ -3,10 +3,10 @@
  */
 export default DS.Model.extend({
     propertiesToWatch:      DS.attr(),
-    updated_at: DS.attr(),
-    created_at: DS.attr(),
+    updated_at:             DS.attr('date'),
+    created_at:             DS.attr('date'),
 
-    modelIsDirty:   DS.attr('boolean', {default: false}),
+    modelIsDirty:           DS.attr('boolean', {default: false}),
 
     relationshipWatchList: [],
 

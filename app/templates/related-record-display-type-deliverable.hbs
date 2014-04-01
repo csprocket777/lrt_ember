@@ -1,7 +1,3 @@
-<div class="alert alert-block alert-warning">
-    <h4>TODO</h4>
-    <p>Complete functionality once value system is hooked up</p>
-</div>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -31,6 +27,13 @@
                                 selection=jobModality
                                 prompt="Choose"
                             }}
+
+                            {{help-tool-tip
+                            dataHtml="true"
+                            dataContent=controller.modalityTooltipContent
+                            dataTrigger="hover"
+                            }}
+
                         {{else}}
                             {{jobModality.optionValue}}
                         {{/if}}
@@ -45,6 +48,12 @@
                             value=jobComplexity.id
                             selection=jobComplexity
                             prompt="Choose"
+                            }}
+
+                            {{help-tool-tip
+                            dataHtml="true"
+                            dataContent=controller.complexityTooltipContent
+                            dataTrigger="hover"
                             }}
                         {{else}}
                             {{jobComplexity.optionValue}}

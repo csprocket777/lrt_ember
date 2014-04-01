@@ -110,16 +110,46 @@ export default Ember.Component.extend({
 
     recordValueModel: null,
 
-    fieldValue: function(){
-        var ret = this.get('recordValueModel') ? this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')): null;
+    fieldValueSettled: false,
+
+    fieldValue: function(key, value){
+
+        var ret = this.get('recordValueModel') ?
+            this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')):
+            null;
+
+
+        if( arguments.length > 1 )
+        {
+            switch( ret.get('data_type') )
+            {
+                case "relationship":
+                    console.log(arguments);
+                    break;
+
+                default:
+                    ret.set('value', value);
+                    break;
+            }
+        }
 
         if( ret )
         {
-            ret = ret.get('data_type') === "relationship" ? ret.get('relatedValues'): ret.get('value');
+//            ret = ret.get('data_type') === "relationship" ?
+//                ret.get('relatedValues') > 1 ? ret.get('relatedValues'): ret.get('relatedValues.firstObject'):
+//                ret.get('value');
+            ret = ret.get('data_type') === "relationship" ?
+                ret.get('relatedValues'):
+                ret.get('value');
         }
 
-        return ret ? ret : null;
-    }.property('recordValueModel.record_field_values'),
+        return ret ? ret : [];
+    }.property('recordValueModel.record_field_values', 'recordValueModel.record_field_values.@each.relatedValues.length'),
+
+    fieldValueObserver: function(){
+        var isSettled = this.get('fieldValue.length') > 0;
+        this.set('fieldValueSettled', isSettled);
+    }.observes('fieldValue.length'),
 
     fieldValueReadOnly: function(){
         var ret = this.get('recordValueModel') ? this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')): null;

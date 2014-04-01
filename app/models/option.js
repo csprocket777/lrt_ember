@@ -1,9 +1,9 @@
 //import Bootstrap from 'vendor/ember-addons.bs_for_ember/dist/js/bs-core.min.js';
-import BaseModel from 'appkit/models/base-model';
+import Relatable from 'appkit/models/relatable';
 
 
 var Bootstrap = window.Bootstrap;
-export default BaseModel.extend({
+export default Relatable.extend({
 	optionType:				DS.belongsTo('optionSubGroup'),
     optionValue:			DS.attr('string'),
     optionRelationValue:	DS.hasMany('option', {inverse: 'option_belongs_to'}),
