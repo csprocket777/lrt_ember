@@ -85,7 +85,8 @@ module.exports = function (broccoli) {
         "redactor/redactor/redactor.js",
         "bootstrap-switch/dist/js/bootstrap-switch.js",
         "jquery.scrollTo/jquery.scrollTo.js",
-        "autoNumeric/autoNumeric.js"
+        "autoNumeric/autoNumeric.js",
+//        "ember-widgets/ember-widgets.js"
     ],
     wrapInEval: env !== 'production',
     outputFile: '/assets/app.js'
