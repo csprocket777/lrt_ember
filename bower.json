@@ -24,8 +24,7 @@
     "bootstrap-switch": "git://github.com/nostalgiaz/bootstrap-switch.git#3.0",
     "ember-addons.bs_for_ember": "~0.6.1",
     "font-awesome": "~4.0.3",
-    "jquery.scrollTo": "~1.4.11",
-    "ember-widgets": "http://tm-projects.cisco.com/_customized_javascript_dependancies/ember-widgets.zip"
+    "jquery.scrollTo": "~1.4.11"
   },
   "storage": {
     "packages": ".bower-cache",
