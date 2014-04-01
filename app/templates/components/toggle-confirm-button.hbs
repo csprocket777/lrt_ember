@@ -1,0 +1,8 @@
+{{#if toggled}}
+    <div {{bind-attr class=":btn-group vertical:btn-group-vertical"}}>
+        <button {{bind-attr class=":btn buttonConfirmClasses"}} {{action "confirmAction"}}>{{{buttonConfirmLabel}}}</button>
+        <button {{bind-attr class=":btn buttonCancelClasses"}} {{action "cancelAction"}}>{{{buttonCancelLabel}}}</button>
+    </div>
+{{else}}
+    <button {{bind-attr class=":btn buttonConfirmClasses"}} {{action "toggleConfirm"}}><i {{bind-attr class=":glyphicon buttonIcon"}}></i></button>
+{{/if}}

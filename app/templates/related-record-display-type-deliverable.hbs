@@ -12,22 +12,23 @@
             <th>Content Readiness</th>
             <th>% new content</th>
             <th>Mobile?</th>
-            <th></th>
+            <th class="col-md-1"></th>
         </tr>
     </thead>
 
     <tbody>
         {{#if model.length}}
-            {{#each model}}
+            {{#each model itemController="deliverable-list-item"}}
                 <tr {{bind-attr class="saveNeeded"}}>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{view Ember.Select
                                 classNames="form-control"
-                                content=controller.modalityChoiceOptions
+                                content=parentController.modalityChoiceOptions.content
                                 optionLabelPath="content.optionValue"
                                 optionValuePath="content.id"
-                                selection=jobModality.id
+                                value=jobModality.id
+                                selection=jobModality
                                 prompt="Choose"
                             }}
                         {{else}}
@@ -35,13 +36,14 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{view Ember.Select
                             classNames="form-control"
-                            content=controller.complexityChoiceOptions
+                            content=parentController.complexityChoiceOptions
                             optionLabelPath="content.optionValue"
                             optionValuePath="content.id"
                             value=jobComplexity.id
+                            selection=jobComplexity
                             prompt="Choose"
                             }}
                         {{else}}
@@ -49,17 +51,18 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                                 <div class="col-md-6">
                                     {{input type="text" class="form-control input input-sm" value=jobContentDuration}}
                                 </div>
                                 <div class="col-md-6">
                                     {{view Ember.Select
                                     classNames="form-control"
-                                    content=controller.contentDurationUnitOptions
+                                    content=parentController.contentDurationUnitOptions
                                     optionLabelPath="content.optionValue"
                                     optionValuePath="content.id"
                                     value=jobContentDurationUnit.id
+                                    selection=jobContentDurationUnit
                                     prompt="Choose"
                                     }}
                                 </div>
@@ -68,7 +71,7 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{control-toggleSwitch
                             onLabel="Yes"
                             offLabel="No"
@@ -80,11 +83,10 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{log controller.contentReadinessOptions.firstObject}}
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{view Ember.Select
                             classNames="form-control"
-                            content=controller.contentReadinessOptions
+                            content=parentController.contentReadinessOptions
                             optionLabelPath="content.optionValue"
                             optionValuePath="content.id"
                             value=contentReadiness
@@ -95,7 +97,7 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{view Ember.Select
                             classNames="form-control"
                             content=controller.percentNewContentOptions
@@ -109,7 +111,7 @@
                         {{/if}}
                     </td>
                     <td>
-                        {{#if controller.isEditable}}
+                        {{#if parentController.isEditable}}
                             {{control-toggleSwitch
                             onLabel="Yes"
                             offLabel="No"
@@ -120,7 +122,24 @@
                             {{mobileNeeded}}
                         {{/if}}
                     </td>
-                    <td></td>
+                    <td class="text-right">
+                        {{#if modelIsDirty}}
+                            <div class="btn-group">
+                                <button class="btn btn-xs btn-default" {{action "revertDeliverable"}}><i class="glyphicon glyphicon-fast-backward"></i></button>
+                                <button class="btn btn-xs btn-success" {{action "saveDeliverable"}}><i class="glyphicon glyphicon-ok"></i></button>
+                            </div>
+                        {{else}}
+                            {{toggle-confirm-button
+                                vertical=true
+                                confirmAction="removeDeliverable"
+                                buttonConfirmClasses="btn-xs btn-danger"
+                                buttonCancelClasses="btn-xs btn-default"
+                                buttonIcon="glyphicon-remove"
+                                buttonConfirmLabel="CONFIRM DELETE"
+                                buttonCancelLabel="Cancel"
+                            }}
+                        {{/if}}
+                    </td>
                 </tr>
             {{/each}}
         {{else}}
@@ -134,7 +153,10 @@
         <tr>
             <th colspan="8">
                 {{#if isEditable}}
-                    <button class="btn btn-primary btn-xs" type="button" {{action "addDeliverable"}}><i class="glyphicon glyphicon-plus"></i> Add Deliverable</button>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-xs" type="button" {{action "addDeliverable"}}><i class="glyphicon glyphicon-plus"></i> Add Deliverable</button>
+                        <button class="btn btn-default btn-xs" type="button" {{action "reloadDeliverables"}}><i class="glyphicon glyphicon-repeat"></i> Reload Deliverables</button>
+                    </div>
                 {{/if}}
             </th>
         </tr>

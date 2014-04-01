@@ -70,7 +70,13 @@ export default relatedRecordDisplayTypeBase.extend({
             }).save().then(function(){
                 self.set("model", self.reloadModel());
             });
+        },
+
+        reloadDeliverables: function(){
+            this.set('model', this.reloadModel());
         }
-    }
+    },
+
+
 
 });

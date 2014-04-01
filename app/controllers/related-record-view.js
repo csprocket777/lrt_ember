@@ -3,15 +3,10 @@
  */
 export default Ember.ObjectController.extend({
     recordValueModel: null,
-//    recordEditMode: "view",
     relatedModelOptions: [
         {
             label: "Deliverables",
             model: "deliverable"
         }
-    ],
-
-//    isEditable: function(){
-//        return this.get('recordEditMode') === "edit";
-//    }.property('recordEditMode')
+    ]
 });
