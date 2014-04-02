@@ -13,6 +13,10 @@
     }}
 {{/if}}
 
+{{#if fieldValueModel.isDirty}}
+    <span class="label label-info pull-right field-status-tag">CHANGED</span>
+{{/if}}
+
 {{#if model.content_source}}
     {{#if model.content_source_relation_values}}
         <ul class="list-group">

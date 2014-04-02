@@ -15,6 +15,10 @@
             }}
         {{/if}}
 
+        {{#if fieldValueModel.isDirty}}
+            <span class="label label-info pull-right field-status-tag">CHANGED</span>
+        {{/if}}
+
         {{#if model.content_source}}
             {{#if model.content_source_relation_values}}
                 <button class="btn btn-default btn-xs pull-right" {{action "showUserSelectModal"}}>Assign <i class="glyphicon glyphicon-user"></i></button>

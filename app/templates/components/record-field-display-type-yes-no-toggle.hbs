@@ -13,11 +13,15 @@
     }}
 {{/if}}
 
+{{#if fieldValueModel.isDirty}}
+    <span class="label label-info field-status-tag">CHANGED</span>
+{{/if}}
+
 {{control-toggleSwitch
-onLabel="Yes"
-offLabel="No"
-dataSize="small"
-value=fieldValue
+    onLabel="Yes"
+    offLabel="No"
+    dataSize="small"
+    value=fieldValue
 }}
 
 {{#if model.helpLine}}

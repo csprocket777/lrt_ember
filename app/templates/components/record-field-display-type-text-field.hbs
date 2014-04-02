@@ -13,6 +13,10 @@
     }}
 {{/if}}
 
+{{#if fieldValueModel.isDirty}}
+    <span class="label label-info pull-right field-status-tag">CHANGED</span>
+{{/if}}
+
 {{input type="text" class="form-control" value=fieldValue}}
 
 {{#if model.helpLine}}

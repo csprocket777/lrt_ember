@@ -9,7 +9,7 @@ export default recordFieldDisplayTypeBase.extend({
     selectedPersonnel: null,
 
     _setup: function(){
-        this.set('selectedPersonnel', []);
+        this.set('selectedPersonnel', this.get('fieldValue'));
     }.on('init'),
 
     modalButtons: [
@@ -31,7 +31,7 @@ export default recordFieldDisplayTypeBase.extend({
         },
 
         assignPersonnel: function(){
-            console.log('NEED TO ASSIGN BACK TO RECORD VALUE', this.get('selectedPersonnel'));
+//            this.set('relatedValues', this.get('selectedPersonnel'));
             Bootstrap.ModalManager.hide(this.get('modalID'));
         }
     }

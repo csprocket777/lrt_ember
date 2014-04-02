@@ -112,11 +112,22 @@ export default Ember.Component.extend({
 
     fieldValueSettled: false,
 
-    fieldValue: function(key, value){
-
-        var ret = this.get('recordValueModel') ?
+    fieldValueModel: function(){
+        return this.get('recordValueModel') ?
             this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')):
             null;
+    }.property('recordValueModel.record_field_values', 'model.record_field'),
+
+    relatedValues: function(key, value){
+        return this.get('fieldValueModel.relatedValues');
+    }.property('fieldValueModel.relatedValues.length'),
+
+    fieldValue: function(key, value){
+        var singleValueNeeded = this.get('model.edit_display_type').search('single') !== -1;
+
+
+        var ret = this.get('fieldValueModel');
+        var rV = this.get('relatedValues');
 
 
         if( arguments.length > 1 )
@@ -124,7 +135,11 @@ export default Ember.Component.extend({
             switch( ret.get('data_type') )
             {
                 case "relationship":
-                    console.log(arguments);
+                    if( value )
+                    {
+                        console.log(arguments);
+                        this.set('relatedValues', value);
+                    }
                     break;
 
                 default:
@@ -139,12 +154,12 @@ export default Ember.Component.extend({
 //                ret.get('relatedValues') > 1 ? ret.get('relatedValues'): ret.get('relatedValues.firstObject'):
 //                ret.get('value');
             ret = ret.get('data_type') === "relationship" ?
-                ret.get('relatedValues'):
-                ret.get('value');
+                this.get('relatedValues')
+                :this.get('fieldValueModel.value');
         }
 
-        return ret ? ret : [];
-    }.property('recordValueModel.record_field_values', 'recordValueModel.record_field_values.@each.relatedValues.length'),
+        return ret;
+    }.property('fieldValueModel', 'relatedValues.length', 'recordValueModel.record_field_values', 'recordValueModel.record_field_values.@each.relatedValues.length'),
 
     fieldValueObserver: function(){
         var isSettled = this.get('fieldValue.length') > 0;

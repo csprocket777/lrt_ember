@@ -4,6 +4,7 @@
 export default Ember.Component.extend({
     tagName: 'div',
 //    classNames:['flip-container'],
+    classNames: ['person-pill'],
     classNameBindings: ['labelType'],
 
     labelType: function(){
