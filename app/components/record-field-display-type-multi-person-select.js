@@ -14,7 +14,7 @@ export default recordFieldDisplayTypeBase.extend({
 
     modalButtons: [
         Ember.Object.create({title:'Cancel', dismiss:'modal'}),
-        Ember.Object.create({title:'Assign', clicked:"assignPersonnel", type:'primary'})
+        Ember.Object.create({title:'Apply Changes', clicked:"assignPersonnel", type:'primary'})
     ],
 
     modalTitle: function(){

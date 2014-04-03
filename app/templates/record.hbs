@@ -26,6 +26,10 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
         {{#if isEditable}}
             {{#link-to "record" model.id class="btn btn-default navbar-btn"}}Cancel{{/link-to}}
+            {{#if unsavedChanges}}
+                <button class="btn btn-warning" {{action "revertChanges"}}>Revert ({{unsavedChanges.length}}) Changes</button>
+                <button class="btn btn-success" {{action "saveChanges"}}>Save ({{unsavedChanges.length}}) Changes</button>
+            {{/if}}
         {{else}}
             {{#link-to "record.edit" model.id class="btn btn-default navbar-btn"}}Edit Record{{/link-to}}
         {{/if}}

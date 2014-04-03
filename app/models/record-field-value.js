@@ -8,6 +8,7 @@ var record_field_value_model = BaseModel.extend({
     record_id:                  DS.belongsTo('record', {inverse:'record_field_values'}),
     value:                      DS.attr(),
     data_type:                  DS.attr('string'),
+    related_model:              DS.attr('string'),
     field_label:                DS.attr('string'),
     required:                   DS.attr('boolean'),
 //    relatedValues:              DS.hasMany('related-record', {polymorphic:true, async: true}),
@@ -15,7 +16,6 @@ var record_field_value_model = BaseModel.extend({
     orig_relatedValues:         DS.hasMany('relatable', {polymorphic:true, async: true}),
 //    relatedValues:              DS.belongsTo('related-record', {polymorphic:true, async: true}),
 
-    relationshipWatchList:      ['relatedValues'],
     relatedValueIsDirty:        DS.attr('boolean', {default:false}),
 
     relatedValueObserver: function(){

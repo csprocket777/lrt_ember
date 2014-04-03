@@ -11,5 +11,14 @@ export default Ember.Route.extend( PrivilegedRoute, {
     setupController: function(controller, model){
 //        this.controllerFor('record').set('model', model);
         this.controllerFor('record').set("recordEditMode", "edit");
+    },
+
+    actions:{
+        saveChanges:function(){
+            this.controllerFor('record').get('unsavedChanges').invoke('save');
+        },
+        revertChanges:function(){
+            this.controllerFor('record').get('unsavedChanges').invoke('rollback');
+        }
     }
 });

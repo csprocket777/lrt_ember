@@ -16,6 +16,10 @@ export default Ember.ObjectController.extend({
 
     isEditable: function(){
         return this.get('recordEditMode') === "edit";
-    }.property('recordEditMode')
+    }.property('recordEditMode'),
+
+    unsavedChanges: function(){
+        return this.get('model.record_field_values').filterBy('isDirty', true);
+    }.property('model.record_field_values.@each.isDirty')
 
 });
