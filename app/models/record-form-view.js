@@ -32,7 +32,7 @@ export default DS.Model.extend({
             tmpFieldList.pushObject(item.get('record_field'));
         }, this);
 
-        return tmpFieldList;
+        return tmpFieldList.sortBy('name');
     }.property('field_associations.length'),
 
     anchorIDHash: function(){

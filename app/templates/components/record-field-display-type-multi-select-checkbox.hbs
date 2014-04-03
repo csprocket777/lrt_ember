@@ -18,16 +18,26 @@
 {{/if}}
 
 {{#if model.content_source}}
-    {{#if model.content_source_relation_values}}
-        <ul class="list-group">
-            {{#each model.content_source_relation_values itemController='checkbox-group-list-item'}}
-                <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=parentController.fieldValue checked=checked}}</li>
-            {{/each}}
-        </ul>
+    {{#if model.field_dependant_on}}
+        {{#if relatedFieldContentValues}}
+            <ul class="list-group">
+                {{#each relatedFieldContentValues itemController='checkbox-group-list-item'}}
+                    <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=parentController.fieldValue checked=checked}}</li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>
+                <small>{{{model.related_field_info}}}</small>
+            </p>
+        {{/if}}
     {{else}}
-        <p>
-            <small>{{{model.related_field_info}}}</small>
-        </p>
+        {{#if model.content_source_relation_values}}
+            <ul class="list-group">
+                {{#each model.content_source_relation_values itemController='checkbox-group-list-item'}}
+                    <li class="list-group-item">{{label}}  {{view "checkbox-group" class="pull-right" value=this groupContainer=parentController.fieldValue checked=checked}}</li>
+                {{/each}}
+            </ul>
+        {{/if}}
     {{/if}}
 {{/if}}
 

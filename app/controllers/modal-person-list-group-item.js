@@ -3,7 +3,7 @@
  */
 export default Ember.ObjectController.extend({
     isSelected: function(){
-        return this.get('parentController.fieldValue').contains(this.get('model')) || this.get('parentController.selectedPersonnel').contains(this.get('model'));
+        return !Ember.isEmpty(this.get('parentController.fieldValue')) ? this.get('parentController.fieldValue').contains(this.get('model')) || this.get('parentController.selectedPersonnel').contains(this.get('model')) : false;
     }.property('parentController.fieldValue.length', 'parentController.selectedPersonnel.length'),
 
     actions: {

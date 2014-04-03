@@ -10,7 +10,7 @@ export default DS.Model.extend({
     updated_at:             DS.attr(),
     created_at:             DS.attr(),
 
-    fieldAssociations:      DS.hasMany('record-form-field-association', {inverse:'record_field'}),
+    fieldAssociations:      DS.hasMany('record-form-field-association'),
 
     anchorIDHash: function(){
         return "#recordField_"+this.get('id');

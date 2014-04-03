@@ -195,8 +195,8 @@
                                                                         <label class="control-label" for="name">Depends on value from:</label>
                                                                         {{view Ember.Select
                                                                         classNames="form-control"
-                                                                        content=parentController.fieldsInTemplate
-                                                                        optionLabelPath="content.label"
+                                                                        content=parentController.currentFormView.rawFieldList
+                                                                        optionLabelPath="content.name"
                                                                         optionValuePath="content"
                                                                         value=field_dependant_on
                                                                         prompt="Which field in the form is this dependant upon?"

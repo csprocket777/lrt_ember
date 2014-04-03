@@ -112,6 +112,28 @@ export default Ember.Component.extend({
 
     fieldValueSettled: false,
 
+    relatedFieldValueModel: function(){
+        return this.get('recordValueModel') ?
+            this.get('recordValueModel.record_field_values').findBy('field', this.get('model.field_dependant_on')):
+            null;
+    }.property('recordValueModel.record_field_values', 'model.field_dependant_on'),
+
+    relatedFieldRelatedValues: function(){
+        return this.get('relatedFieldValueModel.relatedValues');
+    }.property('relatedFieldValueModel.relatedValues.length'),
+
+    relatedFieldContentValues: function(){
+        return this.get('relatedFieldRelatedValues') ?
+            this.get('model.content_source_relation_values').filter(function(item, index, enumerable){
+                // Go through each of the possible items for the control...
+                return this.get("relatedFieldRelatedValues").any(function(sItem, sIndex, sEnumerable){
+                    return item.get('option_relation_value').contains(sItem);
+                }, this);
+                // and see if any are in the relations array of any of the selected values from the related field
+            }, this):
+            null;
+    }.property('model.field_dependant_on', 'model.content_source_relation_values', 'relatedFieldValueModel', 'relatedFieldRelatedValues.length'),
+
     fieldValueModel: function(){
         return this.get('recordValueModel') ?
             this.get('recordValueModel.record_field_values').findBy('field', this.get('model.record_field')):
@@ -150,9 +172,6 @@ export default Ember.Component.extend({
 
         if( ret )
         {
-//            ret = ret.get('data_type') === "relationship" ?
-//                ret.get('relatedValues') > 1 ? ret.get('relatedValues'): ret.get('relatedValues.firstObject'):
-//                ret.get('value');
             ret = ret.get('data_type') === "relationship" ?
                 this.get('relatedValues')
                 :this.get('fieldValueModel.value');

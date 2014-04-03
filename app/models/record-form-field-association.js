@@ -3,7 +3,7 @@
  */
 export default DS.Model.extend({
     record_form_view:               DS.belongsTo('record-form-view', {inverse:'field_associations'}),
-    record_field:                   DS.belongsTo('record-field', {inverse: 'fieldAssociations'}),
+    record_field:                   DS.belongsTo('record-field'),
 
     required:                       DS.attr('boolean', {default:false}),
     edit_display_type:              DS.attr('string', {default: 'text-field'}),
@@ -15,7 +15,8 @@ export default DS.Model.extend({
     order:                          DS.attr('number'),
     content_source:                 DS.attr('string'),
     content_source_relation:        DS.attr(),
-    field_dependant_on:             DS.belongsTo('record-form-field-association'),
+//    field_dependant_on:             DS.hasMany('record-form-field-association'),
+    field_dependant_on:             DS.belongsTo('record-field'),
 
 
     field_dependant_on_dirty:       DS.attr('boolean', {default: false}),
@@ -65,9 +66,34 @@ export default DS.Model.extend({
         return choicesNeedingSource.contains(this.get('edit_display_type'));
     }.property('edit_display_type'),
 
-    content_source_relation_values: function(){
-        if( Ember.isNone(this.get('field_dependant_on')) )
+    content_source_relation_value_model: function(){
+        if( !Ember.isNone( this.get('content_source') ) && !Ember.isNone( this.get('content_source_relation') ) )
         {
+            var contentSourceOption = this.get('content_source_options').findBy('value', this.get('content_source'));
+            var childModel = contentSourceOption.childModel,
+                searchKey = contentSourceOption.searchKey,
+                searchString = {};
+
+            searchString[ searchKey ] = this.get('content_source_relation');
+            searchString.active = true;
+
+            if( Ember.isNone(this.get('field_dependant_on')) )
+            {
+                return this.get('store').find(childModel, searchString);
+            }else{
+                var self = this,
+                    ret = [];
+
+                return this.get('store').find(childModel, searchString).then(function(result){
+                    return result.filter(function(item, index, enumerable){
+                        return item.get('optionRelationValue').contains(self.get('field_dependant_on'));
+                    });
+                });
+            }
+        }
+    }.property('content_source', 'content_source_relation'),
+
+    content_source_relation_values: function(){
             if( !Ember.isNone( this.get('content_source') ) && !Ember.isNone( this.get('content_source_relation') ) )
             {
                 var contentSourceOption = this.get('content_source_options').findBy('value', this.get('content_source'));
@@ -77,21 +103,17 @@ export default DS.Model.extend({
 
                 searchString[ searchKey ] = this.get('content_source_relation');
                 searchString.active = true;
-
                 return this.get('store').find(childModel, searchString);
-
             }
-        }else{
-
-        }
     }.property('content_source', 'content_source_relation'),
+//    }.property('content_source_relation_value_model', 'content_source_relation_value_model.isFulfilled'),
 
     related_field_info: function(){
         var ret = "This field is dependant upon you choosing a value in the ";
         ret += this.get('field_dependant_on') ? this.get('field_dependant_on.label') : "[not yet assigned]";
         ret += " field.";
 
-        ret += '<br/><span class="label label-danger" style="display: inline-block; white-space: normal">YOU HAVE NOT SOLVED THIS YET. WAITING ON VALUE LINKAGE</span>';
+//        ret += '<br/><span class="label label-danger" style="display: inline-block; white-space: normal">YOU HAVE NOT SOLVED THIS YET. WAITING ON VALUE LINKAGE</span>';
 
         return ret;
     }.property('field_dependant_on'),

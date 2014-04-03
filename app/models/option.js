@@ -6,7 +6,7 @@ var Bootstrap = window.Bootstrap;
 export default Relatable.extend({
 	optionType:				DS.belongsTo('optionSubGroup'),
     optionValue:			DS.attr('string'),
-    optionRelationValue:	DS.hasMany('option', {inverse: 'option_belongs_to'}),
+    optionRelationValue:	DS.hasMany('option', {inverse: 'option_belongs_to', async: true}),
     active:					DS.attr('boolean'),
     option_relation_value:	DS.hasMany('option', {inverse: 'option_belongs_to'}),
 
