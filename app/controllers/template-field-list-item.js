@@ -59,6 +59,11 @@ export default Ember.ObjectController.extend({
                 label: "Person Selection (Multiple)",
                 optionGroup:    "Editable"
             },
+            {
+                value: "search-field-ad",
+                label: "CEC Search",
+                optionGroup:    "Editable"
+            },
 
 
             {

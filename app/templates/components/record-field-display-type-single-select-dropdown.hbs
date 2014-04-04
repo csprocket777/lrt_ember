@@ -22,14 +22,14 @@
 
     {{#if model.field_dependant_on}}
         {{#if relatedFieldContentValues}}
-            {{view Ember.Select
-                classNames="form-control"
+            {{view "enhanced-select"
                 content=relatedFieldContentValues
                 optionLabelPath=model.content_source_relation_values_labelKey
                 optionValuePath=model.content_source_relation_values_valueKey
                 value=content_source_relation
                 selection=selectedValue
-                prompt="Choose"
+                placeholder="Choose"
+                allowClear=true
             }}
         {{else}}
             <p>
@@ -38,14 +38,14 @@
         {{/if}}
     {{else}}
         {{#if model.content_source_relation_values}}
-            {{view Ember.Select
-                classNames="form-control"
+            {{view "enhanced-select"
                 content=model.content_source_relation_values
                 optionLabelPath=model.content_source_relation_values_labelKey
                 optionValuePath=model.content_source_relation_values_valueKey
                 value=content_source_relation
                 selection=selectedValue
-                prompt="Choose"
+                placeholder="Choose"
+                allowClear=true
             }}
         {{/if}}
     {{/if}}

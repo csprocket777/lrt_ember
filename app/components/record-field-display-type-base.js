@@ -6,44 +6,64 @@ export default Ember.Component.extend({
     displayTypeValues: function(){
         return [
             {
-                value: "text-field",
-                label: "Text Field"
+                value:          "text-field",
+                label:          "Text Field",
+                optionGroup:    "Editable"
+            },
+            {
+                value:          "text-field-lrg",
+                label:          "Text Field - Large",
+                optionGroup:    "Editable"
             },
             {
                 value: "money",
-                label: "Monetary Amount"
+                label: "Monetary Amount",
+                optionGroup:    "Editable"
             },
             {
                 value: "yes-no-toggle",
-                label: "Yes / No"
+                label: "Yes / No",
+                optionGroup:    "Editable"
             },
             {
                 value: "text-area",
-                label: "Text Area"
+                label: "Text Area",
+                optionGroup:    "Editable"
             },
             {
                 value: "date",
-                label: "Date"
+                label: "Date",
+                optionGroup:    "Editable"
             },
             {
                 value: "single-select-dropdown",
-                label: "Select Dropdown (Single)"
+                label: "Select Dropdown (Single)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-select-dropdown",
-                label: "Select Dropdown (Multiple)"
+                label: "Select Dropdown (Multiple)",
+                optionGroup:    "Editable"
             },
             {
                 value: "single-select-radio",
-                label: "Choice (Radio - Single)"
+                label: "Choice (Radio - Single)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-select-checkbox",
-                label: "Choice (Checkboxes - Multiple)"
+                label: "Choice (Checkboxes - Multiple)",
+                optionGroup:    "Editable"
             },
             {
                 value: "multi-person-select",
-                label: "Person Selection (Multiple)"
+                label: "Person Selection (Multiple)",
+                optionGroup:    "Editable"
+            },
+            {
+                value: "single-select-ad-dropdown",
+                label: "CEC Search - Select Dropdown (Single)",
+                optionGroup:    "Editable"
             }
         ];
     }.property(),
